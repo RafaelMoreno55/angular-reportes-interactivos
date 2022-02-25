@@ -58,7 +58,7 @@ export class VariableReportComponent implements OnInit {
     var scaleBar = this.gauge.scaleBar(0);
 
     // set the height and offset of the Scale Bar (both as percentages of the gauge height)
-    scaleBar.width('5%');
+    scaleBar.width('35%');
     scaleBar.offset('31.5%');
 
     // use the color scale (defined earlier) as the color scale of the Scale Bar
@@ -68,7 +68,7 @@ export class VariableReportComponent implements OnInit {
     var marker = this.gauge.marker(0);
 
     // set the offset of the pointer as a percentage of the gauge width
-    marker.offset('43%');
+    marker.offset('31.5%');
 
     // set the color of the marker
     marker.color('black');

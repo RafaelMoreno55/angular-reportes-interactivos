@@ -19,6 +19,7 @@ export class SectorReportComponent implements OnInit {
   gauge4: anychart.charts.LinearGauge = null;
 
   selectedIndex: number = -1;
+  selectedComponet: number = 0;
   isShowInfo: boolean = false;
 
   ngOnInit() {
@@ -32,7 +33,8 @@ export class SectorReportComponent implements OnInit {
     const self = this;
     this.gauge1.listen('pointClick', function (e) {
       self.selectedIndex = 1;
-      self.router.navigate(['/subsectorreport', self.selectedIndex]);
+      self.selectedComponet = 1;
+      //self.router.navigate(['/subsectorreport', self.selectedIndex]);
     });
     this.gauge1.bounds(0, 0, '25%', '100%');
     this.gauge1.container(stage);
@@ -42,7 +44,8 @@ export class SectorReportComponent implements OnInit {
     this.gauge2.addPointer(1);
     this.gauge2.listen('pointClick', function (e) {
       self.selectedIndex = 2;
-      self.router.navigate(['/subsectorreport', self.selectedIndex]);
+      self.selectedComponet = 1;
+      //self.router.navigate(['/subsectorreport', self.selectedIndex]);
     });
     this.gauge2.bounds('25%', 0, '25%', '100%');
     this.gauge2.container(stage);
@@ -52,7 +55,8 @@ export class SectorReportComponent implements OnInit {
     this.gauge3.addPointer(2);
     this.gauge3.listen('pointClick', function (e) {
       self.selectedIndex = 3;
-      self.router.navigate(['/subsectorreport', self.selectedIndex]);
+      self.selectedComponet = 2;
+      //self.router.navigate(['/referencereport', self.selectedIndex]);
     });
     this.gauge3.bounds('50%', 0, '25%', '100%');
     this.gauge3.container(stage);
@@ -62,7 +66,8 @@ export class SectorReportComponent implements OnInit {
     this.gauge4.addPointer(3);
     this.gauge4.listen('pointClick', function (e) {
       self.selectedIndex = 4;
-      self.router.navigate(['/subsectorreport', self.selectedIndex]);
+      self.selectedComponet = 1;
+      //self.router.navigate(['/subsectorreport', self.selectedIndex]);
     });
     this.gauge4.bounds('75%', 0, '25%', '100%');
     this.gauge4.container(stage);
@@ -70,6 +75,6 @@ export class SectorReportComponent implements OnInit {
   }
 
   ShowInfo(): void {
-    this.isShowInfo = true;
+    this.isShowInfo == true ? this.isShowInfo = false : this.isShowInfo = true;
   }
 }
