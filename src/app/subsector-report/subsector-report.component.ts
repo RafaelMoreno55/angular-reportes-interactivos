@@ -1,16 +1,13 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { DataReportService, Options } from 'app/data-report.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-subsector-report',
   templateUrl: './subsector-report.component.html',
   styleUrls: ['./subsector-report.component.css']
 })
-export class SubsectorReportComponent implements OnInit {
-
-  constructor(private router: Router, private route: ActivatedRoute, private location: Location) { }
+export class SubsectorReportComponent implements OnInit, OnDestroy {
 
   @ViewChild('lineChartContainer') lineContainer;
   @ViewChild('doughnutChartContainer') doughnutContainer;
@@ -19,23 +16,34 @@ export class SubsectorReportComponent implements OnInit {
   doughnut2: anychart.charts.Pie = null;
   labelTitle: string = "";
   labelDescription: string = "";
-  //id: number = -1;
+  selectedSector: number;
   selectedIndex: number = -1;
   isShowCard: number = -1;
-  @Input() id: number;
+  selection: Options = {
+    selectedComponent: -1,
+    selectedIndex: -1
+  }
+  private subscription: Subscription | undefined;
+
+  constructor(private optionsSvc: DataReportService) {
+   }
+   
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   ngOnInit() {
-    this.id = +this.route.snapshot.paramMap.get('id');
-    if (this.id == 1) {
+    this.subscription = this.optionsSvc.selectedOption$.subscribe((option: Options) => {this.selectedSector = option['selectedIndex']; this.selection = option;});
+    if (this.selectedSector == 1) {
       this.labelTitle = "factores por nivel de fraude";
       this.labelDescription = "Los resultados indican que existe una alta probabilidad de que la persona que realizó la entrevista es quien dice ser, sin embargo, se presenta un alta probabilidad de que la información cuantitativa proporcionada sea falsa. Se recomienda revisar lo relativo a la información socioeconómica debido a que existen variables en las que la persona proporcionó información distorsionada.";
     } else {
-      if (this.id == 2) {
+      if (this.selectedSector == 2) {
         this.labelTitle = "resultados de variables competencias";
         this.labelDescription = "Los resultados indican un resultado promedio en las competencias evaluadas, el hecho de que haya un porcentaje de veracidad debajo del 75% indica que la persona exageró en el desempeño real de estas competencias";
         this.ShowLineChart();
       } else {
-        if (this.id == 4) {
+        if (this.selectedSector == 4) {
           this.labelTitle = "factores por nivel de riesgo";
           this.labelDescription = "Existe una consistencia entre los resultados riesgo persona y riesgo entorno, en el caso específico se encuentra información distorcionada por el sujeto en la mayoría de los factores, sin embargo, esta no genera el suficiente estrés para ser considerando un riesgo de importancia por lo que se recomienda proceder con preguntas específicas de los riesgos para clarificar en el tema. Se presentan como principales riesgos: la fuga de información como factor personal y consumo de drogas en el entorno del candidato.";
           this.ShowDoughnutChart();
@@ -44,8 +52,14 @@ export class SubsectorReportComponent implements OnInit {
     }
   }
 
-  goToBack(): void {
-    this.location.back();
+  GoToBack(): void {
+    this.selection['selectedComponent'] = 0;
+    this.optionsSvc.setOptions(this.selection); 
+  }
+
+  GoToVariableReport(option: number): void{
+    this.selection['selectedComponent'] = 3;
+    this.optionsSvc.setOptions(this.selection); 
   }
 
   ShowLineChart(): void {
@@ -80,7 +94,6 @@ export class SubsectorReportComponent implements OnInit {
     const self = this;
     this.line.listen('pointsSelect', function (e) {
       self.selectedIndex = e['point'].index;
-      self.router.navigate(['/variablereport', self.selectedIndex]);
     });
 
     // set the container id
@@ -119,9 +132,6 @@ export class SubsectorReportComponent implements OnInit {
     // set the chart title
     this.doughnut1.title("Riesgo personal");
 
-    // set the sorting mode
-    //this.doughnut1.sort("desc");
-
     // configure the firts doughnut chart
     this.doughnut1.bounds(0, 0, "50%", "100%");
 
@@ -140,7 +150,7 @@ export class SubsectorReportComponent implements OnInit {
         }
       }
       self.labelTitle = "factores de riesgo - personal";
-      self.id = -1;
+      self.selectedSector = -1;
     });
     // set the container id
     this.doughnut1.container(stage);
@@ -158,9 +168,6 @@ export class SubsectorReportComponent implements OnInit {
     // set the chart title
     this.doughnut2.title("Riesgo entorno");
 
-    // set the sorting mode
-    //this.doughnut2.sort("desc");
-
     // configure the second doughnut chart
     this.doughnut2.bounds('50%', 0, "50%", "100%");
 
@@ -176,7 +183,7 @@ export class SubsectorReportComponent implements OnInit {
         }
       }
       self.labelTitle = "factores de riesgo - entorno";
-      self.id = -1;
+      self.selectedSector = -1;
     });
     // set the container id
     this.doughnut2.container(stage);

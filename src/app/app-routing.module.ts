@@ -4,6 +4,7 @@ import { SectorReportComponent } from './sector-report/sector-report.component';
 import { SubsectorReportComponent } from './subsector-report/subsector-report.component';
 import { VariableReportComponent } from './variable-report/variable-report.component';
 import { SubsectorReferenceReportComponent } from './subsector-reference-report/subsector-reference-report.component';
+import { ReportsComponent } from './reports/reports.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/sectorreport', pathMatch: 'full' },

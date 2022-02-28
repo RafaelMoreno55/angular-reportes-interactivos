@@ -1,10 +1,10 @@
-<div [hidden]="selectedComponet != 0" class="container mt-2">
+<div [hidden]="selectedComponent != 0" class="container mt-2">
   <div class="row">
     <div class="col-4 border">
       <div class="row">
         <div class="col-6 border">
-          <p class="text-capitalize fs-3">
-            gerald <span class="fw-bold">morris</span>
+          <p class="text-capitalize" style="font-size: x-large;">
+            gerald <span style="font-weight: bold;">morris</span>
           </p>
           <span>gerald@morris.com</span>
           <span>UX Developer</span>
@@ -15,7 +15,7 @@
         <div class="col-6 border">
           <div class="w-100 h-100 d-flex flex-column align-items-center justify-content-around">
             <div class="rounded-circle bg-secondary" style="width: 90px; height: 90px"></div>
-            <button type="button" (click)="ShowInfo()" class="btn btn-outline-info">Más Información</button>
+            <button type="button" (click)="ShowInfo()" class="btn" style="color: #fff; background-color: #0091ea; border-color: #0091ea;">Más Información</button>
           </div>
         </div>
       </div>
@@ -23,7 +23,7 @@
     <div class="col-4 border">
       <ul class="mt-2">
         <li class="d-flex justify-content-center">
-          <div class=" h-100 py-2 px-1 d-flex flex-row align-items-center border-top border-bottom border-danger border-4"style="width: 60%">
+          <div class=" h-100 py-2 px-1 d-flex flex-row align-items-center" style="width: 60%">
             <div class="rounded-circle bg-danger" style="width: 32px; height: 32px"></div>
             <span class="mx-2">No recomendado</span>
           </div>
@@ -35,7 +35,7 @@
           </div>
         </li>
         <li class="d-flex justify-content-center">
-          <div class="h-100 py-2 px-1 d-flex flex-row align-items-center" style="width: 60%">
+          <div class="h-100 py-2 px-1 d-flex flex-row align-items-center bg-warning" style="width: 60%">
             <div class="rounded-circle bg-warning" style="width: 32px; height: 32px"></div>
             <span class="mx-2">Revisar</span>
           </div>
@@ -68,7 +68,7 @@
     <div class="col-2 border">
       <div *ngIf="isShowInfo" class="table-responsive">
         <table class="table align-middle mt-2">
-          <tbody>
+          <tbody style="font-size: x-small;">
             <tr>
               <td colspan="2" class="fs-5">Información detallada</td>
             </tr>
@@ -94,15 +94,20 @@
     </div>
     <div class="col-8 border">
       <div style="height: 400px;" class="row">
-        <div style="width: 100%; height: 100%;" #chartContainer></div>
+        <!-- <div style="width: 100%; height: 100%;" #chartContainer></div> -->
+        <div style="height: 100%;" class="col" #chartContainer1></div>
+        <div style="height: 100%;" class="col" #chartContainer2></div>
+        <div style="height: 100%;" class="col" #chartContainer3></div>
+        <div style="height: 100%;" class="col" #chartContainer4></div>
       </div>
     </div>
     <div class="col-2 border"></div>
   </div>
   <div class="row">
     <div class="col-12 border">
-      <p class="px-5">
-        Descripción: "El candidato presenta elementos de riesgo personal en los
+      <h4 style="margin-top: 3rem;" class="text-uppercase text-center">Descripción:</h4>
+      <p class="px-5" style="font-size: 1.2em;">
+        "El candidato presenta elementos de riesgo personal en los
         factores "X, Y, Z”, el prospecto tiene un nivel no satisfactorio en
         las competencias evaluadas, por lo anterior el prospecto NO es
         recomendado"
@@ -110,9 +115,12 @@
     </div>
   </div>
 </div>
-<div [hidden]="selectedComponet != 1">
+<div [hidden]="selectedComponent != 1">
   <app-subsector-report></app-subsector-report>
 </div> 
-<div [hidden]="selectedComponet != 2">
+<div [hidden]="selectedComponent != 2">
   <app-subsector-reference-report></app-subsector-reference-report>
 </div> 
+<div [hidden]="selectedComponent != 3">
+  <app-variable-report></app-variable-report>
+</div>

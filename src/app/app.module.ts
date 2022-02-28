@@ -7,6 +7,8 @@ import { SubsectorReportComponent } from './subsector-report/subsector-report.co
 import { VariableReportComponent } from './variable-report/variable-report.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SubsectorReferenceReportComponent } from './subsector-reference-report/subsector-reference-report.component';
+import { ReportsComponent } from './reports/reports.component';
+import { DataReportService } from './data-report.service';
 
 @NgModule({
   declarations: [
@@ -14,13 +16,14 @@ import { SubsectorReferenceReportComponent } from './subsector-reference-report/
     SectorReportComponent,
     SubsectorReportComponent,
     VariableReportComponent,
-    SubsectorReferenceReportComponent
+    SubsectorReferenceReportComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [DataReportService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
