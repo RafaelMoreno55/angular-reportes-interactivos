@@ -8,17 +8,15 @@
 <div class="container mt-2">
   <div class="row">
     <div class="col-12 border">
-      <p class="text-uppercase text-center fw-bold fs-3">
-        {{labelTitle}}
-      </p>
+      <p class="text-uppercase text-center fw-bold fs-3">{{GetTitle()}}</p>
     </div>
   </div>
   <div class="row">
     <div class="col-1 border"></div>
     <div class="col-10 border">
-      <div *ngIf="selectedSector == 1" class="row row-cols-1 row-cols-md-3 g-4 py-1">
+      <div *ngIf="GetSelectedSubSector() == 1" class="row row-cols-1 row-cols-md-3 g-4 py-1">
         <div class="col">
-          <div class="card text-white bg-danger mb-3 h-100" style="max-width: 18rem;" (click)="GoToVariableReport(1)"> <!--routerLink="/variablereport/1" --> 
+          <div class="card text-white bg-danger mb-3 h-100" style="max-width: 18rem;" (click)="GoToVariableReport(1)">
             <div class="card-header text-center fs-4">Score: 0 - 50</div>
             <div class="card-body">
               <h5 class="card-title">
@@ -30,7 +28,7 @@
           </div>
         </div>
         <div class="col">
-          <div class="card text-dark bg-warning mb-3 h-100" style="max-width: 18rem;" (click)="GoToVariableReport(2)"> <!-- routerLink="/variablereport/2" -->
+          <div class="card text-dark bg-warning mb-3 h-100" style="max-width: 18rem;" (click)="GoToVariableReport(2)">
             <div class="card-header text-center fs-4">Score: 51 - 75</div>
             <div class="card-body">
               <h5 class="card-title">
@@ -42,7 +40,7 @@
           </div>
         </div>
         <div class="col">
-          <div class="card text-white bg-success mb-3 h-100" style="max-width: 18rem;" (click)="GoToVariableReport(3)"> <!-- routerLink="/variablereport/3" -->
+          <div class="card text-white bg-success mb-3 h-100" style="max-width: 18rem;" (click)="GoToVariableReport(3)">
             <div class="card-header text-center fs-4">Score: 76 - 100</div>
             <div class="card-body">
               <h5 class="card-title">
@@ -54,16 +52,16 @@
           </div>
         </div>
       </div>
-      <div [hidden]="selectedSector != 2" style="height: 400px;" class="row">
+      <div [hidden]="GetSelectedSubSector() != 2" style="height: 400px;" class="row">
         <div style="width: 100%; height: 100%;" #lineChartContainer></div>
       </div>
-      <div [hidden]="selectedSector != 4" style="height: 400px;" class="row">
+      <div [hidden]="GetSelectedSubSector() != 4" style="height: 400px;" class="row">
         <div style="width: 100%; height: 100%;" #doughnutChartContainer></div>
       </div>
-      <div *ngIf="isShowCard == 0">
+      <div *ngIf="isShowCard == 0 && _selectedSubSector == 4">
         <div class="row row-cols-1 row-cols-md-3 g-4 py-1">
           <div class="col">
-            <div class="card text-dark bg-danger mb-3 h-100" style="max-width: 18rem;" (click)="GoToVariableReport(4)"> <!-- routerLink="/variablereport/4" -->
+            <div class="card text-dark bg-danger mb-3 h-100" style="max-width: 18rem;" (click)="GoToVariableReport(4)">
               <div class="card-header text-center fs-4">Score: 0 - 50</div>
               <div class="card-body">
                 <h5 class="card-title">
@@ -76,10 +74,10 @@
           </div>
         </div>
       </div>
-      <div *ngIf="isShowCard == 1">
+      <div *ngIf="isShowCard == 1 && _selectedSubSector == 4">
         <div class="row row-cols-1 row-cols-md-3 g-4 py-1">
           <div class="col">
-            <div class="card text-dark bg-warning mb-3 h-100" style="max-width: 18rem;" (click)="GoToVariableReport(4)"> <!-- routerLink="/variablereport/4" -->
+            <div class="card text-dark bg-warning mb-3 h-100" style="max-width: 18rem;" (click)="GoToVariableReport(4)">
               <div class="card-header text-center fs-4">Score: 51 - 75</div>
               <div class="card-body">
                 <h5 class="card-title">
@@ -100,9 +98,8 @@
   </div>
   <div class="row">
     <div class="col-12 border">
-      <p class="px-5">
-        Descripción: {{labelDescription}}
-      </p>
+      <h4 style="margin-top: 3rem;" class="text-uppercase text-center">Descripción:</h4>
+      <p class="px-5" style="font-size: 1.2em;">{{GetDescription()}}</p>
     </div>
   </div>
 </div>

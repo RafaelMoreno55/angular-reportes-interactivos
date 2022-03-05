@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import 'anychart';
-import { DataReportService, Options } from 'app/data-report.service';
+import { DataReportService, DataSubsector, Options } from 'app/data-report.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -17,15 +17,23 @@ export class VariableReportComponent implements OnInit, OnDestroy {
     selectedIndex: -1
   };
   private subscription: Subscription | undefined;
+  @Input() selectedVariableData: DataSubsector = {
+    labelTitle: "",
+    labelDescription: ""
+  };
 
   constructor(private optionsSvc: DataReportService) { }
-  
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
   ngOnInit() {
     this.subscription = this.optionsSvc.selectedOption$.subscribe((option: Options) => this.selection = option);
+    this.ShowLineGaugeChart();
+  }
+
+  ShowLineGaugeChart(): void {
     // Do not use the absolute path of the svg definitions.
     anychart.graphics.useAbsoluteReferences(false);
     var stage = anychart.graphics.create(this.container.nativeElement);
@@ -130,6 +138,10 @@ export class VariableReportComponent implements OnInit, OnDestroy {
 
   GoToBack(): void {
     this.selection['selectedComponent'] = 1;
-    this.optionsSvc.setOptions(this.selection);
+    this.SetOption(this.selection);
+  }
+
+  SetOption(option: Options): void {
+    this.optionsSvc.setOptions(option);
   }
 }

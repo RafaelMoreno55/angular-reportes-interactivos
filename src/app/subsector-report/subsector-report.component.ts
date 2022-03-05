@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { DataReportService, Options } from 'app/data-report.service';
+import { Component, OnDestroy, OnInit, ViewChild, Input } from '@angular/core';
+import { DataReportService, Options, DataSubsector } from 'app/data-report.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,16 +14,17 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
   line: anychart.charts.Cartesian = null;
   doughnut1: anychart.charts.Pie = null;
   doughnut2: anychart.charts.Pie = null;
-  labelTitle: string = "";
-  labelDescription: string = "";
-  selectedSector: number;
-  selectedIndex: number = -1;
   isShowCard: number = -1;
   selection: Options = {
     selectedComponent: -1,
     selectedIndex: -1
   }
   private subscription: Subscription | undefined;
+  @Input() selectedSubSectorData: DataSubsector = {
+    labelTitle: "",
+    labelDescription: ""
+  };
+  _selectedSubSector: number = -1;
 
   constructor(private optionsSvc: DataReportService) {
    }
@@ -33,8 +34,10 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.optionsSvc.selectedOption$.subscribe((option: Options) => {this.selectedSector = option['selectedIndex']; this.selection = option;});
-    if (this.selectedSector == 1) {
+    this.subscription = this.optionsSvc.selectedOption$.subscribe((option: Options) => {this.selection = option;});
+    this.ShowLineChart();
+    this.ShowDoughnutChart();
+    /* if (this.selectedSector == 1) {
       this.labelTitle = "factores por nivel de fraude";
       this.labelDescription = "Los resultados indican que existe una alta probabilidad de que la persona que realizó la entrevista es quien dice ser, sin embargo, se presenta un alta probabilidad de que la información cuantitativa proporcionada sea falsa. Se recomienda revisar lo relativo a la información socioeconómica debido a que existen variables en las que la persona proporcionó información distorsionada.";
     } else {
@@ -49,17 +52,23 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
           this.ShowDoughnutChart();
         }
       }
-    }
+    } */
   }
 
   GoToBack(): void {
-    this.selection['selectedComponent'] = 0;
-    this.optionsSvc.setOptions(this.selection); 
+    if ( this._selectedSubSector == 4 ) {
+      this.selection['selectedIndex'] = this._selectedSubSector;
+      this.selection['selectedComponent'] = 1;
+      this._selectedSubSector = -1;
+    } else {
+      this.selection['selectedComponent'] = 0;
+    }
+    this.SetOption(this.selection); 
   }
 
   GoToVariableReport(option: number): void{
     this.selection['selectedComponent'] = 3;
-    this.optionsSvc.setOptions(this.selection); 
+    this.SetOption(this.selection); 
   }
 
   ShowLineChart(): void {
@@ -92,8 +101,10 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
     yAxis.title("Puntuación");
 
     const self = this;
-    this.line.listen('pointsSelect', function (e) {
-      self.selectedIndex = e['point'].index;
+    this.line.listen('pointClick', function (e) {
+      //self.selection['selectedIndex'] = e['point'].index;
+      self.selection['selectedComponent'] = 3;
+      self.SetOption(self.selection);
     });
 
     // set the container id
@@ -137,20 +148,21 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
 
     const self = this;
     this.doughnut1.listen('pointsSelect', function (e) {
-      self.selectedIndex = e['currentPoint'].index;
+      self._selectedSubSector = self.selection['selectedIndex'];
+      self.selection['selectedIndex'] = e['currentPoint'].index;
       // riesgo alto
-      if (self.selectedIndex == 0) {
+      if (self.selection['selectedIndex'] == 0) {
         self.isShowCard = 0;
-        self.labelDescription = "Información referente a riesgo alto";
+        self.selectedSubSectorData['labelDescription'] = "Información referente a riesgo alto";
       } else {
         // riesgo medio
-        if (self.selectedIndex == 1) {
+        if (self.selection['selectedIndex'] == 1) {
           self.isShowCard = 1;
-          self.labelDescription = "El candidato ha proporcionado información distorsionada en los factores: delitos, soborno, uso de drogas, ingesta de bebidas alcohólicas. Lo cual indica que hay posibilidad de que el candidato ejecute estos riesgos bajo las condiciones necesarias que puedan ser interpretadas para éste como justificables. Se recomienda proceder con preguntas específicas de los riesgos";
+          self.selectedSubSectorData['labelDescription'] = "El candidato ha proporcionado información distorsionada en los factores: delitos, soborno, uso de drogas, ingesta de bebidas alcohólicas. Lo cual indica que hay posibilidad de que el candidato ejecute estos riesgos bajo las condiciones necesarias que puedan ser interpretadas para éste como justificables. Se recomienda proceder con preguntas específicas de los riesgos";
         }
       }
-      self.labelTitle = "factores de riesgo - personal";
-      self.selectedSector = -1;
+      self.selectedSubSectorData['labelTitle'] = "factores de riesgo - personal";
+      self.selection['selectedIndex'] = -1;
     });
     // set the container id
     this.doughnut1.container(stage);
@@ -172,23 +184,40 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
     this.doughnut2.bounds('50%', 0, "50%", "100%");
 
     this.doughnut2.listen('pointsSelect', function (e) {
-      self.selectedIndex = e['currentPoint'].index;
-      if (self.selectedIndex == 0) {
+      self._selectedSubSector = self.selection['selectedIndex'];
+      self.selection['selectedIndex'] = e['currentPoint'].index;
+      if (self.selection['selectedIndex'] == 0) {
         self.isShowCard = 0;
-        self.labelDescription = "Información referente a riesgo alto";
+        self.selectedSubSectorData['labelDescription'] = "Información referente a riesgo alto";
       } else {
-        if (self.selectedIndex == 1) {
+        if (self.selection['selectedIndex'] == 1) {
           self.isShowCard = 1;
-          self.labelDescription = "Información referente a riesgo medio";
+          self.selectedSubSectorData['labelDescription'] = "Información referente a riesgo medio";
         }
       }
-      self.labelTitle = "factores de riesgo - entorno";
-      self.selectedSector = -1;
+      self.selectedSubSectorData['labelTitle'] = "factores de riesgo - entorno";
+      self.selection['selectedIndex'] = -1;
     });
     // set the container id
     this.doughnut2.container(stage);
 
     // initiate drawing the chart
     this.doughnut2.draw();
+  }
+
+  GetTitle(): string {
+    return this.selectedSubSectorData['labelTitle'];
+  }
+  
+  GetDescription(): string {
+    return this.selectedSubSectorData['labelDescription'];
+  }
+
+  GetSelectedSubSector(): number {
+    return this.selection['selectedIndex'];
+  }
+
+  SetOption(option: Options): void {
+    this.optionsSvc.setOptions(option);
   }
 }

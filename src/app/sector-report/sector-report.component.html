@@ -1,4 +1,4 @@
-<div [hidden]="selectedComponent != 0" class="container mt-2">
+<div [hidden]="GetSelectedComponent() != 0" class="container mt-2">
   <div class="row">
     <div class="col-4 border">
       <div class="row">
@@ -94,7 +94,6 @@
     </div>
     <div class="col-8 border">
       <div style="height: 400px;" class="row">
-        <!-- <div style="width: 100%; height: 100%;" #chartContainer></div> -->
         <div style="height: 100%;" class="col" #chartContainer1></div>
         <div style="height: 100%;" class="col" #chartContainer2></div>
         <div style="height: 100%;" class="col" #chartContainer3></div>
@@ -115,12 +114,12 @@
     </div>
   </div>
 </div>
-<div [hidden]="selectedComponent != 1">
-  <app-subsector-report></app-subsector-report>
+<div [hidden]="GetSelectedComponent() != 1">
+  <app-subsector-report [selectedSubSectorData]="selectedData"></app-subsector-report>
 </div> 
-<div [hidden]="selectedComponent != 2">
-  <app-subsector-reference-report></app-subsector-reference-report>
+<div [hidden]="GetSelectedComponent() != 2">
+  <app-subsector-reference-report [selectedSubRefSectorData]="selectedData"></app-subsector-reference-report>
 </div> 
-<div [hidden]="selectedComponent != 3">
-  <app-variable-report></app-variable-report>
+<div [hidden]="GetSelectedComponent() != 3">
+  <app-variable-report [selectedVariableData]="selectedData"></app-variable-report>
 </div>
