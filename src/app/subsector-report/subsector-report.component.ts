@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild, Input } from '@angular/core';
+import 'anychart';
 import { DataReportService, Options, DataSubsector } from 'app/data-report.service';
 import { Subscription } from 'rxjs';
 
@@ -24,7 +25,7 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
     labelTitle: "",
     labelDescription: ""
   };
-  _selectedSubSector: number = -1;
+  selectedSubSector: number = -1;
 
   constructor(private optionsSvc: DataReportService) {
    }
@@ -56,10 +57,10 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
   }
 
   GoToBack(): void {
-    if ( this._selectedSubSector == 4 ) {
-      this.selection['selectedIndex'] = this._selectedSubSector;
+    if ( this.selectedSubSector == 4 ) {
+      this.selection['selectedIndex'] = this.selectedSubSector;
       this.selection['selectedComponent'] = 1;
-      this._selectedSubSector = -1;
+      this.selectedSubSector = -1;
     } else {
       this.selection['selectedComponent'] = 0;
     }
@@ -148,7 +149,7 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
 
     const self = this;
     this.doughnut1.listen('pointsSelect', function (e) {
-      self._selectedSubSector = self.selection['selectedIndex'];
+      self.selectedSubSector = self.selection['selectedIndex'];
       self.selection['selectedIndex'] = e['currentPoint'].index;
       // riesgo alto
       if (self.selection['selectedIndex'] == 0) {
@@ -184,7 +185,7 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
     this.doughnut2.bounds('50%', 0, "50%", "100%");
 
     this.doughnut2.listen('pointsSelect', function (e) {
-      self._selectedSubSector = self.selection['selectedIndex'];
+      self.selectedSubSector = self.selection['selectedIndex'];
       self.selection['selectedIndex'] = e['currentPoint'].index;
       if (self.selection['selectedIndex'] == 0) {
         self.isShowCard = 0;

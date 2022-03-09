@@ -32,6 +32,12 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     labelTitle: "",
     labelDescription: ""
   };
+  result: string[] = [
+    "no-recomendado",
+    "recomendado",
+    "revision-asesor"
+  ];
+  resultado: string = this.result[2];
 
   constructor(private optionsSvc: DataReportService) {
   }
@@ -161,7 +167,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     // create the other pointer (tank)
     var tank2 = this.gauge2.tank(1);
     tank2.name("COMPENTENCIAS");
-    tank2.color("#dc3545");
+    tank2.color("#6f42c1");
     // set the width and offset of the tank pointer (both as percentages of the gauge width)
     tank2.width('50%');
     tank2.offset('-20%');
@@ -200,7 +206,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     // create the other pointer (tank)
     var tank3 = this.gauge3.tank(2);
     tank3.name("REFERENCIAS");
-    tank3.color("#ffc107");
+    tank3.color("#0d6efd");
     // set the width and offset of the tank pointer (both as percentages of the gauge width)
     tank3.width('50%');
     tank3.offset('-20%');
@@ -239,7 +245,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     // create the other pointer (tank)
     var tank4 = this.gauge4.tank(3);
     tank4.name("FACTORES DE RIESGO");
-    tank4.color("#dc3545");
+    tank4.color("#198754");
     // set the width and offset of the tank pointer (both as percentages of the gauge width)
     tank4.width('50%');
     tank4.offset('-20%');

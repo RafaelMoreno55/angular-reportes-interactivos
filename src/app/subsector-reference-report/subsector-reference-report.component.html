@@ -1,30 +1,35 @@
-<div class="container mt-2">
+<!-- <div class="container mt-2">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid justify-content-start">
       <button type="button" (click)="GoToBack()" class="btn" style="color: #fff; background-color: #0091ea; border-color: #0091ea;">Regresar</button>
     </div>
   </nav>
+</div> -->
+<div class="container mt-2">
+  <nav class="navbar flex-row">
+    <button type="button" (click)="GoToBack()" class="btn" style="color: #fff; background-color: #0091ea; border-color: #0091ea;">Regresar</button>
+  </nav>
 </div>
 <div class="container mt-2">
   <div class="row">
-    <div class="col-8 border">
+    <div class="col-sm-12 col-md-12 col-lg-8 border"> <!-- col-8 -->
       <div class="d-flex align-items-center h-100 w-100">
-        <p class="text-uppercase fw-bold fs-3">{{GetTitle()}}</p>
+        <h3 class="text-uppercase text-center">{{GetTitle()}}</h3>
       </div>
     </div>
-    <div class="col-4 border">
+    <div class="col-sm-12 col-md-12 col-lg-4 border"> <!-- col-4 -->
       <div class="table-responsive">
         <table class="table table-bordered align-middle text-center mt-2">
           <tbody>
-            <tr>
+            <tr style="background-color: rgba(192, 192, 192, 0.5);">
               <td class="text-uppercase">porcentaje de veracidad mínimo recomendado</td>
               <td class="text-uppercase">porcentaje promedio obtenido</td>
             </tr>
             <tr>
               <td>75</td>
               <td>
-                <span class="fs-3">54.95%</span>
-                <span>Revisar</span>
+                <p style="font-size: calc(1.3rem + .6vw); margin: 0%;">54.95%</p>
+                <p style="margin: 0%;">Revisar</p>
               </td>
             </tr>
           </tbody>
@@ -33,46 +38,46 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-1 border"></div>
-    <div class="col-10 border">
+    <div class="col-sm-12 col-md-12 col-lg-1 border"></div> <!-- col-1 -->
+    <div class="col-sm-12 col-md-12 col-lg-10 border"> <!-- col-10 -->
       <ul class="list-group">
         <li class="list-group-item">Nombre del último lugar de trabajo: Clínica Dental Río</li>
-        <li class="list-group-item list-group-item-warning">
+        <li class="list-group-item" style="color: #664d03; background-color: #fff3cd;">
           <ul>
             <li>Porcentaje de veracidad 60.83%</li>
           </ul>
         </li>
         <li class="list-group-item">Puesto desempeño: Secretaria</li>
-        <li class="list-group-item list-group-item-warning">
+        <li class="list-group-item" style="color: #664d03; background-color: #fff3cd;">
           <ul>
             <li>Porcentaje de veracidad: 62.33%</li>
           </ul>
         </li>
         <li class="list-group-item">Razón por la que renunció: Por la pandemia de COVID y seguí con los semestres de clases desde mi casa</li>
-        <li class="list-group-item list-group-item-warning">
+        <li class="list-group-item" style="color: #664d03; background-color: #fff3cd;">
           <ul>
             <li>Porcentaje de veracidad: 59.67%</li>
           </ul>
         <li class="list-group-item">Respuesta a estuvo involucrado en accidentes: No hubo ningún accidentes</li>
-        <li class="list-group-item list-group-item-danger">
+        <li class="list-group-item" style="color: #842029; background-color: #f8d7da;">
           <ul> 
             <li>Porcentaje de veracidad: 41.33%</li> 
           </ul> 
         <li class="list-group-item">Respuesta a si lo recomendarían: Estoy seguro que me recomendarían</li>
-        <li class="list-group-item list-group-item-danger">
+        <li class="list-group-item" style="color: #842029; background-color: #f8d7da;">
           <ul> 
             <li>Porcentaje de veracidad: 45.83%</li> 
           </ul>
         </li>
         <li class="list-group-item">Respuesta a si lo recontrataría: Estoy seguro que me recomendarían</li>
-        <li class="list-group-item list-group-item-warning">
+        <li style="color: #664d03; background-color: #fff3cd;" class="list-group-item">
           <ul> 
             <li>Porcentaje de veracidad: 59.75%</li> 
           </ul>
         </li>
       </ul>
     </div>
-    <div class="col-1 border"></div>
+    <div class="col-sm-12 col-md-12 col-lg-1 border"></div> <!-- col-1 -->
   </div>
   <div class="row">
     <div class="col-12 border">

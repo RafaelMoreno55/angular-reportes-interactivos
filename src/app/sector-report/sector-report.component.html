@@ -1,6 +1,6 @@
 <div [hidden]="GetSelectedComponent() != 0" class="container mt-2">
   <div class="row">
-    <div class="col-4 border">
+    <div class="col-sm-12 col-md-6 col-lg-4 border"> <!-- class="col-4" -->
       <div class="row">
         <div class="col-6 border">
           <p class="text-capitalize" style="font-size: x-large;">
@@ -8,9 +8,9 @@
           </p>
           <span>gerald@morris.com</span>
           <span>UX Developer</span>
-          <a href="" class="text-decoration-none">email@contact.com</a>
-          <a href="" class="text-decoration-none">www.example.com</a>
-          <a href="" class="text-decoration-none">+1234567890</a>
+          <span style="color: #0d6efd;">email@contact.com</span>
+          <span style="color: #0d6efd;">www.example.com</span>
+          <span style="color: #0d6efd;">+1234567890</span>
         </div>
         <div class="col-6 border">
           <div class="w-100 h-100 d-flex flex-column align-items-center justify-content-around">
@@ -20,33 +20,33 @@
         </div>
       </div>
     </div>
-    <div class="col-4 border">
+    <div class="col-sm-12 col-md-6 col-lg-4 border"> <!-- class="col-4" -->
       <ul class="mt-2">
         <li class="d-flex justify-content-center">
-          <div class=" h-100 py-2 px-1 d-flex flex-row align-items-center" style="width: 60%">
+          <div class=" h-100 py-2 px-1 d-flex flex-row align-items-center" [style.background-color]="resultado == 'no-recomendado' ? 'rgba(255,0,0,0.3)': 'none'" style="width: 60%">
             <div class="rounded-circle bg-danger" style="width: 32px; height: 32px"></div>
             <span class="mx-2">No recomendado</span>
           </div>
         </li>
         <li class="d-flex justify-content-center">
-          <div class="h-100 py-2 px-1 d-flex flex-row align-items-center" style="width: 60%">
+          <div class="h-100 py-2 px-1 d-flex flex-row align-items-center" [style.background-color]="resultado == 'recomendado' ? 'rgba(0,255,0,0.3)': 'none'" style="width: 60%">
             <div class="rounded-circle bg-success" style="width: 32px; height: 32px"></div>
             <span class="mx-2">Recomendado</span>
           </div>
         </li>
         <li class="d-flex justify-content-center">
-          <div class="h-100 py-2 px-1 d-flex flex-row align-items-center bg-warning" style="width: 60%">
+          <div class="h-100 py-2 px-1 d-flex flex-row align-items-center" [style.background-color]="resultado == 'revision-asesor' ? 'rgba(255,255,0,0.3)': 'none'" style="width: 60%">
             <div class="rounded-circle bg-warning" style="width: 32px; height: 32px"></div>
-            <span class="mx-2">Revisar</span>
+            <span class="mx-2">Revisión asesor</span>
           </div>
         </li>
       </ul>
     </div>
-    <div class="col-4 border">
+    <div class="col-sm-12 col-md-12 col-lg-4 border"> <!-- class="col-4" -->
       <div class="table-responsive">
         <table class="table table-bordered align-middle text-center mt-2">
           <tbody>
-            <tr>
+            <tr style="background-color: rgba(192, 192, 192, 0.5);">
               <td class="text-uppercase">score mínimo recomendado</td>
               <td class="text-uppercase">ko</td>
               <td class="text-uppercase">score obtenido</td>
@@ -55,8 +55,8 @@
               <td>75</td>
               <td class="text-uppercase">na</td>
               <td>
-                <span class="fs-3">76.5%</span>
-                <span>Revisar</span>
+                <p style="font-size: calc(1.3rem + .6vw); margin: 0%;">76.5%</p>
+                <p style="margin: 0%;">Revisar</p>
               </td>
             </tr>
           </tbody>
@@ -65,10 +65,10 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-2 border">
+    <div class="col-sm-12 col-md-12 col-lg-2 border"> <!-- class="col-2" -->
       <div *ngIf="isShowInfo" class="table-responsive">
         <table class="table align-middle mt-2">
-          <tbody style="font-size: x-small;">
+          <tbody style="font-size: small;">
             <tr>
               <td colspan="2" class="fs-5">Información detallada</td>
             </tr>
@@ -92,7 +92,7 @@
         </table>
       </div>
     </div>
-    <div class="col-8 border">
+    <div class="col-sm-12 col-md-12 col-lg-8 border"> <!-- class="col-8" -->
       <div style="height: 400px;" class="row">
         <div style="height: 100%;" class="col" #chartContainer1></div>
         <div style="height: 100%;" class="col" #chartContainer2></div>
@@ -100,7 +100,7 @@
         <div style="height: 100%;" class="col" #chartContainer4></div>
       </div>
     </div>
-    <div class="col-2 border"></div>
+    <div class="col-sm-12 col-md-12 col-lg-2 border"></div> <!-- class="col-2" -->
   </div>
   <div class="row">
     <div class="col-12 border">
@@ -121,5 +121,5 @@
   <app-subsector-reference-report [selectedSubRefSectorData]="selectedData"></app-subsector-reference-report>
 </div> 
 <div [hidden]="GetSelectedComponent() != 3">
-  <app-variable-report [selectedVariableData]="selectedData"></app-variable-report>
+  <app-variable-report [selectedVariableData]="selectedSubSectorData"></app-variable-report>
 </div>

@@ -1,29 +1,34 @@
-<div class="container mt-2">
+<!-- <div class="container mt-2">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid justify-content-start">
       <button type="button" (click)="GoToBack()" class="btn" style="color: #fff; background-color: #0091ea; border-color: #0091ea;">Regresar</button>
     </div>
   </nav>
+</div> -->
+<div class="container mt-2">
+  <nav class="navbar flex-row">
+    <button type="button" (click)="GoToBack()" class="btn" style="color: #fff; background-color: #0091ea; border-color: #0091ea;">Regresar</button>
+  </nav>
 </div>
 <div class="container mt-2">
   <div class="row">
-    <div class="col-8 border">
+    <div class="col-sm-12 col-md-12 col-lg-8 border"> <!-- col-8 -->
       <p class="text-uppercase">Resultados por variable</p>
-      <p class="fw-bold fs-3">Veracidad de que la persona que contesta es el empleado</p>
+      <h3>Veracidad de que la persona que contesta es el empleado</h3>
     </div>
-    <div class="col-4 border">
+    <div class="col-sm-12 col-md-12 col-lg-4 border"> <!-- col-4 -->
       <div class="table-responsive">
         <table class="table table-bordered align-middle text-center mt-2">
           <tbody>
-            <tr>
+            <tr style="background-color: rgba(192, 192, 192, 0.5);">
               <td class="text-uppercase">score mínimo recomendado</td>
               <td class="text-uppercase">score obtenido</td>
             </tr>
             <tr>
               <td>75</td>
               <td>
-                <span class="fs-3">72.56%</span>
-                <span>Revisar</span>
+                <p style="font-size: calc(1.3rem + .6vw); margin: 0%;">72.56%</p>
+                <p style="margin: 0%;">Revisar</p>
               </td>
             </tr>
           </tbody>
@@ -32,16 +37,16 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-1 border"></div>
-    <div class="col-10 border">
+    <div class="col-sm-12 col-md-12 col-lg-1 border"></div> <!-- col-1 -->
+    <div class="col-sm-12 col-md-12 col-lg-10 border"> <!-- col-10 -->
       <div style="height: 400px;" class="row">
         <div style="width: 100%; height: 70%;" #chartContainer></div>
       </div>
     </div>
-    <div class="col-1 border"></div>
+    <div class="col-sm-12 col-md-12 col-lg-1 border"></div> <!-- col-1 -->
   </div>
   <div class="row">
-    <div class="col-8 border">
+    <div class="col-sm-12 col-md-12 col-lg-8 border"> <!-- col-8 -->
       <p class="px-3">% de veracidad que quien contesta es el empleado: 72.56</p>
       <p class="px-3 text-uppercase">respuestas:</p>
       <p class="px-3 text-uppercase">sugerencias de preguntas para entrevistas:</p>
@@ -51,7 +56,7 @@
         <li>¿Fuiste interrumpido en algún momento por alguna persona diferente a ti durante la entrevista?</li>
       </ol>
     </div>
-    <div class="col-4 border">
+    <div class="col-sm-12 col-md-12 col-lg-4 border"> <!-- col-4 -->
       <h4 style="margin-top: 3rem;" class="text-uppercase text-center">Descripción:</h4>
       <p class="px-5" style="font-size: 1.2em;">
         El factor evalúa la probabilidad de que la persona que
