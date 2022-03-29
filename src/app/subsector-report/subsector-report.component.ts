@@ -21,10 +21,11 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
     selectedIndex: -1
   }
   private subscription: Subscription | undefined;
-  @Input() selectedSubSectorData: DataSubsector = {
+  /* @Input() selectedSubSectorData: DataSubsector = {
     labelTitle: "",
     labelDescription: ""
-  };
+  }; */
+  @Input() selectedSubSectorData: any = [];
   selectedSubSector: number = -1;
 
   constructor(private optionsSvc: DataReportService) {
@@ -38,22 +39,6 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
     this.subscription = this.optionsSvc.selectedOption$.subscribe((option: Options) => {this.selection = option;});
     this.ShowLineChart();
     this.ShowDoughnutChart();
-    /* if (this.selectedSector == 1) {
-      this.labelTitle = "factores por nivel de fraude";
-      this.labelDescription = "Los resultados indican que existe una alta probabilidad de que la persona que realizó la entrevista es quien dice ser, sin embargo, se presenta un alta probabilidad de que la información cuantitativa proporcionada sea falsa. Se recomienda revisar lo relativo a la información socioeconómica debido a que existen variables en las que la persona proporcionó información distorsionada.";
-    } else {
-      if (this.selectedSector == 2) {
-        this.labelTitle = "resultados de variables competencias";
-        this.labelDescription = "Los resultados indican un resultado promedio en las competencias evaluadas, el hecho de que haya un porcentaje de veracidad debajo del 75% indica que la persona exageró en el desempeño real de estas competencias";
-        this.ShowLineChart();
-      } else {
-        if (this.selectedSector == 4) {
-          this.labelTitle = "factores por nivel de riesgo";
-          this.labelDescription = "Existe una consistencia entre los resultados riesgo persona y riesgo entorno, en el caso específico se encuentra información distorcionada por el sujeto en la mayoría de los factores, sin embargo, esta no genera el suficiente estrés para ser considerando un riesgo de importancia por lo que se recomienda proceder con preguntas específicas de los riesgos para clarificar en el tema. Se presentan como principales riesgos: la fuga de información como factor personal y consumo de drogas en el entorno del candidato.";
-          this.ShowDoughnutChart();
-        }
-      }
-    } */
   }
 
   GoToBack(): void {
@@ -154,15 +139,15 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
       // riesgo alto
       if (self.selection['selectedIndex'] == 0) {
         self.isShowCard = 0;
-        self.selectedSubSectorData['labelDescription'] = "Información referente a riesgo alto";
+        // self.selectedSubSectorData['labelDescription'] = "Información referente a riesgo alto";
       } else {
         // riesgo medio
         if (self.selection['selectedIndex'] == 1) {
           self.isShowCard = 1;
-          self.selectedSubSectorData['labelDescription'] = "El candidato ha proporcionado información distorsionada en los factores: delitos, soborno, uso de drogas, ingesta de bebidas alcohólicas. Lo cual indica que hay posibilidad de que el candidato ejecute estos riesgos bajo las condiciones necesarias que puedan ser interpretadas para éste como justificables. Se recomienda proceder con preguntas específicas de los riesgos";
+        // self.selectedSubSectorData['labelDescription'] = "El candidato ha proporcionado información distorsionada en los factores: delitos, soborno, uso de drogas, ingesta de bebidas alcohólicas. Lo cual indica que hay posibilidad de que el candidato ejecute estos riesgos bajo las condiciones necesarias que puedan ser interpretadas para éste como justificables. Se recomienda proceder con preguntas específicas de los riesgos";
         }
       }
-      self.selectedSubSectorData['labelTitle'] = "factores de riesgo - personal";
+      // self.selectedSubSectorData['labelTitle'] = "factores de riesgo - personal";
       self.selection['selectedIndex'] = -1;
     });
     // set the container id
@@ -189,14 +174,14 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
       self.selection['selectedIndex'] = e['currentPoint'].index;
       if (self.selection['selectedIndex'] == 0) {
         self.isShowCard = 0;
-        self.selectedSubSectorData['labelDescription'] = "Información referente a riesgo alto";
+        // self.selectedSubSectorData['labelDescription'] = "Información referente a riesgo alto";
       } else {
         if (self.selection['selectedIndex'] == 1) {
           self.isShowCard = 1;
-          self.selectedSubSectorData['labelDescription'] = "Información referente a riesgo medio";
+          // self.selectedSubSectorData['labelDescription'] = "Información referente a riesgo medio";
         }
       }
-      self.selectedSubSectorData['labelTitle'] = "factores de riesgo - entorno";
+      // self.selectedSubSectorData['labelTitle'] = "factores de riesgo - entorno";
       self.selection['selectedIndex'] = -1;
     });
     // set the container id
@@ -207,11 +192,13 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
   }
 
   GetTitle(): string {
-    return this.selectedSubSectorData['labelTitle'];
+    // return this.selectedSubSectorData['labelTitle'];
+    return "Título";
   }
   
   GetDescription(): string {
-    return this.selectedSubSectorData['labelDescription'];
+    // return this.selectedSubSectorData['labelDescription'];
+    return "Descripción";
   }
 
   GetSelectedSubSector(): number {

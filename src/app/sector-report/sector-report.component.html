@@ -1,6 +1,6 @@
 <div [hidden]="GetSelectedComponent() != 0" class="container mt-2">
   <div class="row">
-    <div class="col-sm-12 col-md-6 col-lg-4 border"> <!-- class="col-4" -->
+    <div class="col-sm-12 col-md-6 col-lg-4 border">
       <div class="row">
         <div class="col-6 border">
           <p class="text-capitalize" style="font-size: x-large;">
@@ -20,7 +20,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-12 col-md-6 col-lg-4 border"> <!-- class="col-4" -->
+    <div class="col-sm-12 col-md-6 col-lg-4 border">
       <ul class="mt-2">
         <li class="d-flex justify-content-center">
           <div class=" h-100 py-2 px-1 d-flex flex-row align-items-center" [style.background-color]="resultado == 'no-recomendado' ? 'rgba(255,0,0,0.3)': 'none'" style="width: 60%">
@@ -42,7 +42,7 @@
         </li>
       </ul>
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-4 border"> <!-- class="col-4" -->
+    <div class="col-sm-12 col-md-12 col-lg-4 border">
       <div class="table-responsive">
         <table class="table table-bordered align-middle text-center mt-2">
           <tbody>
@@ -55,8 +55,7 @@
               <td>75</td>
               <td class="text-uppercase">na</td>
               <td>
-                <p style="font-size: calc(1.3rem + .6vw); margin: 0%;">76.5%</p>
-                <p style="margin: 0%;">Revisar</p>
+                <p style="font-size: calc(1.3rem + .6vw);">76.5%</p>
               </td>
             </tr>
           </tbody>
@@ -64,8 +63,8 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-2 border"> <!-- class="col-2" -->
+  <div id="row2" class="row">
+    <div class="col-sm-12 col-md-12 col-lg-2 border">
       <div *ngIf="isShowInfo" class="table-responsive">
         <table class="table align-middle mt-2">
           <tbody style="font-size: small;">
@@ -92,15 +91,14 @@
         </table>
       </div>
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-8 border"> <!-- class="col-8" -->
-      <div style="height: 400px;" class="row">
-        <div style="height: 100%;" class="col" #chartContainer1></div>
-        <div style="height: 100%;" class="col" #chartContainer2></div>
-        <div style="height: 100%;" class="col" #chartContainer3></div>
-        <div style="height: 100%;" class="col" #chartContainer4></div>
+    <div class="column2 col-sm-12 col-md-12 col-lg-8 border">
+      <div class="graphics row row-cols-2 row-cols-md-4 g-4">
+        <div *ngFor="let id of indexs; let i = index" style="height: 400px;" class="tank col"></div>
+        <!-- <div *ngFor="let id of indexs; let i = index" class="loopGraphic">
+        </div> -->
       </div>
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-2 border"></div> <!-- class="col-2" -->
+    <div class="col-sm-12 col-md-12 col-lg-2 border"></div>
   </div>
   <div class="row">
     <div class="col-12 border">
@@ -115,10 +113,10 @@
   </div>
 </div>
 <div [hidden]="GetSelectedComponent() != 1">
-  <app-subsector-report [selectedSubSectorData]="selectedData"></app-subsector-report>
+  <app-subsector-report [selectedSubSectorData]="rowsSubSector"></app-subsector-report>
 </div> 
 <div [hidden]="GetSelectedComponent() != 2">
-  <app-subsector-reference-report [selectedSubRefSectorData]="selectedData"></app-subsector-reference-report>
+  <app-subsector-reference-report [selectedSubRefSectorData]="rows"></app-subsector-reference-report>
 </div> 
 <div [hidden]="GetSelectedComponent() != 3">
   <app-variable-report [selectedVariableData]="selectedSubSectorData"></app-variable-report>

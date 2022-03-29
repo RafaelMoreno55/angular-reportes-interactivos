@@ -11,6 +11,18 @@ export interface DataSubsector {
     labelDescription: string
 };
 
+export class RPrintEntity {
+    name: string;
+    value: number;
+    rango1: number;
+    rango2: number;
+    rango3: number;
+    configColor: number;
+    seccionReport: number;
+    mostrarTitulo: boolean;
+    property: object;
+};
+
 const titleDescription: DataSubsector[] = [
     {
         labelTitle: "factores por nivel de fraude",
@@ -35,10 +47,120 @@ const initReport: Options = {
     selectedIndex: -1
 };
 
+
+
 @Injectable()
 export class DataReportService {
 
     private optionReport$ = new BehaviorSubject<Options>(initReport);
+    dataRows = [
+        {
+            name: "FraudeNAF",
+            value: 25,
+            rango1: 23,
+            rango2: 48,
+            rango3: 73,
+            configColor: 1,
+            seccionReport: 14,
+            mostrarTitulo: false,
+            property: {
+                description: "Habilidades 1"
+            }
+        },
+        {
+            name: "Razon de Salud financiera",
+            value: 65,
+            rango1: 25,
+            rango2: 50,
+            rango3: 75,
+            configColor: 2,
+            seccionReport: 4,
+            mostrarTitulo: true,
+            property: {
+                description: "Habilidades 2"
+            }
+        },
+        {
+            name: "Pago mensual propuesto cliente",
+            value: 78,
+            rango1: 20,
+            rango2: 45,
+            rango3: 70,
+            configColor: 1,
+            seccionReport: 12,
+            mostrarTitulo: true,
+            property: {
+                description: "Habilidades 3"
+            }
+        },
+        {
+            name: "1",
+            value: 87,
+            rango1: 30,
+            rango2: 55,
+            rango3: 80,
+            configColor: 1,
+            seccionReport: 23,
+            mostrarTitulo: true,
+            property: {
+                description: "Habilidades 4"
+            }
+        },
+        {
+            name: "Gasto fijo Negocio",
+            value: 27,
+            rango1: 23,
+            rango2: 48,
+            rango3: 73,
+            configColor: 1,
+            seccionReport: 14,
+            mostrarTitulo: true,
+            property: {
+                description: "Habilidades 5"
+            }
+        },
+        {
+            name: "1",
+            value: 15,
+            rango1: 28,
+            rango2: 53,
+            rango3: 78,
+            configColor: 2,
+            seccionReport: 17,
+            mostrarTitulo: true,
+            property: {
+                description: "Habilidades 6"
+            }
+        },
+        {
+            name: "Canal por el que llega",
+            value: 59,
+            rango1: 25,
+            rango2: 50,
+            rango3: 75,
+            configColor: 2,
+            seccionReport: 4,
+            mostrarTitulo: false,
+            property: {
+                description: "Habilidades 7"
+            }
+        },
+        {
+            name: "1",
+            value: 61,
+            rango1: 30,
+            rango2: 55,
+            rango3: 80,
+            configColor: 1,
+            seccionReport: 23,
+            mostrarTitulo: false,
+            property: {
+                description: "Habilidades 8"
+            }
+        },
+    ];
+    rows: any = [];
+    indices: any = [];
 
     constructor() { }
 
@@ -52,5 +174,139 @@ export class DataReportService {
 
     getTitleDescription(index: number): DataSubsector {
         return titleDescription[index];
+    }
+
+    getRows(): any[] {
+        for (let i = 0; i < this.dataRows.length; i++) {
+            let rowsReport = new RPrintEntity();
+            rowsReport.configColor = this.dataRows[i].configColor;
+            rowsReport.mostrarTitulo = this.dataRows[i].mostrarTitulo;
+            rowsReport.name = this.dataRows[i].name;
+            rowsReport.rango1 = this.dataRows[i].rango1;
+            rowsReport.rango2 = this.dataRows[i].rango2;
+            rowsReport.rango3 = this.dataRows[i].rango3;
+            rowsReport.seccionReport = this.dataRows[i].seccionReport;
+            rowsReport.value = this.dataRows[i].value;
+            rowsReport.property = this.dataRows[i].property;
+            this.rows.push(rowsReport);
+            if (!this.indices.includes(this.dataRows[i].seccionReport)) {
+                this.indices.push(this.dataRows[i].seccionReport);    
+            }
+        }
+        return this.rows;
+    }
+
+    GetNameSectorReport(sectorReport: number): string {
+        let name: string = "";
+        switch (sectorReport) {
+          case 1:
+            name = "Generales";
+            break;
+          case 2:
+            name = "Riesgo fraude";
+            break;
+          case 3:
+            name = "Riesgo comportamiento";
+            break;
+          case 4:
+            name = "Información cualitativa";
+            break;
+          case 5:
+            name = "Información cuantitativa";
+            break;
+          case 6:
+            name = "Historial pagos y adeudos";
+            break;
+          case 7:
+            name = "Información prevención lavado de dinero";
+            break;
+          case 8:
+            name = "Factibilidad de prospecto por financiera";
+            break;
+          case 9:
+            name = "Factibilidad de prospecto por producto";
+            break;
+          case 10:
+            name = "Expectativa desempeño cartera";
+            break;
+          case 11:
+            name = "Generales";
+            break;
+          case 12:
+            name = "Fraude";
+            break;
+          case 13:
+            name = "Ética";
+            break;
+          case 14:
+            name = "Valores";
+            break;
+          case 15:
+            name = "Ambiente laboral";
+            break;
+          case 16:
+            name = "Competencias";
+            break;
+          case 17:
+            name = "Habilidades";
+            break;
+          case 18:
+            name = "Factores de riesgo";
+            break;
+          case 19:
+            name = "Comparativo factores riesgo";
+            break;
+          case 20:
+            name = "Cuantitativo";
+            break;
+          case 21:
+            name = "Factores de riesgo psicosocial en los centros de trabajo";
+            break;
+          case 22:
+            name = "Detalle de los resultados por categoría y dominio";
+            break;
+          case 23:
+            name = "Prueba de Comportamiento";
+            break;
+          case 24:
+            name = "Apego a puesto";
+            break;
+          case 25:
+            name = "Prueba de personalidad";
+            break;
+          case 26:
+            name = "Nivel de honestidad";
+            break;
+          case 27:
+            name = "Prueba de Inteligencia";
+            break;
+          case 28:
+            name = "Comparaciones múltiples";
+            break;
+        
+          default:
+            break;
+        }
+        return name;
+    }
+
+    GetRangeColor(range1: number, range2: number, range3: number, average: number): string {
+        let color = "";
+        if (average <= range1) {
+          color = "#dc3545";
+        } else {
+          if (average > range1 && average <= range2) {
+            color = "#fd7e14";
+          } else {
+            if (average > range2 && average <= range3) {
+              color = "#ffc107";
+            } else {
+              if (average > range3) {
+                color = "#198754";
+              }
+            }
+          }
+        }
+        return color;
     }
 }

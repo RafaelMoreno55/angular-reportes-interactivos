@@ -1,7 +1,8 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import 'anychart';
 import { DataReportService, Options, DataSubsector } from 'app/data-report.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sector-report',
@@ -10,15 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class SectorReportComponent implements OnInit, OnDestroy {
 
-  @ViewChild('chartContainer1') container1;
-  @ViewChild('chartContainer2') container2;
-  @ViewChild('chartContainer3') container3;
-  @ViewChild('chartContainer4') container4;
-
-  gauge1: anychart.charts.LinearGauge = null;
-  gauge2: anychart.charts.LinearGauge = null;
-  gauge3: anychart.charts.LinearGauge = null;
-  gauge4: anychart.charts.LinearGauge = null;
+  gauge: anychart.charts.LinearGauge = null;
 
   selectedIndex: number = -1;
   selectedComponent: number = 0;
@@ -28,10 +21,10 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     selectedIndex: -1
   };
   private subscription: Subscription | undefined;
-  selectedData: DataSubsector = {
+ /*  selectedData: DataSubsector = {
     labelTitle: "",
     labelDescription: ""
-  };
+  }; */
   result: string[] = [
     "no-recomendado",
     "recomendado",
@@ -39,7 +32,13 @@ export class SectorReportComponent implements OnInit, OnDestroy {
   ];
   resultado: string = this.result[2];
 
-  constructor(private optionsSvc: DataReportService) {
+  rows: any = [];
+  indexs: any = [];
+  graphicsContainer: any = [];
+  sectors: any = [];
+  rowsSubSector: any = [];
+
+  constructor(private optionsSvc: DataReportService, private router: Router, private el: ElementRef) {
   }
 
   ngOnDestroy(): void {
@@ -48,234 +47,131 @@ export class SectorReportComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.optionsSvc.selectedOption$.subscribe((option: Options) => this.selection = option);
-    this.ShowTankGaugeChart();
+    
+    this.rows = this.optionsSvc.getRows();
+    this.indexs = this.optionsSvc.indices;
+    this.indexs.sort(function(a,b) {
+      return a - b;
+    });
+    this.SortAsc(this.rows, 'seccionReport');
 
-    /* this.gauge1 = anychart.gauges.tank();
-    this.gauge1.data(data);
-    this.gauge1.addPointer(0);
-    const self = this;
-    this.gauge1.listen('pointClick', function (e) {
-      self.selectedIndex = 1;
-      self.selectedComponent = 1;
-      self.selection['selectedIndex'] = 1;
-      self.selection['selectedComponent'] = 1;
-      self.SetOption(self.selection);
+    let i = 0;
+    let sum = 0;
+    let count = 0;
+    let rango1 = 0;
+    let rango2 = 0;
+    let rango3 = 0;
+    let last = this.rows.length - 1;
+    
+    this.rows.forEach((element, index)=> {
+      if (this.indexs[i] === element['seccionReport']) {
+        sum += element['value'];
+        rango1 = element['rango1'];
+        rango2 = element['rango2'];
+        rango3 = element['rango3'];
+        count += 1;
+      } else {
+        let graphicData = new Object();
+        graphicData['average'] = (sum/count);
+        graphicData['numItems'] = count;
+        graphicData['range1'] = rango1;
+        graphicData['range2'] = rango2;
+        graphicData['range3'] = rango3;
+        graphicData['sectionReport'] = this.indexs[i];
+        this.sectors.push(graphicData);
+        i += 1;
+        sum = element['value'];
+        rango1 = element['rango1'];
+        rango2 = element['rango2'];
+        rango3 = element['rango3'];
+        count = 1;
+      }
+      if (index === last) {
+        let graphicData = new Object();
+        graphicData['average'] = (sum/count);
+        graphicData['numItems'] = count;
+        graphicData['range1'] = rango1;
+        graphicData['range2'] = rango2;
+        graphicData['range3'] = rango3;
+        graphicData['sectionReport'] = this.indexs[i];
+        this.sectors.push(graphicData);
+      }
     });
-    this.gauge1.bounds(0, 0, '25%', '100%');
-    this.gauge1.container(stage);
-    this.gauge1.draw();
-
-    this.gauge2 = anychart.gauges.tank();
-    this.gauge2.data(data);
-    this.gauge2.addPointer(1);
-    this.gauge2.listen('pointClick', function (e) {
-      self.selectedIndex = 2;
-      self.selectedComponent = 1;
-      self.selection['selectedIndex'] = 2;
-      self.selection['selectedComponent'] = 1;
-      self.SetOption(self.selection);
-    });
-    this.gauge2.bounds('25%', 0, '25%', '100%');
-    this.gauge2.container(stage);
-    this.gauge2.draw();
-    this.gauge3 = anychart.gauges.tank();
-    this.gauge3.data(data);
-    this.gauge3.addPointer(2);
-    this.gauge3.listen('pointClick', function (e) {
-      self.selectedIndex = 3;
-      self.selectedComponent = 2;
-      self.selection['selectedIndex'] = 3;
-      self.selection['selectedComponent'] = 2;
-      self.SetOption(self.selection);
-    });
-    this.gauge3.bounds('50%', 0, '25%', '100%');
-    this.gauge3.container(stage);
-    this.gauge3.draw();
-    this.gauge4 = anychart.gauges.tank();
-    this.gauge4.data(data);
-    this.gauge4.addPointer(3);
-    this.gauge4.listen('pointClick', function (e) {
-      self.selectedIndex = 4;
-      self.selectedComponent = 1;
-      self.selection['selectedIndex'] = 4;
-      self.selection['selectedComponent'] = 1;
-      self.SetOption(self.selection);
-    });
-    this.gauge4.bounds('75%', 0, '25%', '100%');
-    this.gauge4.container(stage);
-    this.gauge4.draw(); */
   }
 
-  ShowTankGaugeChart(): void {
+  SortAsc(rows, key): void {
+    rows.sort(function (a, b) {
+       return a[key] - b[key];
+    });
+  }
+
+  ShowTankGaugeChart(container: any, rowsData: any): void {
     // Do not use the absolute path of the svg definitions.
     anychart.graphics.useAbsoluteReferences(false);
-    var stage1 = anychart.graphics.create(this.container1.nativeElement);
-    var stage2 = anychart.graphics.create(this.container2.nativeElement);
-    var stage3 = anychart.graphics.create(this.container3.nativeElement);
-    var stage4 = anychart.graphics.create(this.container4.nativeElement);
+    let stage = anychart.graphics.create(container);
     // create data
-    var data = [72.56, 44.58, 53.40, 48.94];
+    let data = [rowsData['average']];
     // set the gauge type
-    this.gauge1 = anychart.gauges.tank();
+    this.gauge = anychart.gauges.tank();
     // set the data for the gauge
-    this.gauge1.data(data);
+    this.gauge.data(data);
     // create the first pointer (tank)
-    var tank1 = this.gauge1.tank(0);
-    tank1.name("RIESGO FRAUDE");
-    tank1.color("#ffc107");
+    let tank = this.gauge.tank(0);
+    let name = this.optionsSvc.GetNameSectorReport(rowsData['sectionReport']);
+    let color = this.optionsSvc.GetRangeColor(rowsData['range1'], rowsData['range2'], rowsData['range3'], rowsData['average']);
+    tank.name(name);
+    tank.color(color);
     // set the width and offset of the tank pointer (both as percentages of the gauge width)
-    tank1.width('50%');
-    tank1.offset('-20%');
+    tank.width('50%');
+    tank.offset('-20%');
     // configure the scale
-    var scale = this.gauge1.scale();
+    let scale = this.gauge.scale();
     scale.minimum(0);
     scale.maximum(100);
     //configure a linear scale
-    var lScale = anychart.scales.linear();
+    let lScale = anychart.scales.linear();
     lScale.minimum(0);
     lScale.maximum(100);
     lScale.ticks().interval(10);
     // configure the axis
-    var axis = this.gauge1.axis();
+    let axis = this.gauge.axis();
     axis.minorTicks(true);
     axis.minorTicks().stroke('#cecece');
     axis.offset('-35%');
     axis.scale(lScale);
     // Get legend.
-    var legend = this.gauge1.legend();
+    let legend = this.gauge.legend();
     legend.enabled(true);
     legend.position('top');
     legend.itemsLayout('horizontal');
     legend.align('left');
     // listener
     const self = this;
-    this.gauge1.listen('pointClick', function (e) {
+    this.gauge.listen('pointClick', function (e) {
+      self.rowsSubSector.length = 0;
+      let value = e['currentTarget']['Rf'][0];
+      let sectionReport = 0;
       self.selection['selectedIndex'] = 1;
       self.selection['selectedComponent'] = 1;
-      self.selectedData = self.GetTitleDescription(0);
-      self.SetOption(self.selection);
+      console.log(value);
+      self.sectors.forEach(element => {
+        if (value === element['average']) {
+          sectionReport = element['sectionReport'];
+        }
+      });
+      self.rows.forEach(element => {
+        if (sectionReport === element['seccionReport']) {
+          // self.optionsSvc.rowsSubSector.push(element);
+          self.rowsSubSector.push(element);
+        }
+      });
+      // self.selectedData = self.GetTitleDescription(0);
+      // self.SetOption(self.selection);
     });
     // set the container id
-    this.gauge1.container(stage1);
+    this.gauge.container(stage);
     // initiate drawing the gauge
-    this.gauge1.draw();
-
-    // set the gauge type
-    this.gauge2 = anychart.gauges.tank();
-    // set the data for the gauge
-    this.gauge2.data(data);
-    // create the other pointer (tank)
-    var tank2 = this.gauge2.tank(1);
-    tank2.name("COMPENTENCIAS");
-    tank2.color("#6f42c1");
-    // set the width and offset of the tank pointer (both as percentages of the gauge width)
-    tank2.width('50%');
-    tank2.offset('-20%');
-    // configure the scale
-    scale = this.gauge2.scale();
-    scale.minimum(0);
-    scale.maximum(100);
-    // configure the axis
-    axis = this.gauge2.axis();
-    axis.minorTicks(true);
-    axis.minorTicks().stroke('#cecece');
-    axis.offset('-35%');
-    axis.scale(lScale);
-    // Get legend.
-    legend = this.gauge2.legend();
-    legend.enabled(true);
-    legend.position('top');
-    legend.itemsLayout('horizontal');
-    legend.align('left');
-    // listener
-    this.gauge2.listen('pointClick', function (e) {
-      self.selection['selectedIndex'] = 2;
-      self.selection['selectedComponent'] = 1;
-      self.selectedData = self.GetTitleDescription(1);
-      self.SetOption(self.selection);
-    });
-    // set the container id
-    this.gauge2.container(stage2);
-    // initiate drawing the gauge
-    this.gauge2.draw();
-
-    // set the gauge type
-    this.gauge3 = anychart.gauges.tank();
-    // set the data for the gauge
-    this.gauge3.data(data);
-    // create the other pointer (tank)
-    var tank3 = this.gauge3.tank(2);
-    tank3.name("REFERENCIAS");
-    tank3.color("#0d6efd");
-    // set the width and offset of the tank pointer (both as percentages of the gauge width)
-    tank3.width('50%');
-    tank3.offset('-20%');
-    // configure the scale
-    scale = this.gauge3.scale();
-    scale.minimum(0);
-    scale.maximum(100);
-    // configure the axis
-    axis = this.gauge3.axis();
-    axis.minorTicks(true);
-    axis.minorTicks().stroke('#cecece');
-    axis.offset('-35%');
-    axis.scale(lScale);
-    // Get legend.
-    legend = this.gauge3.legend();
-    legend.enabled(true);
-    legend.position('top');
-    legend.itemsLayout('horizontal');
-    legend.align('left');
-    // listener
-    this.gauge3.listen('pointClick', function (e) {
-      self.selection['selectedIndex'] = 3;
-      self.selection['selectedComponent'] = 2;
-      self.selectedData = self.GetTitleDescription(2);
-      self.SetOption(self.selection);
-    });
-    // set the container id
-    this.gauge3.container(stage3);
-    // initiate drawing the gauge
-    this.gauge3.draw();
-
-    // set the gauge type
-    this.gauge4 = anychart.gauges.tank();
-    // set the data for the gauge
-    this.gauge4.data(data);
-    // create the other pointer (tank)
-    var tank4 = this.gauge4.tank(3);
-    tank4.name("FACTORES DE RIESGO");
-    tank4.color("#198754");
-    // set the width and offset of the tank pointer (both as percentages of the gauge width)
-    tank4.width('50%');
-    tank4.offset('-20%');
-    // configure the scale
-    scale = this.gauge4.scale();
-    scale.minimum(0);
-    scale.maximum(100);
-    // configure the axis
-    axis = this.gauge4.axis();
-    axis.minorTicks(true);
-    axis.minorTicks().stroke('#cecece');
-    axis.offset('-35%');
-    axis.scale(lScale);
-    // Get legend.
-    legend = this.gauge4.legend();
-    legend.enabled(true);
-    legend.position('top');
-    legend.itemsLayout('horizontal');
-    legend.align('left');
-    // listener
-    this.gauge4.listen('pointClick', function (e) {
-      self.selection['selectedIndex'] = 4;
-      self.selection['selectedComponent'] = 1;
-      self.selectedData = self.GetTitleDescription(3);
-      self.SetOption(self.selection);
-    });
-    // set the container id
-    this.gauge4.container(stage4);
-    // initiate drawing the gauge
-    this.gauge4.draw();
+    this.gauge.draw();
   }
 
   ShowInfo(): void {
@@ -292,5 +188,14 @@ export class SectorReportComponent implements OnInit, OnDestroy {
 
   GetSelectedComponent(): number {
     return this.selection['selectedComponent'];
+  }
+
+  ngAfterViewInit() {
+    let container = this.el.nativeElement.querySelector('#row2');
+    let graphicCont = container.querySelectorAll('div.column2 > div.graphics > div.tank');
+    this.graphicsContainer = Array.from(graphicCont);
+    this.graphicsContainer.forEach((element, index)=> {
+      this.ShowTankGaugeChart(element, this.sectors[index]);
+    });
   }
 }
