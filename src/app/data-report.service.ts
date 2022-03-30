@@ -13,14 +13,13 @@ export interface DataSubsector {
 
 export class RPrintEntity {
     name: string;
-    value: number;
+    value: string;
     rango1: number;
     rango2: number;
     rango3: number;
     configColor: number;
     seccionReport: number;
     mostrarTitulo: boolean;
-    property: object;
 };
 
 const titleDescription: DataSubsector[] = [
@@ -55,108 +54,84 @@ export class DataReportService {
     private optionReport$ = new BehaviorSubject<Options>(initReport);
     dataRows = [
         {
-            name: "FraudeNAF",
-            value: 25,
+            name: "Habilidades 1",
+            value: "25",
             rango1: 23,
             rango2: 48,
             rango3: 73,
             configColor: 1,
             seccionReport: 14,
-            mostrarTitulo: false,
-            property: {
-                description: "Habilidades 1"
-            }
+            mostrarTitulo: false
         },
         {
-            name: "Razon de Salud financiera",
-            value: 65,
+            name: "Habilidades 2",
+            value: "65",
             rango1: 25,
             rango2: 50,
             rango3: 75,
             configColor: 2,
             seccionReport: 4,
-            mostrarTitulo: true,
-            property: {
-                description: "Habilidades 2"
-            }
+            mostrarTitulo: true
         },
         {
-            name: "Pago mensual propuesto cliente",
-            value: 78,
+            name: "Habilidades 3",
+            value: "78",
             rango1: 20,
             rango2: 45,
             rango3: 70,
             configColor: 1,
             seccionReport: 12,
-            mostrarTitulo: true,
-            property: {
-                description: "Habilidades 3"
-            }
+            mostrarTitulo: true
         },
         {
-            name: "1",
-            value: 87,
+            name: "Habilidades 4",
+            value: "87",
             rango1: 30,
             rango2: 55,
             rango3: 80,
             configColor: 1,
             seccionReport: 23,
-            mostrarTitulo: true,
-            property: {
-                description: "Habilidades 4"
-            }
+            mostrarTitulo: true
         },
         {
-            name: "Gasto fijo Negocio",
-            value: 27,
+            name: "Habilidades 5",
+            value: "27",
             rango1: 23,
             rango2: 48,
             rango3: 73,
             configColor: 1,
             seccionReport: 14,
-            mostrarTitulo: true,
-            property: {
-                description: "Habilidades 5"
-            }
+            mostrarTitulo: true
         },
         {
-            name: "1",
-            value: 15,
+            name: "Habilidades 6",
+            value: "15",
             rango1: 28,
             rango2: 53,
             rango3: 78,
             configColor: 2,
             seccionReport: 17,
-            mostrarTitulo: true,
-            property: {
-                description: "Habilidades 6"
-            }
+            mostrarTitulo: true
         },
         {
-            name: "Canal por el que llega",
-            value: 59,
+            name: "Habilidades 7",
+            value: "59",
             rango1: 25,
             rango2: 50,
             rango3: 75,
             configColor: 2,
             seccionReport: 4,
-            mostrarTitulo: false,
-            property: {
-                description: "Habilidades 7"
-            }
+            mostrarTitulo: false
         },
         {
-            name: "1",
-            value: 61,
+            name: "Habilidades 8",
+            value: "61",
             rango1: 30,
             rango2: 55,
             rango3: 80,
             configColor: 1,
             seccionReport: 23,
-            mostrarTitulo: false,
-            property: {
-                description: "Habilidades 8"
-            }
+            mostrarTitulo: false
         },
     ];
     rows: any = [];
@@ -187,7 +162,6 @@ export class DataReportService {
             rowsReport.rango3 = this.dataRows[i].rango3;
             rowsReport.seccionReport = this.dataRows[i].seccionReport;
             rowsReport.value = this.dataRows[i].value;
-            rowsReport.property = this.dataRows[i].property;
             this.rows.push(rowsReport);
             if (!this.indices.includes(this.dataRows[i].seccionReport)) {
                 this.indices.push(this.dataRows[i].seccionReport);    
@@ -290,19 +264,40 @@ export class DataReportService {
         return name;
     }
 
-    GetRangeColor(range1: number, range2: number, range3: number, average: number): string {
+    GetRangeColor(range1: number, range2: number, range3: number, average: number, configColor: number): string {
         let color = "";
-        if (average <= range1) {
-          color = "#dc3545";
-        } else {
-          if (average > range1 && average <= range2) {
-            color = "#fd7e14";
+
+        if (configColor == 1 ) {
+          if (average <= range1) {
+            color = "#198754";
           } else {
-            if (average > range2 && average <= range3) {
+            if (average > range1 && average <= range2) {
               color = "#ffc107";
             } else {
-              if (average > range3) {
-                color = "#198754";
+              if (average > range2 && average <= range3) {
+                color = "#fd7e14";
+              } else {
+                if (average > range3) {
+                  color = "#dc3545";
+                }
+              }
+            }
+          }
+        } else {
+          if (configColor == 2) {
+            if (average <= range1) {
+              color = "#dc3545";
+            } else {
+              if (average > range1 && average <= range2) {
+                color = "#fd7e14";
+              } else {
+                if (average > range2 && average <= range3) {
+                  color = "#ffc107";
+                } else {
+                  if (average > range3) {
+                    color = "#198754";
+                  }
+                }
               }
             }
           }

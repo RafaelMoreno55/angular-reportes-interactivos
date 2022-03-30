@@ -1,10 +1,3 @@
-<!-- <div class="container mt-2">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid justify-content-start">
-      <button type="button" (click)="GoToBack()" class="btn" style="color: #fff; background-color: #0091ea; border-color: #0091ea;">Regresar</button>
-    </div>
-  </nav>
-</div> -->
 <div class="container mt-2">
   <nav class="navbar flex-row">
     <button type="button" (click)="GoToBack()" class="btn" style="color: #fff; background-color: #0091ea; border-color: #0091ea;">Regresar</button>
@@ -20,49 +13,53 @@
     <div class="col-sm-12 col-md-12 col-lg-1 border"></div> <!-- col-1 -->
     <div class="col-sm-12 col-md-12 col-lg-10 border"> <!-- col-10 -->
       <div *ngIf="GetSelectedSubSector() == 1" class="row row-cols-1 row-cols-md-3 g-4 py-1">
-        <div class="col">
+        <div *ngIf="GetListLength(1) > 0" class="col">
           <div class="card text-white bg-danger mb-3 h-100" style="max-width: 18rem;" (click)="GoToVariableReport(1)">
-            <div class="card-header text-center fs-4">Score: 0 - 25</div>
+            <div *ngIf="colorConfig == 1" class="card-header text-center fs-4">Score: {{ ranges[2]+1 }} - </div>
+            <div *ngIf="colorConfig == 2" class="card-header text-center fs-4">Score: 0 - {{ ranges[0] }}</div>
             <div class="card-body">
               <h5 class="card-title">
                 <ul>
-                  <li>Información cuantitativa</li>
+                  <li *ngFor="let name of range1Red">{{ name }}</li>
                 </ul>
               </h5>
             </div>
           </div>
         </div>
-        <div class="col">
+        <div *ngIf="GetListLength(2) > 0" class="col">
           <div class="card text-dark mb-3 h-100" style="max-width: 18rem; background-color: #fd7e14;" (click)="GoToVariableReport(1)">
-            <div class="card-header text-center fs-4">Score: 26 - 50</div>
+            <div *ngIf="colorConfig == 1" class="card-header text-center fs-4">Score: {{ ranges[1]+1 }} - {{ ranges[2] }}</div>
+            <div *ngIf="colorConfig == 2" class="card-header text-center fs-4">Score: {{ ranges[0]+1 }} - {{ ranges[1] }}</div>
             <div class="card-body">
               <h5 class="card-title">
                 <ul>
-                  <li>Información cualitativa</li>
+                  <li *ngFor="let name of range2Orange">{{ name }}</li>
                 </ul>
               </h5>
             </div>
           </div>
         </div>
-        <div class="col">
+        <div *ngIf="GetListLength(3) > 0" class="col">
           <div class="card text-dark bg-warning mb-3 h-100" style="max-width: 18rem;" (click)="GoToVariableReport(2)">
-            <div class="card-header text-center fs-4">Score: 51 - 75</div>
+            <div *ngIf="colorConfig == 1" class="card-header text-center fs-4">Score: {{ ranges[0]+1 }} - {{ ranges[1] }}</div>
+            <div *ngIf="colorConfig == 2" class="card-header text-center fs-4">Score: {{ ranges[1]+1 }} - {{ ranges[2] }}</div>
             <div class="card-body">
               <h5 class="card-title">
                 <ul>
-                  <li>Información socioeconómica</li>
+                  <li *ngFor="let name of range3Yellow">{{ name }}</li>
                 </ul>
               </h5>
             </div>
           </div>
         </div>
-        <div class="col">
+        <div *ngIf="GetListLength(4) > 0" class="col">
           <div class="card text-white bg-success mb-3 h-100" style="max-width: 18rem;" (click)="GoToVariableReport(3)">
-            <div class="card-header text-center fs-4">Score: 76 - 100</div>
+            <div *ngIf="colorConfig == 1" class="card-header text-center fs-4">Score: 0 - {{ ranges[0] }}</div>
+            <div *ngIf="colorConfig == 2" class="card-header text-center fs-4">Score: {{ ranges[2]+1 }} - </div>
             <div class="card-body">
               <h5 class="card-title">
                 <ul>
-                  <li>La persona que contesta es el empleado</li>
+                  <li *ngFor="let name of range4Green">{{ name }}</li>
                 </ul>
               </h5>
             </div>

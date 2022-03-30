@@ -7,9 +7,9 @@ import { SubsectorReferenceReportComponent } from './subsector-reference-report/
 import { ReportsComponent } from './reports/reports.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/sectorreport', pathMatch: 'full' },
-  { path: 'sectorreport', component: SectorReportComponent },
-  { path: 'report/:id/:start', component: ReportsComponent },
+  { path: '', redirectTo: '/sectorreport/:id/:star', pathMatch: 'full' },
+  { path: 'sectorreport/:id/:star', component: SectorReportComponent },
+  { path: 'report/:id/:star', component: ReportsComponent },
   // { path: 'subsectorreport/:id', component: SubsectorReportComponent },
   // { path: 'variablereport/:id', component: VariableReportComponent },
   // { path: 'referencereport/:id', component: SubsectorReferenceReportComponent },

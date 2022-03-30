@@ -2,7 +2,7 @@ import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import 'anychart';
 import { DataReportService, Options, DataSubsector } from 'app/data-report.service';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-sector-report',
@@ -37,8 +37,16 @@ export class SectorReportComponent implements OnInit, OnDestroy {
   graphicsContainer: any = [];
   sectors: any = [];
   rowsSubSector: any = [];
+  obtainedScore: string;
+  range1Red: any = [];
+  range2Orange: any = [];
+  range3Yellow: any = [];
+  range4Green: any =[];
+  title: string;
+  ranges: any = [];
+  colorConfig: number;
 
-  constructor(private optionsSvc: DataReportService, private router: Router, private el: ElementRef) {
+  constructor(private optionsSvc: DataReportService, private activeRoute: ActivatedRoute, private el: ElementRef) {
   }
 
   ngOnDestroy(): void {
@@ -47,7 +55,11 @@ export class SectorReportComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.optionsSvc.selectedOption$.subscribe((option: Options) => this.selection = option);
-    
+  
+    this.activeRoute.params.subscribe((params: Params) => {
+      this.obtainedScore = params.star;
+    });
+
     this.rows = this.optionsSvc.getRows();
     this.indexs = this.optionsSvc.indices;
     this.indexs.sort(function(a,b) {
@@ -62,13 +74,15 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     let rango2 = 0;
     let rango3 = 0;
     let last = this.rows.length - 1;
+    let configColor = 0;
     
     this.rows.forEach((element, index)=> {
       if (this.indexs[i] === element['seccionReport']) {
-        sum += element['value'];
+        sum += parseInt(element['value']);
         rango1 = element['rango1'];
         rango2 = element['rango2'];
         rango3 = element['rango3'];
+        configColor = element['configColor'];
         count += 1;
       } else {
         let graphicData = new Object();
@@ -78,12 +92,14 @@ export class SectorReportComponent implements OnInit, OnDestroy {
         graphicData['range2'] = rango2;
         graphicData['range3'] = rango3;
         graphicData['sectionReport'] = this.indexs[i];
+        graphicData['colorConfig'] = configColor;
         this.sectors.push(graphicData);
         i += 1;
-        sum = element['value'];
+        sum = parseInt(element['value']);
         rango1 = element['rango1'];
         rango2 = element['rango2'];
         rango3 = element['rango3'];
+        configColor = element['configColor'];
         count = 1;
       }
       if (index === last) {
@@ -94,6 +110,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
         graphicData['range2'] = rango2;
         graphicData['range3'] = rango3;
         graphicData['sectionReport'] = this.indexs[i];
+        graphicData['colorConfig'] = configColor;
         this.sectors.push(graphicData);
       }
     });
@@ -118,7 +135,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     // create the first pointer (tank)
     let tank = this.gauge.tank(0);
     let name = this.optionsSvc.GetNameSectorReport(rowsData['sectionReport']);
-    let color = this.optionsSvc.GetRangeColor(rowsData['range1'], rowsData['range2'], rowsData['range3'], rowsData['average']);
+    let color = this.optionsSvc.GetRangeColor(rowsData['range1'], rowsData['range2'], rowsData['range3'], rowsData['average'],rowsData['colorConfig']);
     tank.name(name);
     tank.color(color);
     // set the width and offset of the tank pointer (both as percentages of the gauge width)
@@ -148,12 +165,17 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     // listener
     const self = this;
     this.gauge.listen('pointClick', function (e) {
+      self.ranges.length = 0;
+      self.range1Red.length = 0;
+      self.range2Orange.length = 0;
+      self.range3Yellow.length = 0;
+      self.range4Green.length = 0;
       self.rowsSubSector.length = 0;
       let value = e['currentTarget']['Rf'][0];
       let sectionReport = 0;
       self.selection['selectedIndex'] = 1;
       self.selection['selectedComponent'] = 1;
-      console.log(value);
+      self.SetOption(self.selection);
       self.sectors.forEach(element => {
         if (value === element['average']) {
           sectionReport = element['sectionReport'];
@@ -161,12 +183,54 @@ export class SectorReportComponent implements OnInit, OnDestroy {
       });
       self.rows.forEach(element => {
         if (sectionReport === element['seccionReport']) {
-          // self.optionsSvc.rowsSubSector.push(element);
           self.rowsSubSector.push(element);
         }
       });
-      // self.selectedData = self.GetTitleDescription(0);
-      // self.SetOption(self.selection);
+      let range1 = self.rowsSubSector[0]['rango1'];
+      let range2 = self.rowsSubSector[0]['rango2'];
+      let range3 = self.rowsSubSector[0]['rango3'];
+      self.colorConfig = self.rowsSubSector[0]['configColor'];
+      self.ranges.push(range1);
+      self.ranges.push(range2);
+      self.ranges.push(range3);
+      self.title = self.optionsSvc.GetNameSectorReport(self.rowsSubSector[0]['seccionReport']);
+      self.rowsSubSector.forEach(element => {
+        if (self.colorConfig == 1 ) { // verde a rojo
+          if (parseInt(element['value']) <= range1) {
+            self.range4Green.push(element['name']);
+          } else {
+            if (parseInt(element['value']) > range1 && parseInt(element['value']) <= range2) {
+              self.range3Yellow.push(element['name']);
+            } else {
+              if (parseInt(element['value']) > range2 && parseInt(element['value']) <= range3) {
+                self.range2Orange.push(element['name']);
+              } else {
+                if (parseInt(element['value']) > range3) {
+                  self.range1Red.push(element['name']);
+                }
+              }
+            }
+          }
+        } else {// rojo a verde
+          if (self.colorConfig == 2) {
+            if (parseInt(element['value']) <= range1) {
+              self.range1Red.push(element['name']);
+            } else {
+              if (parseInt(element['value']) > range1 && parseInt(element['value']) <= range2) {
+                self.range2Orange.push(element['name']);
+              } else {
+                if (parseInt(element['value']) > range2 && parseInt(element['value']) <= range3) {
+                  self.range3Yellow.push(element['name']);
+                } else {
+                  if (parseInt(element['value']) > range3) {
+                    self.range4Green.push(element['name']);
+                  }
+                }
+              }
+            }
+          }
+        }
+      });
     });
     // set the container id
     this.gauge.container(stage);

@@ -25,7 +25,14 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
     labelTitle: "",
     labelDescription: ""
   }; */
-  @Input() selectedSubSectorData: any = [];
+  // @Input() selectedSubSectorData: Object[] | undefined;
+  @Input() range1Red: any = [];
+  @Input() range2Orange: any = [];
+  @Input() range3Yellow: any = [];
+  @Input() range4Green: any = [];
+  @Input() title: string;
+  @Input() ranges: any = [];
+  @Input() colorConfig: number;
   selectedSubSector: number = -1;
 
   constructor(private optionsSvc: DataReportService) {
@@ -193,7 +200,7 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
 
   GetTitle(): string {
     // return this.selectedSubSectorData['labelTitle'];
-    return "Título";
+    return "Factores individuales de la categoría " + this.title;
   }
   
   GetDescription(): string {
@@ -207,5 +214,27 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
 
   SetOption(option: Options): void {
     this.optionsSvc.setOptions(option);
+  }
+
+  GetListLength(range: number): number {
+    let long = 0;
+    switch (range) {
+      case 1:
+        long = this.range1Red.length;
+        break;
+      case 2:
+        long = this.range2Orange.length;
+        break;
+      case 3:
+        long = this.range3Yellow.length;
+        break;
+      case 4:
+        long = this.range4Green.length;
+        break;
+    
+      default:
+        break;
+    }
+    return long;
   }
 }
