@@ -10,56 +10,56 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-1 border"></div> <!-- col-1 -->
-    <div class="col-sm-12 col-md-12 col-lg-10 border"> <!-- col-10 -->
-      <div *ngIf="GetSelectedSubSector() == 1" class="row row-cols-1 row-cols-md-3 g-4 py-1">
-        <div *ngIf="GetListLength(1) > 0" class="col">
-          <div class="card text-white bg-danger mb-3 h-100" style="max-width: 18rem;" (click)="GoToVariableReport(1)">
+    <div class="col-sm-12 col-md-12 col-lg-1 border"></div>
+    <div class="col-sm-12 col-md-12 col-lg-10 border">
+      <div *ngIf="GetSelectedSubSector() == 1" class="row">
+        <div *ngIf="GetListLength(1) > 0" class="col-sm-12 col-md-4 pb-3">
+          <div class="card text-white bg-danger mb-3 h-100" style="max-width: 18rem;">
             <div *ngIf="colorConfig == 1" class="card-header text-center fs-4">Score: {{ ranges[2]+1 }} - </div>
             <div *ngIf="colorConfig == 2" class="card-header text-center fs-4">Score: 0 - {{ ranges[0] }}</div>
             <div class="card-body">
               <h5 class="card-title">
                 <ul>
-                  <li *ngFor="let name of range1Red">{{ name }}</li>
+                  <li *ngFor="let name of range1Red" (click)="GoToVariableReport(name)" style="cursor: pointer;">{{ name }}</li>
                 </ul>
               </h5>
             </div>
           </div>
         </div>
-        <div *ngIf="GetListLength(2) > 0" class="col">
-          <div class="card text-dark mb-3 h-100" style="max-width: 18rem; background-color: #fd7e14;" (click)="GoToVariableReport(1)">
+        <div *ngIf="GetListLength(2) > 0" class="col-sm-12 col-md-4 pb-3">
+          <div class="card text-dark mb-3 h-100" style="max-width: 18rem; background-color: #fd7e14;">
             <div *ngIf="colorConfig == 1" class="card-header text-center fs-4">Score: {{ ranges[1]+1 }} - {{ ranges[2] }}</div>
             <div *ngIf="colorConfig == 2" class="card-header text-center fs-4">Score: {{ ranges[0]+1 }} - {{ ranges[1] }}</div>
             <div class="card-body">
               <h5 class="card-title">
                 <ul>
-                  <li *ngFor="let name of range2Orange">{{ name }}</li>
+                  <li *ngFor="let name of range2Orange" (click)="GoToVariableReport(name)" style="cursor: pointer;">{{ name }}</li>
                 </ul>
               </h5>
             </div>
           </div>
         </div>
-        <div *ngIf="GetListLength(3) > 0" class="col">
-          <div class="card text-dark bg-warning mb-3 h-100" style="max-width: 18rem;" (click)="GoToVariableReport(2)">
+        <div *ngIf="GetListLength(3) > 0" class="col-sm-12 col-md-4 pb-3">
+          <div class="card text-dark bg-warning mb-3 h-100" style="max-width: 18rem;" >
             <div *ngIf="colorConfig == 1" class="card-header text-center fs-4">Score: {{ ranges[0]+1 }} - {{ ranges[1] }}</div>
             <div *ngIf="colorConfig == 2" class="card-header text-center fs-4">Score: {{ ranges[1]+1 }} - {{ ranges[2] }}</div>
             <div class="card-body">
               <h5 class="card-title">
                 <ul>
-                  <li *ngFor="let name of range3Yellow">{{ name }}</li>
+                  <li *ngFor="let name of range3Yellow" (click)="GoToVariableReport(name)" style="cursor: pointer;">{{ name }}</li>
                 </ul>
               </h5>
             </div>
           </div>
         </div>
-        <div *ngIf="GetListLength(4) > 0" class="col">
-          <div class="card text-white bg-success mb-3 h-100" style="max-width: 18rem;" (click)="GoToVariableReport(3)">
+        <div *ngIf="GetListLength(4) > 0" class="col-sm-12 col-md-4 pb-3">
+          <div class="card text-white bg-success mb-3 h-100" style="max-width: 18rem;">
             <div *ngIf="colorConfig == 1" class="card-header text-center fs-4">Score: 0 - {{ ranges[0] }}</div>
             <div *ngIf="colorConfig == 2" class="card-header text-center fs-4">Score: {{ ranges[2]+1 }} - </div>
             <div class="card-body">
               <h5 class="card-title">
                 <ul>
-                  <li *ngFor="let name of range4Green">{{ name }}</li>
+                  <li *ngFor="let name of range4Green" (click)="GoToVariableReport(name)" style="cursor: pointer;">{{ name }}</li>
                 </ul>
               </h5>
             </div>
@@ -108,7 +108,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-1 border"></div> <!-- col-1 -->
+    <div class="col-sm-12 col-md-12 col-lg-1 border"></div>
   </div>
   <div class="row">
     <div class="col-12 border">

@@ -45,6 +45,12 @@ export class SectorReportComponent implements OnInit, OnDestroy {
   title: string;
   ranges: any = [];
   colorConfig: number;
+  propertyName: string;
+  propertyValue: number;
+  propertyColorConfig: number;
+  multiplier1: number = 0.25;
+  multiplier2: number = 0.50;
+  multiplier3: number = 0.75;
 
   constructor(private optionsSvc: DataReportService, private activeRoute: ActivatedRoute, private el: ElementRef) {
   }
@@ -261,5 +267,48 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     this.graphicsContainer.forEach((element, index)=> {
       this.ShowTankGaugeChart(element, this.sectors[index]);
     });
+  }
+  
+  GetpropertyName(name: string): void {
+    this.propertyName = name;
+    this.rowsSubSector.forEach(element => {
+      if (name === element['name']) {
+        this.propertyColorConfig = element['configColor'];
+        let value = parseInt(element['value']);
+        let range1 = element['rango1'];
+        let range2 = element['rango2'];
+        let range3 = element['rango3'];
+        if (value <= 0) {
+          this.propertyValue = 1;
+        } else {
+          if (value <= range1) {
+            this.propertyValue = this.Round(this.normalizeRange(value, range1, this.multiplier1));
+          } else {
+            if (value > range1 && value <= range2) {
+              this.propertyValue = this.Round(this.normalizeRange(value, range2, this.multiplier2));
+            } else {
+              if (value > range2 && value <= range3) {
+                this.propertyValue = this.Round(this.normalizeRange(value, range3, this.multiplier3));
+              } else {
+                if (value > range3) {
+                  let range = value + (value - range3) + 11;
+                  this.propertyValue = this.Round(this.normalizeRange(value, range, 0.99));
+                }
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  normalizeRange(value: number, range: number , multiplier: number): number{
+    var result = ((value*100)/range)*multiplier;
+    return result;
+  }
+
+  Round(num): number {
+    let m = Number((Math.abs(num) * 100).toPrecision(15));
+    return Math.round(m) / 100 * Math.sign(num);
   }
 }

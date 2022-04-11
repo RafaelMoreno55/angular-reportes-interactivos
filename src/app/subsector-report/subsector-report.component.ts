@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import 'anychart';
 import { DataReportService, Options, DataSubsector } from 'app/data-report.service';
 import { Subscription } from 'rxjs';
@@ -34,6 +34,7 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
   @Input() ranges: any = [];
   @Input() colorConfig: number;
   selectedSubSector: number = -1;
+  @Output() propertyNameEvent = new EventEmitter<string>();
 
   constructor(private optionsSvc: DataReportService) {
    }
@@ -59,7 +60,13 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
     this.SetOption(this.selection); 
   }
 
-  GoToVariableReport(option: number): void{
+  GoToVariableReport(propertyName: string): void{
+    /* let container = this.el.nativeElement.querySelector('#row2Sub');
+    let graphicCont = container.querySelectorAll('div.column2Sub > div.cardsContainer > div.card > div.infoCard > div.cardBody > h5 > ul > li.propertyName');
+    console.log(graphicCont); */
+    console.log(propertyName);
+
+    this.propertyNameEvent.emit(propertyName);
     this.selection['selectedComponent'] = 3;
     this.SetOption(this.selection); 
   }
