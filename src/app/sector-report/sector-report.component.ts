@@ -51,6 +51,13 @@ export class SectorReportComponent implements OnInit, OnDestroy {
   multiplier1: number = 0.25;
   multiplier2: number = 0.50;
   multiplier3: number = 0.75;
+  recommendedScore: number;
+  variableScore: number;
+  totalValueRange1: number;
+  totalValueRange2: number;
+  totalValueRange3: number;
+  totalValueRange4: number;
+  itemDoughnut: number = -1;
 
   constructor(private optionsSvc: DataReportService, private activeRoute: ActivatedRoute, private el: ElementRef) {
   }
@@ -171,6 +178,11 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     // listener
     const self = this;
     this.gauge.listen('pointClick', function (e) {
+      self.itemDoughnut = -1;
+      self.totalValueRange1 = 0;
+      self.totalValueRange2 = 0;
+      self.totalValueRange3 = 0;
+      self.totalValueRange4 = 0;
       self.ranges.length = 0;
       self.range1Red.length = 0;
       self.range2Orange.length = 0;
@@ -179,9 +191,6 @@ export class SectorReportComponent implements OnInit, OnDestroy {
       self.rowsSubSector.length = 0;
       let value = e['currentTarget']['Rf'][0];
       let sectionReport = 0;
-      self.selection['selectedIndex'] = 1;
-      self.selection['selectedComponent'] = 1;
-      self.SetOption(self.selection);
       self.sectors.forEach(element => {
         if (value === element['average']) {
           sectionReport = element['sectionReport'];
@@ -192,6 +201,15 @@ export class SectorReportComponent implements OnInit, OnDestroy {
           self.rowsSubSector.push(element);
         }
       });
+      
+      if (sectionReport == 18) {
+        self.selection['selectedComponent'] = 4;
+      } else {
+        self.selection['selectedComponent'] = 1;
+      }
+      self.selection['selectedIndex'] = sectionReport;
+      self.SetOption(self.selection);
+
       let range1 = self.rowsSubSector[0]['rango1'];
       let range2 = self.rowsSubSector[0]['rango2'];
       let range3 = self.rowsSubSector[0]['rango3'];
@@ -204,15 +222,19 @@ export class SectorReportComponent implements OnInit, OnDestroy {
         if (self.colorConfig == 1 ) { // verde a rojo
           if (parseInt(element['value']) <= range1) {
             self.range4Green.push(element['name']);
+            self.totalValueRange4 += parseInt(element['value']);
           } else {
             if (parseInt(element['value']) > range1 && parseInt(element['value']) <= range2) {
               self.range3Yellow.push(element['name']);
+              self.totalValueRange3 += parseInt(element['value']);
             } else {
               if (parseInt(element['value']) > range2 && parseInt(element['value']) <= range3) {
                 self.range2Orange.push(element['name']);
+                self.totalValueRange2 += parseInt(element['value']);
               } else {
                 if (parseInt(element['value']) > range3) {
                   self.range1Red.push(element['name']);
+                  self.totalValueRange1 += parseInt(element['value']);
                 }
               }
             }
@@ -221,15 +243,19 @@ export class SectorReportComponent implements OnInit, OnDestroy {
           if (self.colorConfig == 2) {
             if (parseInt(element['value']) <= range1) {
               self.range1Red.push(element['name']);
+              self.totalValueRange1 += parseInt(element['value']);
             } else {
               if (parseInt(element['value']) > range1 && parseInt(element['value']) <= range2) {
                 self.range2Orange.push(element['name']);
+                self.totalValueRange2 += parseInt(element['value']);
               } else {
                 if (parseInt(element['value']) > range2 && parseInt(element['value']) <= range3) {
                   self.range3Yellow.push(element['name']);
+                  self.totalValueRange3 += parseInt(element['value']);
                 } else {
                   if (parseInt(element['value']) > range3) {
                     self.range4Green.push(element['name']);
+                    self.totalValueRange4 += parseInt(element['value']);
                   }
                 }
               }
@@ -291,13 +317,14 @@ export class SectorReportComponent implements OnInit, OnDestroy {
                 this.propertyValue = this.Round(this.normalizeRange(value, range3, this.multiplier3));
               } else {
                 if (value > range3) {
-                  let range = value + (value - range3) + 11;
-                  this.propertyValue = this.Round(this.normalizeRange(value, range, 0.99));
+                  this.propertyValue = 99;
                 }
               }
             }
           }
         }
+        this.recommendedScore = (this.propertyColorConfig == 1 ? range3 : range2);
+        this.variableScore = value;
       }
     });
   }
@@ -310,5 +337,9 @@ export class SectorReportComponent implements OnInit, OnDestroy {
   Round(num): number {
     let m = Number((Math.abs(num) * 100).toPrecision(15));
     return Math.round(m) / 100 * Math.sign(num);
+  }
+
+  GetItemDoughnut(index: number): void {
+    this.itemDoughnut = index;
   }
 }

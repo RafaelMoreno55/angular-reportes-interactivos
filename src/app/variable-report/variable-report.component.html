@@ -13,15 +13,15 @@
         <table class="table table-bordered align-middle text-center mt-2">
           <tbody>
             <tr style="background-color: rgba(192, 192, 192, 0.5);">
-              <td class="text-uppercase">score mínimo recomendado</td>
-              <td class="text-uppercase">score obtenido</td>
+              <td class="text-uppercase">valor {{colorConfig == 1 ? "máximo" : "mínimo"}} recomendado</td>
+              <td class="text-uppercase">Valor obtenido</td>
             </tr>
             <tr>
               <td>
-                <p style="font-size: calc(1.3rem + .6vw);">71.5</p>
+                <p style="font-size: calc(1.3rem + .6vw);">{{recommendedScore}} %</p>
               </td>
               <td>
-                <p style="font-size: calc(1.3rem + .6vw);"></p>
+                <p style="font-size: calc(1.3rem + .6vw);">{{value}} %</p>
               </td>
             </tr>
           </tbody>

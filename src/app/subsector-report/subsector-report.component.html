@@ -12,8 +12,8 @@
   <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-1 border"></div>
     <div class="col-sm-12 col-md-12 col-lg-10 border">
-      <div *ngIf="GetSelectedSubSector() == 1" class="row">
-        <div *ngIf="GetListLength(1) > 0" class="col-sm-12 col-md-4 pb-3">
+      <div class="row">
+        <div *ngIf="GetListLength(1) > 0 && (itemDoughnut == -1 || itemDoughnut == 0)" class="col-sm-12 col-md-4 pb-3">
           <div class="card text-white bg-danger mb-3 h-100" style="max-width: 18rem;">
             <div *ngIf="colorConfig == 1" class="card-header text-center fs-4">Score: {{ ranges[2]+1 }} - </div>
             <div *ngIf="colorConfig == 2" class="card-header text-center fs-4">Score: 0 - {{ ranges[0] }}</div>
@@ -26,7 +26,7 @@
             </div>
           </div>
         </div>
-        <div *ngIf="GetListLength(2) > 0" class="col-sm-12 col-md-4 pb-3">
+        <div *ngIf="GetListLength(2) > 0 && (itemDoughnut == -1 || itemDoughnut == 1)" class="col-sm-12 col-md-4 pb-3">
           <div class="card text-dark mb-3 h-100" style="max-width: 18rem; background-color: #fd7e14;">
             <div *ngIf="colorConfig == 1" class="card-header text-center fs-4">Score: {{ ranges[1]+1 }} - {{ ranges[2] }}</div>
             <div *ngIf="colorConfig == 2" class="card-header text-center fs-4">Score: {{ ranges[0]+1 }} - {{ ranges[1] }}</div>
@@ -39,7 +39,7 @@
             </div>
           </div>
         </div>
-        <div *ngIf="GetListLength(3) > 0" class="col-sm-12 col-md-4 pb-3">
+        <div *ngIf="GetListLength(3) > 0 && (itemDoughnut == -1 || itemDoughnut == 2)" class="col-sm-12 col-md-4 pb-3">
           <div class="card text-dark bg-warning mb-3 h-100" style="max-width: 18rem;" >
             <div *ngIf="colorConfig == 1" class="card-header text-center fs-4">Score: {{ ranges[0]+1 }} - {{ ranges[1] }}</div>
             <div *ngIf="colorConfig == 2" class="card-header text-center fs-4">Score: {{ ranges[1]+1 }} - {{ ranges[2] }}</div>
@@ -52,7 +52,7 @@
             </div>
           </div>
         </div>
-        <div *ngIf="GetListLength(4) > 0" class="col-sm-12 col-md-4 pb-3">
+        <div *ngIf="GetListLength(4) > 0 && (itemDoughnut == -1 || itemDoughnut == 3)" class="col-sm-12 col-md-4 pb-3">
           <div class="card text-white bg-success mb-3 h-100" style="max-width: 18rem;">
             <div *ngIf="colorConfig == 1" class="card-header text-center fs-4">Score: 0 - {{ ranges[0] }}</div>
             <div *ngIf="colorConfig == 2" class="card-header text-center fs-4">Score: {{ ranges[2]+1 }} - </div>
@@ -66,7 +66,7 @@
           </div>
         </div>
       </div>
-      <div [hidden]="GetSelectedSubSector() != 2" style="height: 400px;" class="row">
+      <!-- <div [hidden]="GetSelectedSubSector() != 2" style="height: 400px;" class="row">
         <div style="width: 100%; height: 100%;" #lineChartContainer></div>
       </div>
       <div [hidden]="GetSelectedSubSector() != 4" style="height: 400px;" class="row">
@@ -106,7 +106,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="col-sm-12 col-md-12 col-lg-1 border"></div>
   </div>

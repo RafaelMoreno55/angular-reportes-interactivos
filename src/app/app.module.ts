@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SubsectorReferenceReportComponent } from './subsector-reference-report/subsector-reference-report.component';
 import { ReportsComponent } from './reports/reports.component';
 import { DataReportService } from './data-report.service';
+import { SubsectorDoughnutComponent } from './subsector-doughnut/subsector-doughnut.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DataReportService } from './data-report.service';
     SubsectorReportComponent,
     VariableReportComponent,
     SubsectorReferenceReportComponent,
-    ReportsComponent
+    ReportsComponent,
+    SubsectorDoughnutComponent
   ],
   imports: [
     BrowserModule,

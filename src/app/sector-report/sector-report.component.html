@@ -118,11 +118,14 @@
   </div>
 </div>
 <div [hidden]="GetSelectedComponent() != 1">
-  <app-subsector-report [range1Red]="range1Red" [range2Orange]="range2Orange" [range3Yellow]="range3Yellow" [range4Green]="range4Green" [ranges]="ranges" [title]="title" [colorConfig]="colorConfig" (propertyNameEvent)="GetpropertyName($event)"></app-subsector-report>
+  <app-subsector-report [range1Red]="range1Red" [range2Orange]="range2Orange" [range3Yellow]="range3Yellow" [range4Green]="range4Green" [ranges]="ranges" [title]="title" [colorConfig]="colorConfig" [itemDoughnut]="itemDoughnut" (propertyNameEvent)="GetpropertyName($event)"></app-subsector-report>
 </div> 
 <div [hidden]="GetSelectedComponent() != 2">
   <app-subsector-reference-report [selectedSubRefSectorData]="rows"></app-subsector-reference-report>
 </div> 
 <div [hidden]="GetSelectedComponent() != 3">
-  <app-variable-report [propertyName]="propertyName" [propertyColorConfig]="propertyColorConfig" [propertyValue]="propertyValue"></app-variable-report>
+  <app-variable-report [propertyName]="propertyName" [propertyColorConfig]="propertyColorConfig" [propertyValue]="propertyValue" [recommendedScore]="recommendedScore" [variableScore]="variableScore"></app-variable-report>
+</div>
+<div [hidden]="GetSelectedComponent() != 4">
+  <app-subsector-doughnut [totalValueRange1]="totalValueRange1" [totalValueRange2]="totalValueRange2" [totalValueRange3]="totalValueRange3" [totalValueRange4]="totalValueRange4" [propertyColorConfig]="colorConfig" (itemDoughnutEvent)="GetItemDoughnut($event)"></app-subsector-doughnut>
 </div>

@@ -10,11 +10,11 @@ import { Subscription } from 'rxjs';
 })
 export class SubsectorReportComponent implements OnInit, OnDestroy {
 
-  @ViewChild('lineChartContainer') lineContainer;
-  @ViewChild('doughnutChartContainer') doughnutContainer;
-  line: anychart.charts.Cartesian = null;
-  doughnut1: anychart.charts.Pie = null;
-  doughnut2: anychart.charts.Pie = null;
+  // @ViewChild('lineChartContainer') lineContainer;
+  // @ViewChild('doughnutChartContainer') doughnutContainer;
+  // line: anychart.charts.Cartesian = null;
+  // doughnut1: anychart.charts.Pie = null;
+  // doughnut2: anychart.charts.Pie = null;
   isShowCard: number = -1;
   selection: Options = {
     selectedComponent: -1,
@@ -33,7 +33,8 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
   @Input() title: string;
   @Input() ranges: any = [];
   @Input() colorConfig: number;
-  selectedSubSector: number = -1;
+  @Input() itemDoughnut: number;
+  // selectedSubSector: number = -1;
   @Output() propertyNameEvent = new EventEmitter<string>();
 
   constructor(private optionsSvc: DataReportService) {
@@ -45,15 +46,15 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.optionsSvc.selectedOption$.subscribe((option: Options) => {this.selection = option;});
-    this.ShowLineChart();
-    this.ShowDoughnutChart();
+    // this.ShowLineChart();
+    // this.ShowDoughnutChart();
   }
 
   GoToBack(): void {
-    if ( this.selectedSubSector == 4 ) {
-      this.selection['selectedIndex'] = this.selectedSubSector;
-      this.selection['selectedComponent'] = 1;
-      this.selectedSubSector = -1;
+    if ( this.selection['selectedIndex'] == 18 ) {
+      // this.selection['selectedIndex'] = this.selectedSubSector;
+      this.selection['selectedComponent'] = 4;
+      // this.selectedSubSector = -1;
     } else {
       this.selection['selectedComponent'] = 0;
     }
@@ -61,17 +62,12 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
   }
 
   GoToVariableReport(propertyName: string): void{
-    /* let container = this.el.nativeElement.querySelector('#row2Sub');
-    let graphicCont = container.querySelectorAll('div.column2Sub > div.cardsContainer > div.card > div.infoCard > div.cardBody > h5 > ul > li.propertyName');
-    console.log(graphicCont); */
-    console.log(propertyName);
-
     this.propertyNameEvent.emit(propertyName);
     this.selection['selectedComponent'] = 3;
     this.SetOption(this.selection); 
   }
 
-  ShowLineChart(): void {
+  /* ShowLineChart(): void {
     // Do not use the absolute path of the svg definitions.
     anychart.graphics.useAbsoluteReferences(false);
 
@@ -112,9 +108,9 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
 
     // initiate drawing the chart
     this.line.draw();
-  }
+  } */
 
-  ShowDoughnutChart(): void {
+  /*ShowDoughnutChart(): void {
     // Do not use the absolute path of the svg definitions.
     anychart.graphics.useAbsoluteReferences(false);
 
@@ -136,8 +132,8 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
     // create a pie chart and set the data
     this.doughnut1 = anychart.pie(data1);
 
-    /* set the inner radius
-    (to turn the pie chart into a doughnut chart)*/
+    // set the inner radius
+    //(to turn the pie chart into a doughnut chart)
     this.doughnut1.innerRadius("50%");
 
     // set the chart title
@@ -173,8 +169,8 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
     // create a pie chart and set the data
     this.doughnut2 = anychart.pie(data2);
 
-    /* set the inner radius
-    (to turn the pie chart into a doughnut chart)*/
+    // set the inner radius
+    // (to turn the pie chart into a doughnut chart)
     this.doughnut2.innerRadius("50%");
 
     // set the chart title
@@ -203,15 +199,13 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
 
     // initiate drawing the chart
     this.doughnut2.draw();
-  }
+  }*/
 
   GetTitle(): string {
-    // return this.selectedSubSectorData['labelTitle'];
     return "Factores individuales de la categoría " + this.title;
   }
   
   GetDescription(): string {
-    // return this.selectedSubSectorData['labelDescription'];
     return "Descripción";
   }
 

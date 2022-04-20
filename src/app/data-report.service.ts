@@ -54,85 +54,125 @@ export class DataReportService {
     private optionReport$ = new BehaviorSubject<Options>(initReport);
     dataRows = [
         {
-            name: "Habilidades 1",
-            value: "25",
-            rango1: 23,
-            rango2: 48,
-            rango3: 73,
-            configColor: 1,
-            seccionReport: 14,
-            mostrarTitulo: false
+          name: "Habilidades 1",
+          value: "25",
+          rango1: 23,
+          rango2: 48,
+          rango3: 73,
+          configColor: 1,
+          seccionReport: 14,
+          mostrarTitulo: false
         },
         {
-            name: "Habilidades 2",
-            value: "65",
-            rango1: 25,
-            rango2: 50,
-            rango3: 75,
-            configColor: 2,
-            seccionReport: 4,
-            mostrarTitulo: true
+          name: "Habilidades 2",
+          value: "65",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 4,
+          mostrarTitulo: true
         },
         {
-            name: "Habilidades 3",
-            value: "78",
-            rango1: 20,
-            rango2: 45,
-            rango3: 70,
-            configColor: 1,
-            seccionReport: 12,
-            mostrarTitulo: true
+          name: "Habilidades 3",
+          value: "78",
+          rango1: 20,
+          rango2: 45,
+          rango3: 70,
+          configColor: 1,
+          seccionReport: 12,
+          mostrarTitulo: true
         },
         {
-            name: "Habilidades 4",
-            value: "87",
-            rango1: 30,
-            rango2: 55,
-            rango3: 80,
-            configColor: 1,
-            seccionReport: 23,
-            mostrarTitulo: true
+          name: "Habilidades 4",
+          value: "87",
+          rango1: 30,
+          rango2: 55,
+          rango3: 80,
+          configColor: 1,
+          seccionReport: 23,
+          mostrarTitulo: true
         },
         {
-            name: "Habilidades 5",
-            value: "27",
-            rango1: 23,
-            rango2: 48,
-            rango3: 73,
-            configColor: 1,
-            seccionReport: 14,
-            mostrarTitulo: true
+          name: "Habilidades 5",
+          value: "27",
+          rango1: 23,
+          rango2: 48,
+          rango3: 73,
+          configColor: 1,
+          seccionReport: 14,
+          mostrarTitulo: true
         },
         {
-            name: "Habilidades 6",
-            value: "15",
-            rango1: 28,
-            rango2: 53,
-            rango3: 78,
-            configColor: 2,
-            seccionReport: 17,
-            mostrarTitulo: true
+          name: "Habilidades 6",
+          value: "15",
+          rango1: 28,
+          rango2: 53,
+          rango3: 78,
+          configColor: 2,
+          seccionReport: 17,
+          mostrarTitulo: true
         },
         {
-            name: "Habilidades 7",
-            value: "59",
-            rango1: 25,
-            rango2: 50,
-            rango3: 75,
-            configColor: 2,
-            seccionReport: 4,
-            mostrarTitulo: false
+          name: "Habilidades 7",
+          value: "59",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 4,
+          mostrarTitulo: false
         },
         {
-            name: "Habilidades 8",
-            value: "61",
-            rango1: 30,
-            rango2: 55,
-            rango3: 80,
-            configColor: 1,
-            seccionReport: 23,
-            mostrarTitulo: false
+          name: "Habilidades 8",
+          value: "61",
+          rango1: 30,
+          rango2: 55,
+          rango3: 80,
+          configColor: 1,
+          seccionReport: 23,
+          mostrarTitulo: false
         },
+        {
+          name: "Habilidades 9",
+          value: "27",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 18,
+          mostrarTitulo: true
+      },
+      {
+          name: "Habilidades 10",
+          value: "15",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 18,
+          mostrarTitulo: true
+      },
+      {
+          name: "Habilidades 11",
+          value: "59",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 18,
+          mostrarTitulo: false
+      },
+      {
+          name: "Habilidades 12",
+          value: "90",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 18,
+          mostrarTitulo: false
+      },
     ];
     rows: any = [];
     indices: any = [];

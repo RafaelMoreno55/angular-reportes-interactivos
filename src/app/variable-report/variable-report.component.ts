@@ -24,6 +24,8 @@ export class VariableReportComponent implements OnChanges, OnInit, OnDestroy {
   @Input() propertyName: string;
   @Input() propertyValue: number;
   @Input() propertyColorConfig: number;
+  @Input() recommendedScore: number;
+  @Input() variableScore: number;
   colorConfig: number;
   value: number;
 
@@ -108,7 +110,6 @@ export class VariableReportComponent implements OnChanges, OnInit, OnDestroy {
     // Do not use the absolute path of the svg definitions.
     anychart.graphics.useAbsoluteReferences(false);
     let stage = anychart.graphics.create(this.container.nativeElement);
-    console.log(stage);
     // create data
     let data = [value];
 
