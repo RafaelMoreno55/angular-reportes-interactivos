@@ -134,45 +134,99 @@ export class DataReportService {
           mostrarTitulo: false
         },
         {
-          name: "Habilidades 9",
-          value: "27",
+          name: "Habilidades 10",
+          // value: "15",
+          value: "45",
           rango1: 25,
           rango2: 50,
           rango3: 75,
-          configColor: 2,
+          configColor: 1,
           seccionReport: 18,
           mostrarTitulo: true
-      },
-      {
-          name: "Habilidades 10",
+        },
+        {
+          name: "Habilidades 9",
+          // value: "27",
+          value: "29",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 1,
+          seccionReport: 18,
+          mostrarTitulo: true
+        },
+        {
+          name: "Habilidades 11",
+          // value: "59",
+          value: "79",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 1,
+          seccionReport: 18,
+          mostrarTitulo: false
+        },
+        {
+          name: "Habilidades 12",
+          // value: "90",
+          value: "88",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 1,
+          seccionReport: 18,
+          mostrarTitulo: false
+        },
+        {
+          name: "Puntualidad",
           value: "15",
           rango1: 25,
           rango2: 50,
           rango3: 75,
           configColor: 2,
-          seccionReport: 18,
+          seccionReport: 16,
           mostrarTitulo: true
-      },
-      {
-          name: "Habilidades 11",
-          value: "59",
+        },
+        {
+          name: "Iniciativa",
+          value: "30",
           rango1: 25,
           rango2: 50,
           rango3: 75,
           configColor: 2,
-          seccionReport: 18,
-          mostrarTitulo: false
-      },
-      {
-          name: "Habilidades 12",
-          value: "90",
+          seccionReport: 16,
+          mostrarTitulo: true
+        },
+        {
+          name: "Honradez",
+          value: "55",
           rango1: 25,
           rango2: 50,
           rango3: 75,
           configColor: 2,
-          seccionReport: 18,
+          seccionReport: 16,
           mostrarTitulo: false
-      },
+        },
+        {
+          name: "Responsabilidad",
+          value: "80",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 16,
+          mostrarTitulo: false
+        },
+        {
+          name: "Respeto",
+          value: "13",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 16,
+          mostrarTitulo: false
+        },
     ];
     rows: any = [];
     indices: any = [];

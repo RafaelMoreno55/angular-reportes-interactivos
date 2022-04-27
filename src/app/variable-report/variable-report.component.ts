@@ -164,7 +164,7 @@ export class VariableReportComponent implements OnChanges, OnInit, OnDestroy {
     lScale.ticks().interval(10);
     lScale.minorTicks().interval(1);
 
-    // configure the axis
+    /* // configure the axis
     let axis = this.gauge.axis();
     axis.minorTicks(true);
     axis.minorTicks().stroke('#cecece');
@@ -174,7 +174,7 @@ export class VariableReportComponent implements OnChanges, OnInit, OnDestroy {
     axis.scale(lScale);
 
     // format axis labels
-    axis.labels().format('{%value}%');
+    axis.labels().format('{%value}%'); */
 
     // set paddings
     this.gauge.padding([0, 50]);
@@ -187,7 +187,11 @@ export class VariableReportComponent implements OnChanges, OnInit, OnDestroy {
   }
 
   GoToBack(): void {
-    this.selection['selectedComponent'] = 1;
+    if (this.selection['selectedIndex'] == 16) {
+      this.selection['selectedComponent'] = 5;
+    } else {
+      this.selection['selectedComponent'] = 1;
+    }
     this.SetOption(this.selection);
   }
 

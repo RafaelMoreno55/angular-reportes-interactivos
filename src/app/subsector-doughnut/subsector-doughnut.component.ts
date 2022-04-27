@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
 import 'anychart';
 import { DataReportService, Options } from 'app/data-report.service';
 import { Subscription } from 'rxjs';
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './subsector-doughnut.component.html',
   styleUrls: ['./subsector-doughnut.component.css']
 })
-export class SubsectorDoughnutComponent implements OnChanges, OnInit {
+export class SubsectorDoughnutComponent implements OnChanges, OnInit, OnDestroy {
 
   @ViewChild('doughnutChartContainer') doughnutContainer: ElementRef;
   doughnut: anychart.charts.Pie = null;
@@ -19,16 +19,16 @@ export class SubsectorDoughnutComponent implements OnChanges, OnInit {
 
   private subscription: Subscription | undefined;
 
-  @Input() totalValueRange1: number;
-  @Input() totalValueRange2: number;
-  @Input() totalValueRange3: number;
-  @Input() totalValueRange4: number;
+  @Input() totalVariables1: number;
+  @Input() totalVariables2: number;
+  @Input() totalVariables3: number;
+  @Input() totalVariables4: number;
   @Input() propertyColorConfig: number;
   @Output() itemDoughnutEvent = new EventEmitter<number>();
-  totalValueR1: number;
-  totalValueR2: number;
-  totalValueR3: number;
-  totalValueR4: number;
+  totalVar1: number;
+  totalVar2: number;
+  totalVar3: number;
+  totalVar4: number;
   colorConfig: number;
   colorConfig1: string[] = ["#198754","#FFC107","#FD7e14","#DC3545"];
   colorConfig2: string[] = ["#DC3545","#FD7e14","#FFC107","#198754"];
@@ -36,32 +36,32 @@ export class SubsectorDoughnutComponent implements OnChanges, OnInit {
   constructor(private optionsSvc: DataReportService, private renderer2: Renderer2) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.IsKeyExists(changes, "totalValueRange1")) {
-      this.totalValueR1 = changes['totalValueRange1']['currentValue'];
+    if (this.IsKeyExists(changes, "totalVariables1")) {
+      this.totalVar1 = changes['totalVariables1']['currentValue'];
     }
-    if (this.IsKeyExists(changes, "totalValueRange2")) {
-      this.totalValueR2 = changes['totalValueRange2']['currentValue'];
+    if (this.IsKeyExists(changes, "totalVariables2")) {
+      this.totalVar2 = changes['totalVariables2']['currentValue'];
     }
-    if (this.IsKeyExists(changes, "totalValueRange3")) {
-      this.totalValueR3 = changes['totalValueRange3']['currentValue'];
+    if (this.IsKeyExists(changes, "totalVariables3")) {
+      this.totalVar3 = changes['totalVariables3']['currentValue'];
     }
-    if (this.IsKeyExists(changes, "totalValueRange4")) {
-      this.totalValueR4 = changes['totalValueRange4']['currentValue'];
+    if (this.IsKeyExists(changes, "totalVariables4")) {
+      this.totalVar4 = changes['totalVariables4']['currentValue'];
     }
     if (this.IsKeyExists(changes, "propertyColorConfig")) {
       this.colorConfig = changes['propertyColorConfig']['currentValue'];
     }
 
-    if (this.totalValueR1 != undefined && this.totalValueR2 != undefined && this.totalValueR3 != undefined && this.totalValueR4 != undefined) {
-      console.log(this.totalValueR1);
-      console.log(this.totalValueR2);
-      console.log(this.totalValueR3);
-      console.log(this.totalValueR4);
+    if (this.totalVar1 != undefined && this.totalVar2 != undefined && this.totalVar3 != undefined && this.totalVar4 != undefined) {
+      /* console.log(this.totalVar1);
+      console.log(this.totalVar2);
+      console.log(this.totalVar3);
+      console.log(this.totalVar4); */
       let asContainer = this.doughnutContainer.nativeElement;
       if (asContainer.firstElementChild) {
         this.renderer2.removeChild(asContainer, asContainer.firstChild);
       }
-      this.ShowDoughnutChart(this.totalValueR1, this.totalValueR2, this.totalValueR3, this.totalValueR4, this.colorConfig == 1 ? this.colorConfig1 : this.colorConfig2);
+      this.ShowDoughnutChart(this.totalVar1, this.totalVar2, this.totalVar3, this.totalVar4, this.colorConfig == 1 ? this.colorConfig1 : this.colorConfig2);
     }
   }
 
@@ -78,20 +78,46 @@ export class SubsectorDoughnutComponent implements OnChanges, OnInit {
     this.SetOption(this.selection); 
   }
 
-  ShowDoughnutChart(totalValueR1: number, totalValueR2: number, totalValueR3: number, totalValueR4: number, colorConfig: string[]): void {
+  ShowDoughnutChart(totalVar1: number, totalVar2: number, totalVar3: number, totalVar4: number, aColorConfig: string[]): void {
     // Do not use the absolute path of the svg definitions.
     anychart.graphics.useAbsoluteReferences(false);
 
     // create data
     let stage = anychart.graphics.create(this.doughnutContainer.nativeElement);
 
-    // create data
-    let data = [
-      { x: "Alto", value: totalValueR1, normal: {fill: colorConfig[0] } },
-      { x: "Medio-alto", value: totalValueR2, normal: {fill: colorConfig[1] } },
-      { x: "Medio", value: totalValueR3, normal: {fill: colorConfig[2] } },
-      { x: "Bajo", value: totalValueR4, normal: {fill: colorConfig[3] } }
-    ];
+    let data = [];
+
+    if (totalVar1 > 0) {
+      if (this.colorConfig == 1) {
+        data.push({ x: "Alto", value: totalVar1, normal: { fill: aColorConfig[3] } });
+      } else {
+        data.push({ x: "Bajo", value: totalVar1, normal: { fill: aColorConfig[0] } });
+      }
+    }
+
+    if (totalVar2 > 0) {
+      if (this.colorConfig == 1) {
+        data.push({ x: "Medio-alto", value: totalVar2, normal: { fill: aColorConfig[2] } });
+      } else {
+        data.push({ x: "Medio", value: totalVar2, normal: { fill: aColorConfig[1] } });
+      }
+    }
+    
+    if (totalVar3 > 0) {
+      if (this.colorConfig == 1) {
+        data.push({ x: "Medio", value: totalVar3, normal: { fill: aColorConfig[1] } });
+      } else {
+        data.push({ x: "Medio-alto", value: totalVar3, normal: { fill: aColorConfig[2] } });
+      }
+    }
+
+    if (totalVar4 > 0) {
+      if (this.colorConfig == 1) {
+        data.push({ x: "Bajo", value: totalVar4, normal: { fill: aColorConfig[0] } });
+      } else {
+        data.push({ x: "Alto", value: totalVar4, normal: { fill: aColorConfig[3] } });
+      }
+    }
 
     // create a pie chart and set the data
     this.doughnut = anychart.pie(data);
@@ -102,6 +128,9 @@ export class SubsectorDoughnutComponent implements OnChanges, OnInit {
 
     // set the chart title
     // this.doughnut.title("Riesgo personal");
+
+    // set the tooltip text
+    // this.doughnut.tooltip().format();
 
     // configure the firts doughnut chart
     this.doughnut.bounds(0, 0, "100%", "100%");
@@ -121,7 +150,20 @@ export class SubsectorDoughnutComponent implements OnChanges, OnInit {
        * 2-amarillo
        * 3-verde
        */  
-      self.itemDoughnutEvent.emit(e['point']['index']);
+      let color = e['currentTarget']['ke']['oc']['kg']['f']['normal']['fill'];
+      if (color == '#DC3545') {
+        self.itemDoughnutEvent.emit(0);
+      } else {
+        if (color == '#FD7e14') {
+          self.itemDoughnutEvent.emit(1);
+        } else {
+          if (color == '#FFC107') {
+            self.itemDoughnutEvent.emit(2);
+          } else {
+            self.itemDoughnutEvent.emit(3);
+          }
+        }
+      }
       self.selection['selectedComponent'] = 1;
       self.SetOption(self.selection);
     });

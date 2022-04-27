@@ -11,6 +11,7 @@ import { SubsectorReferenceReportComponent } from './subsector-reference-report/
 import { ReportsComponent } from './reports/reports.component';
 import { DataReportService } from './data-report.service';
 import { SubsectorDoughnutComponent } from './subsector-doughnut/subsector-doughnut.component';
+import { SubsectorLineComponent } from './subsector-line/subsector-line.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SubsectorDoughnutComponent } from './subsector-doughnut/subsector-dough
     VariableReportComponent,
     SubsectorReferenceReportComponent,
     ReportsComponent,
-    SubsectorDoughnutComponent
+    SubsectorDoughnutComponent,
+    SubsectorLineComponent
   ],
   imports: [
     BrowserModule,

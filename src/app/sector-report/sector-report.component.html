@@ -127,5 +127,8 @@
   <app-variable-report [propertyName]="propertyName" [propertyColorConfig]="propertyColorConfig" [propertyValue]="propertyValue" [recommendedScore]="recommendedScore" [variableScore]="variableScore"></app-variable-report>
 </div>
 <div [hidden]="GetSelectedComponent() != 4">
-  <app-subsector-doughnut [totalValueRange1]="totalValueRange1" [totalValueRange2]="totalValueRange2" [totalValueRange3]="totalValueRange3" [totalValueRange4]="totalValueRange4" [propertyColorConfig]="colorConfig" (itemDoughnutEvent)="GetItemDoughnut($event)"></app-subsector-doughnut>
+  <app-subsector-doughnut [totalVariables1]="totalVariables1" [totalVariables2]="totalVariables2" [totalVariables3]="totalVariables3" [totalVariables4]="totalVariables4" [propertyColorConfig]="colorConfig" (itemDoughnutEvent)="GetItemDoughnut($event)"></app-subsector-doughnut>
+</div>
+<div [hidden]="GetSelectedComponent() != 5">
+  <app-subsector-line [competenceVariables]="competenceVariables" (propertyNameEvent)="GetpropertyName($event)"></app-subsector-line>
 </div>

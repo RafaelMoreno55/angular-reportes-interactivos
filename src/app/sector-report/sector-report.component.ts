@@ -21,10 +21,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     selectedIndex: -1
   };
   private subscription: Subscription | undefined;
- /*  selectedData: DataSubsector = {
-    labelTitle: "",
-    labelDescription: ""
-  }; */
+
   result: string[] = [
     "no-recomendado",
     "recomendado",
@@ -53,11 +50,12 @@ export class SectorReportComponent implements OnInit, OnDestroy {
   multiplier3: number = 0.75;
   recommendedScore: number;
   variableScore: number;
-  totalValueRange1: number;
-  totalValueRange2: number;
-  totalValueRange3: number;
-  totalValueRange4: number;
+  totalVariables1: number;
+  totalVariables2: number;
+  totalVariables3: number;
+  totalVariables4: number;
   itemDoughnut: number = -1;
+  competenceVariables: any = [];
 
   constructor(private optionsSvc: DataReportService, private activeRoute: ActivatedRoute, private el: ElementRef) {
   }
@@ -178,11 +176,12 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     // listener
     const self = this;
     this.gauge.listen('pointClick', function (e) {
+      self.competenceVariables.length = 0;
       self.itemDoughnut = -1;
-      self.totalValueRange1 = 0;
-      self.totalValueRange2 = 0;
-      self.totalValueRange3 = 0;
-      self.totalValueRange4 = 0;
+      self.totalVariables1 = 0;
+      self.totalVariables2 = 0;
+      self.totalVariables3 = 0;
+      self.totalVariables4 = 0;
       self.ranges.length = 0;
       self.range1Red.length = 0;
       self.range2Orange.length = 0;
@@ -201,12 +200,16 @@ export class SectorReportComponent implements OnInit, OnDestroy {
           self.rowsSubSector.push(element);
         }
       });
-      
+
       if (sectionReport == 18) {
         self.selection['selectedComponent'] = 4;
       } else {
-        self.selection['selectedComponent'] = 1;
-      }
+        if (sectionReport == 16) {
+          self.selection['selectedComponent'] = 5;
+        } else {
+          self.selection['selectedComponent'] = 1;
+        }
+      } 
       self.selection['selectedIndex'] = sectionReport;
       self.SetOption(self.selection);
 
@@ -219,22 +222,23 @@ export class SectorReportComponent implements OnInit, OnDestroy {
       self.ranges.push(range3);
       self.title = self.optionsSvc.GetNameSectorReport(self.rowsSubSector[0]['seccionReport']);
       self.rowsSubSector.forEach(element => {
+        self.competenceVariables.push({ name: element['name'], value: parseInt(element['value']) });
         if (self.colorConfig == 1 ) { // verde a rojo
           if (parseInt(element['value']) <= range1) {
             self.range4Green.push(element['name']);
-            self.totalValueRange4 += parseInt(element['value']);
+            self.totalVariables4 += 1;
           } else {
             if (parseInt(element['value']) > range1 && parseInt(element['value']) <= range2) {
               self.range3Yellow.push(element['name']);
-              self.totalValueRange3 += parseInt(element['value']);
+              self.totalVariables3 += 1;
             } else {
               if (parseInt(element['value']) > range2 && parseInt(element['value']) <= range3) {
                 self.range2Orange.push(element['name']);
-                self.totalValueRange2 += parseInt(element['value']);
+                self.totalVariables2 += 1;
               } else {
                 if (parseInt(element['value']) > range3) {
                   self.range1Red.push(element['name']);
-                  self.totalValueRange1 += parseInt(element['value']);
+                  self.totalVariables1 += 1;
                 }
               }
             }
@@ -243,19 +247,19 @@ export class SectorReportComponent implements OnInit, OnDestroy {
           if (self.colorConfig == 2) {
             if (parseInt(element['value']) <= range1) {
               self.range1Red.push(element['name']);
-              self.totalValueRange1 += parseInt(element['value']);
+              self.totalVariables1 += 1;
             } else {
               if (parseInt(element['value']) > range1 && parseInt(element['value']) <= range2) {
                 self.range2Orange.push(element['name']);
-                self.totalValueRange2 += parseInt(element['value']);
+                self.totalVariables2 += 1;
               } else {
                 if (parseInt(element['value']) > range2 && parseInt(element['value']) <= range3) {
                   self.range3Yellow.push(element['name']);
-                  self.totalValueRange3 += parseInt(element['value']);
+                  self.totalVariables3 += 1;
                 } else {
                   if (parseInt(element['value']) > range3) {
                     self.range4Green.push(element['name']);
-                    self.totalValueRange4 += parseInt(element['value']);
+                    self.totalVariables4 += 1;
                   }
                 }
               }
@@ -263,6 +267,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
           }
         }
       });
+      self.competenceVariables = self.competenceVariables.slice();
     });
     // set the container id
     this.gauge.container(stage);
@@ -323,7 +328,11 @@ export class SectorReportComponent implements OnInit, OnDestroy {
             }
           }
         }
-        this.recommendedScore = (this.propertyColorConfig == 1 ? range3 : range2);
+        if (this.propertyColorConfig == 1) {
+          this.recommendedScore = this.normalizeRange(range3, range3, this.multiplier3);
+        } else {
+          this.recommendedScore = this.normalizeRange(range2, range2, this.multiplier2);
+        }
         this.variableScore = value;
       }
     });
