@@ -178,6 +178,67 @@ export class DataReportService {
           mostrarTitulo: false
         },
         {
+          name: "% apego puntaje competencia planeación",
+          value: "58",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 16,
+          mostrarTitulo: true
+        },
+        {
+          name: "veracidad plan",
+          value: "76.56",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 16,
+          mostrarTitulo: true
+        },
+        {
+          name: "% apego puntaje competencia empatía",
+          value: "69",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 16,
+          mostrarTitulo: true
+        },
+        {
+          name: "veracidad emp",
+          value: "75.29",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 16,
+          mostrarTitulo: true
+        },
+        {
+          name: "% apego puntaje competencia satisfacción del cliente",
+          value: "69",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 16,
+          mostrarTitulo: true
+        },
+        {
+          name: "veracidad satisf cliente",
+          value: "68.25",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 16,
+          mostrarTitulo: true
+        },
+        /*
+        {
           name: "Puntualidad",
           value: "15",
           rango1: 25,
@@ -227,6 +288,7 @@ export class DataReportService {
           seccionReport: 16,
           mostrarTitulo: false
         },
+        */
     ];
     rows: any = [];
     indices: any = [];

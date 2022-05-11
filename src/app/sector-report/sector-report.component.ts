@@ -206,6 +206,51 @@ export class SectorReportComponent implements OnInit, OnDestroy {
       } else {
         if (sectionReport == 16) {
           self.selection['selectedComponent'] = 5;
+
+          /*********************************************************************************** */
+
+          let newArrayComp = [];
+          let newArrayVerac = [];
+          let splitNameArray = [];
+          let indexComp = -1;
+          let indexVerac = -1;
+          let varName = "";
+
+          self.rowsSubSector.forEach(element=> {
+            splitNameArray = element['name'].split(' ');
+            indexComp = splitNameArray.indexOf("competencia");
+            indexVerac = splitNameArray.indexOf("veracidad");
+            varName = "";
+            if (indexComp != -1) {
+              for (let i = indexComp+1; i < splitNameArray.length; i++) {
+                varName = varName + " " + splitNameArray[i];
+              }
+              newArrayComp.push({name: varName.trim(), value: element['value'], full_name: element['name']});
+            } else {
+              if (indexVerac != -1) {
+                for (let i = indexVerac+1; i < splitNameArray.length; i++) {
+                  varName = varName + " " + splitNameArray[i];
+                }
+                newArrayVerac.push({name: varName.trim(), value: element['value'], full_name: element['name']});
+              }
+            }
+          });
+
+          newArrayComp.forEach(elementComp => {
+            let words = elementComp['name'].split(' ');
+            let stringSequenceObject = self.MakeMap(words[0]);
+            newArrayVerac.forEach(elementVerac => {
+              let dictionary = elementVerac['name'].split(' ');
+              if (self.IsSubsequence(dictionary[0], stringSequenceObject)) {
+                self.competenceVariables.push({name: elementComp['name'], comp: elementComp['full_name'], value1: elementComp['value'], verac: elementVerac['full_name'], value2: elementVerac['value']});
+              }
+            });
+          });
+          
+          self.competenceVariables = self.competenceVariables.slice();
+          
+          /*********************************************************************************** */
+
         } else {
           self.selection['selectedComponent'] = 1;
         }
@@ -222,7 +267,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
       self.ranges.push(range3);
       self.title = self.optionsSvc.GetNameSectorReport(self.rowsSubSector[0]['seccionReport']);
       self.rowsSubSector.forEach(element => {
-        self.competenceVariables.push({ name: element['name'], value: parseInt(element['value']) });
+        // self.competenceVariables.push({ name: element['name'], value: parseInt(element['value']) });
         if (self.colorConfig == 1 ) { // verde a rojo
           if (parseInt(element['value']) <= range1) {
             self.range4Green.push(element['name']);
@@ -267,7 +312,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
           }
         }
       });
-      self.competenceVariables = self.competenceVariables.slice();
+      // self.competenceVariables = self.competenceVariables.slice();
     });
     // set the container id
     this.gauge.container(stage);
@@ -350,5 +395,42 @@ export class SectorReportComponent implements OnInit, OnDestroy {
 
   GetItemDoughnut(index: number): void {
     this.itemDoughnut = index;
+  }
+
+  MakeMap(string_: string): Object {
+    let map = {};
+    for (let i = 0; i < string_.length; i++) {
+      let letter = string_[i];
+      if (map[letter]) {
+        map[letter].push(i);
+      } else {
+        map[letter] = [i];
+      }
+    }
+    return map;
+  }
+  
+  IsSubsequence(word: string, map: Object): boolean {
+    let minIndex = 0;
+    for (let i = 0; i < word.length; i++) {
+      if (map[word[i]]) {
+        minIndex = this.FindNextIndex(map[word[i]], minIndex);
+        if (minIndex === 0) {
+          return false;
+        }
+      } else {
+        return false
+      }
+    }
+    return true;
+  }
+  
+  FindNextIndex(array: number[], minIndex: number): number{
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] >= minIndex) {
+        return array[i] + 1;
+      }
+    }
+    return 0;
   }
 }
