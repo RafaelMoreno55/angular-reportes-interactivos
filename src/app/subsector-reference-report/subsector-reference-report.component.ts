@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { DataReportService, Options, DataSubsector } from 'app/data-report.service';
+import { DataReportService, Options } from 'app/data-report.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,10 +14,10 @@ export class SubsectorReferenceReportComponent implements OnInit, OnDestroy{
     selectedIndex: -1
   };
   private subscription: Subscription | undefined;
-  @Input() selectedSubRefSectorData: DataSubsector = {
-    labelTitle: "",
-    labelDescription: ""
-  };
+  @Input() rowsReferenceData: any = [];
+  @Input() averageValue: number;
+  @Input() colorConfig: number;
+  @Input() range: number;
 
   constructor(private optionsSvc: DataReportService) { 
   }
@@ -36,11 +36,11 @@ export class SubsectorReferenceReportComponent implements OnInit, OnDestroy{
   }
 
   GetTitle(): string {
-    return this.selectedSubRefSectorData['labelTitle'];
+    return "referencias";
   }
   
   GetDescription(): string {
-    return this.selectedSubRefSectorData['labelDescription'];
+    return " ";
   }
 
   SetOption(option: Options): void {

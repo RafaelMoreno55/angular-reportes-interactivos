@@ -1,10 +1,3 @@
-<!-- <div class="container mt-2">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid justify-content-start">
-      <button type="button" (click)="GoToBack()" class="btn" style="color: #fff; background-color: #0091ea; border-color: #0091ea;">Regresar</button>
-    </div>
-  </nav>
-</div> -->
 <div class="container mt-2">
   <nav class="navbar flex-row">
     <button type="button" (click)="GoToBack()" class="btn" style="color: #fff; background-color: #0091ea; border-color: #0091ea;">Regresar</button>
@@ -12,23 +5,25 @@
 </div>
 <div class="container mt-2">
   <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-8 border"> <!-- col-8 -->
+    <div class="col-sm-12 col-md-12 col-lg-12 border">
       <div class="d-flex align-items-center h-100 w-100">
         <h3 class="text-uppercase text-center">{{GetTitle()}}</h3>
       </div>
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-4 border"> <!-- col-4 -->
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 border">
       <div class="table-responsive">
         <table class="table table-bordered align-middle text-center mt-2">
           <tbody>
             <tr style="background-color: rgba(192, 192, 192, 0.5);">
-              <td class="text-uppercase">porcentaje de veracidad mínimo recomendado</td>
+              <td class="text-uppercase">porcentaje de veracidad {{colorConfig == 1 ? "máximo" : "mínimo"}} recomendado</td>
               <td class="text-uppercase">porcentaje promedio obtenido</td>
             </tr>
-            <tr>
-              <td>75</td>
+            <tr style="background-color: white;">
+              <p style="font-size: calc(1.3rem + .6vw);">{{range}} %</p>
               <td>
-                <p style="font-size: calc(1.3rem + .6vw);">54.95%</p>
+                <p style="font-size: calc(1.3rem + .6vw);">{{averageValue}} %</p>
               </td>
             </tr>
           </tbody>
@@ -37,46 +32,77 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-1 border"></div> <!-- col-1 -->
-    <div class="col-sm-12 col-md-12 col-lg-10 border"> <!-- col-10 -->
+  <!--   <div class="col-sm-12 col-md-12 col-lg-1 border"></div> -->
+    <div class="col-sm-12 col-md-12 col-lg-12 border">
       <ul class="list-group">
-        <li class="list-group-item">Nombre del último lugar de trabajo: Clínica Dental Río</li>
-        <li class="list-group-item" style="color: #664d03; background-color: #fff3cd;">
-          <ul>
-            <li>Porcentaje de veracidad 60.83%</li>
-          </ul>
-        </li>
-        <li class="list-group-item">Puesto desempeño: Secretaria</li>
-        <li class="list-group-item" style="color: #664d03; background-color: #fff3cd;">
-          <ul>
-            <li>Porcentaje de veracidad: 62.33%</li>
-          </ul>
-        </li>
-        <li class="list-group-item">Razón por la que renunció: Por la pandemia de COVID y seguí con los semestres de clases desde mi casa</li>
-        <li class="list-group-item" style="color: #664d03; background-color: #fff3cd;">
-          <ul>
-            <li>Porcentaje de veracidad: 59.67%</li>
-          </ul>
-        <li class="list-group-item">Respuesta a estuvo involucrado en accidentes: No hubo ningún accidentes</li>
-        <li class="list-group-item" style="color: #842029; background-color: #f8d7da;">
-          <ul> 
-            <li>Porcentaje de veracidad: 41.33%</li> 
-          </ul> 
-        <li class="list-group-item">Respuesta a si lo recomendarían: Estoy seguro que me recomendarían</li>
-        <li class="list-group-item" style="color: #842029; background-color: #f8d7da;">
-          <ul> 
-            <li>Porcentaje de veracidad: 45.83%</li> 
-          </ul>
-        </li>
-        <li class="list-group-item">Respuesta a si lo recontrataría: Estoy seguro que me recomendarían</li>
-        <li style="color: #664d03; background-color: #fff3cd;" class="list-group-item">
-          <ul> 
-            <li>Porcentaje de veracidad: 59.75%</li> 
-          </ul>
-        </li>
+        <div *ngFor="let element of rowsReferenceData" >
+          <li class="list-group-item">{{ element['name'] }}</li>
+          <div *ngIf="element['configColor'] == 1">
+            <div *ngIf="element['value'] <= element['rango1']">
+              <li class="list-group-item" style="color: #155724; background-color: #c3e6cb;">
+                <ul>
+                  <li *ngIf="element['value'] <= 0">Porcentaje de veracidad: 1 %</li>
+                  <li *ngIf="element['value'] > 0">Porcentaje de veracidad: {{ element['value'] }} %</li>
+                </ul>
+              </li>
+            </div>
+            <div *ngIf="element['value'] > element['rango1'] && element['value'] <= element['rango2']">
+              <li class="list-group-item" style="color: #856404; background-color: #ffeeba;">
+                <ul>
+                  <li>Porcentaje de veracidad: {{ element['value'] }} %</li>
+                </ul>
+              </li>
+            </div>
+            <div *ngIf="element['value'] > element['rango2'] && element['value'] <= element['rango3']">
+              <li class="list-group-item" style="color: #974b0c; background-color: #febe89;">
+                <ul>
+                  <li>Porcentaje de veracidad: {{ element['value'] }} %</li>
+                </ul>
+              </li>
+            </div>
+            <div *ngIf="element['value'] > element['rango3']">
+              <li class="list-group-item" style="color: #721c24; background-color: #f5c6cb;">
+                <ul>
+                  <li>Porcentaje de veracidad: {{ element['value'] }} %</li>
+                </ul>
+              </li>
+            </div>
+          </div>
+          <div *ngIf="element['configColor'] == 2">
+            <div *ngIf="element['value'] <= element['rango1']">
+              <li class="list-group-item" style="color: #721c24; background-color: #f5c6cb;">
+                <ul>
+                  <li *ngIf="element['value'] <= 0">Porcentaje de veracidad: 1 %</li>
+                  <li *ngIf="element['value'] > 0">Porcentaje de veracidad: {{ element['value'] }} %</li>
+                </ul>
+              </li>
+            </div>
+            <div *ngIf="element['value'] > element['rango1'] && element['value'] <= element['rango2']">
+              <li class="list-group-item" style="color: #974b0c; background-color: #febe89;">
+                <ul>
+                  <li>Porcentaje de veracidad: {{ element['value'] }} %</li>
+                </ul>
+              </li>
+            </div>
+            <div *ngIf="element['value'] > element['rango2'] && element['value'] <= element['rango3']">
+              <li class="list-group-item" style="color: #856404; background-color: #ffeeba;">
+                <ul>
+                  <li>Porcentaje de veracidad: {{ element['value'] }} %</li>
+                </ul>
+              </li>
+            </div>
+            <div *ngIf="element['value'] > element['rango3']">
+              <li class="list-group-item" style="color: #155724; background-color: #c3e6cb;">
+                <ul>
+                  <li>Porcentaje de veracidad: {{ element['value'] }} %</li>
+                </ul>
+              </li>
+            </div>
+          </div>
+        </div>
       </ul>
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-1 border"></div> <!-- col-1 -->
+    <!-- <div class="col-sm-12 col-md-12 col-lg-1 border"></div> -->
   </div>
   <div class="row">
     <div class="col-12 border">

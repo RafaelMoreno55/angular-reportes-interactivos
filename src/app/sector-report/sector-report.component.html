@@ -51,7 +51,7 @@
               <td class="text-uppercase">ko</td>
               <td class="text-uppercase">score obtenido</td>
             </tr>
-            <tr>
+            <tr style="background-color: white;">
               <td>
                 <p style="font-size: calc(1.3rem + .6vw);">71.5</p>
               </td>
@@ -67,40 +67,11 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-6 border">
-      <div *ngIf="isShowInfo" class="table-responsive">
-        <table class="table align-middle mt-2">
-          <tbody style="font-size: small;">
-            <tr>
-              <td colspan="2" class="fs-5">Información detallada</td>
-            </tr>
-            <tr>
-              <td>Móvil</td>
-              <td class="text-end">+20 0593 4095</td>
-            </tr>
-            <tr>
-              <td>Cumpleaños</td>
-              <td class="text-end">30.09.67</td>
-            </tr>
-            <tr>
-              <td>Ocupación</td>
-              <td class="text-end">Asistente</td>
-            </tr>
-            <tr>
-              <td>Twitter</td>
-              <td class="text-end">@mrperkins</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
   <div id="row2" class="row">
     <div class="col-sm-12 col-md-12 col-lg-1 border"></div>
     <div class="column2 col-sm-12 col-md-12 col-lg-10 border">
       <div class="graphics row">
-        <div *ngFor="let id of indexs" class="tank col-sm-6 col-md-3 pb-3" style="height: 400px;"></div>
+        <div *ngFor="let id of indexsAux" class="tank col-sm-6 col-md-3 pb-3" style="height: 400px;"></div>
       </div>
     </div>
     <div class="col-sm-12 col-md-12 col-lg-1 border"></div>
@@ -121,7 +92,7 @@
   <app-subsector-report [range1Red]="range1Red" [range2Orange]="range2Orange" [range3Yellow]="range3Yellow" [range4Green]="range4Green" [ranges]="ranges" [title]="title" [colorConfig]="colorConfig" [itemDoughnut]="itemDoughnut" (propertyNameEvent)="GetpropertyName($event)"></app-subsector-report>
 </div> 
 <div [hidden]="GetSelectedComponent() != 2">
-  <app-subsector-reference-report [selectedSubRefSectorData]="rows"></app-subsector-reference-report>
+  <app-subsector-reference-report [rowsReferenceData]="rowsSubSector" [averageValue]="averageValue" [colorConfig]="colorConfig" [range]="range"></app-subsector-reference-report>
 </div> 
 <div [hidden]="GetSelectedComponent() != 3">
   <app-variable-report [propertyName]="propertyName" [propertyColorConfig]="propertyColorConfig" [propertyValue]="propertyValue" [recommendedScore]="recommendedScore" [variableScore]="variableScore"></app-variable-report>

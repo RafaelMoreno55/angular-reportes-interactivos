@@ -70,7 +70,7 @@ export class DataReportService {
           rango2: 50,
           rango3: 75,
           configColor: 2,
-          seccionReport: 4,
+          seccionReport: 26,
           mostrarTitulo: true
         },
         {
@@ -120,7 +120,7 @@ export class DataReportService {
           rango2: 50,
           rango3: 75,
           configColor: 2,
-          seccionReport: 4,
+          seccionReport: 26,
           mostrarTitulo: false
         },
         {
@@ -135,7 +135,6 @@ export class DataReportService {
         },
         {
           name: "Habilidades 10",
-          // value: "15",
           value: "45",
           rango1: 25,
           rango2: 50,
@@ -146,7 +145,6 @@ export class DataReportService {
         },
         {
           name: "Habilidades 9",
-          // value: "27",
           value: "29",
           rango1: 25,
           rango2: 50,
@@ -157,7 +155,6 @@ export class DataReportService {
         },
         {
           name: "Habilidades 11",
-          // value: "59",
           value: "79",
           rango1: 25,
           rango2: 50,
@@ -168,7 +165,6 @@ export class DataReportService {
         },
         {
           name: "Habilidades 12",
-          // value: "90",
           value: "88",
           rango1: 25,
           rango2: 50,
@@ -237,58 +233,296 @@ export class DataReportService {
           seccionReport: 16,
           mostrarTitulo: true
         },
-        /*
         {
-          name: "Puntualidad",
-          value: "15",
+          name: "Número de Solicitud",
+          value: "BBVARH20220000102",
           rango1: 25,
           rango2: 50,
           rango3: 75,
           configColor: 2,
-          seccionReport: 16,
+          seccionReport: 11,
           mostrarTitulo: true
         },
         {
-          name: "Iniciativa",
-          value: "30",
+          name: "Fecha creación solicitud",
+          value: "04/11/2022",
           rango1: 25,
           rango2: 50,
           rango3: 75,
           configColor: 2,
-          seccionReport: 16,
+          seccionReport: 11,
           mostrarTitulo: true
         },
         {
-          name: "Honradez",
-          value: "55",
+          name: "Área por la que llegó",
+          value: "NISA RAMIREZ",
           rango1: 25,
           rango2: 50,
           rango3: 75,
           configColor: 2,
-          seccionReport: 16,
+          seccionReport: 11,
           mostrarTitulo: false
         },
         {
-          name: "Responsabilidad",
-          value: "80",
+          name: "Jefe inmediato responsable",
+          value: "ARIADNE FORASTIERI",
           rango1: 25,
           rango2: 50,
           rango3: 75,
           configColor: 2,
-          seccionReport: 16,
+          seccionReport: 11,
           mostrarTitulo: false
         },
         {
-          name: "Respeto",
-          value: "13",
+          name: "RFC del cliente",
+          value: "ANA MARIA ROSALES ROBLES",
           rango1: 25,
           rango2: 50,
           rango3: 75,
           configColor: 2,
-          seccionReport: 16,
+          seccionReport: 11,
           mostrarTitulo: false
         },
-        */
+        {
+          name: "Nombre de quien contesto la solicitud",
+          value: "ANA MARIA ROSALES ROBLES",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 11,
+          mostrarTitulo: false
+        },
+        {
+          name: "Nombre del empleado",
+          value: "ANA MARIA ROSALES ROBLES",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 11,
+          mostrarTitulo: false
+        },
+        {
+          name: "Domicilio del entrevistado",
+          value: "PRIVADA LUISA 5 COLONIA DEL LAGO",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 11,
+          mostrarTitulo: false
+        },
+        {
+          name: "Tipo de entrevista",
+          value: "ENTREVISTA CANDIDATO",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 11,
+          mostrarTitulo: false
+        },
+        {
+          name: "Años vivir en domicilio",
+          value: "4",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 11,
+          mostrarTitulo: false
+        },
+        {
+          name: "Familiares Trabajando en misma empresa",
+          value: "NADIE",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 4,
+          mostrarTitulo: false
+        },
+        {
+          name: "años que trabajo",
+          value: "3",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 4,
+          mostrarTitulo: false
+        },
+        {
+          name: "% de veracidad de los años que trabajo",
+          value: "10",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 4,
+          mostrarTitulo: false
+        },
+        {
+          name: "razon por la que renunció",
+          value: "SE DESHIZO EL AREA",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 4,
+          mostrarTitulo: false
+        },
+        {
+          name: "% veracidad de la razon por la que renunció",
+          value: "67.92",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 4,
+          mostrarTitulo: false
+        },
+        {
+          name: "% Probabilidad información cualitativa falsa",
+          value: "87.50",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 4,
+          mostrarTitulo: false
+        },
+        {
+          name: "% Probabilidad información cuantitativa falsa",
+          value: "26.31",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 5,
+          mostrarTitulo: false
+        },
+        {
+          name: "Sueldo Solicitad",
+          value: "40000",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 5,
+          mostrarTitulo: false
+        },
+        {
+          name: "% Veracidad de beneficio indicado",
+          value: "81.50",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 5,
+          mostrarTitulo: false
+        },
+        {
+          name: "Gasto familiar",
+          value: "10000",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 5,
+          mostrarTitulo: false
+        },
+        {
+          name: "Pesos totales de deuda",
+          value: "200000",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 5,
+          mostrarTitulo: false
+        },
+        {
+          name: "Sueldo último empleo",
+          value: "40000",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 5,
+          mostrarTitulo: false
+        },
+        {
+          name: "% de veracidad del sueldo que tenia",
+          value: "82.33",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 5,
+          mostrarTitulo: false
+        },
+        {
+          name: "Nombre del último lugar de trabajo: Clínica Dental Río",
+          value: "60.83",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 1,
+          seccionReport: 27,
+          mostrarTitulo: false
+        },
+        {
+          name: "Puesto desempeño: Secretaria",
+          value: "87",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 1,
+          seccionReport: 27,
+          mostrarTitulo: false
+        },
+        {
+          name: "Razón por la que renunció: Por la pandemia de COVID y seguí con los semestres de clases desde mi casa",
+          value: "59.67",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 1,
+          seccionReport: 27,
+          mostrarTitulo: false
+        },
+        {
+          name: "Respuesta a estuvo involucrado en accidentes: No hubo ningún accidente",
+          value: "41.33",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 1,
+          seccionReport: 27,
+          mostrarTitulo: false
+        },
+        {
+          name: "Respuesta a si lo recomendarían: Estoy seguro que me recomendarían",
+          value: "45.83",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 1,
+          seccionReport: 27,
+          mostrarTitulo: false
+        },
+        {
+          name: "Respuesta a si lo recontratarían: Estoy seguro que me recontratarían",
+          value: "-3",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 1,
+          seccionReport: 27,
+          mostrarTitulo: false
+        },
     ];
     rows: any = [];
     indices: any = [];
@@ -407,8 +641,11 @@ export class DataReportService {
           case 26:
             name = "Nivel de honestidad";
             break;
-          case 27:
+          /* case 27:
             name = "Prueba de Inteligencia";
+            break; */
+          case 27:
+            name = "Referencias";
             break;
           case 28:
             name = "Comparaciones múltiples";

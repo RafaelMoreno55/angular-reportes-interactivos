@@ -5,10 +5,12 @@
 </div>
 <div class="container mt-2">
   <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-8 border">
+    <div class="col-sm-12 col-md-12 col-lg-12">
       <h3 class="text-uppercase">resultados por variable: {{propertyName}} </h3>
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-4 border">
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
       <div class="table-responsive">
         <table class="table table-bordered align-middle text-center mt-2">
           <tbody>
@@ -16,7 +18,7 @@
               <td class="text-uppercase">valor {{colorConfig == 1 ? "máximo" : "mínimo"}} recomendado</td>
               <td class="text-uppercase">Valor obtenido</td>
             </tr>
-            <tr>
+            <tr style="background-color: white;">
               <td>
                 <p style="font-size: calc(1.3rem + .6vw);">{{recommendedScore}} %</p>
               </td>
@@ -30,16 +32,14 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-1 border"></div>
-    <div class="col-sm-12 col-md-12 col-lg-10 border">
+    <div class="col-sm-12 col-md-12 col-lg-12">
       <div style="height: 400px;" class="row">
         <div style="width: 100%; height: 70%;" #chartContainer></div>
       </div>
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-1 border"></div>
   </div>
   <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-8 border">
+    <div class="col-sm-12 col-md-12 col-lg-8">
       <p class="px-3">% de veracidad que quien contesta es el empleado: 72.56</p>
       <p class="px-3 text-uppercase">respuestas:</p>
       <p class="px-3 text-uppercase">sugerencias de preguntas para entrevistas:</p>
@@ -49,7 +49,7 @@
         <li>¿Fuiste interrumpido en algún momento por alguna persona diferente a ti durante la entrevista?</li>
       </ol>
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-4 border">
+    <div class="col-sm-12 col-md-12 col-lg-4">
       <h4 style="margin-top: 3rem;" class="text-uppercase text-center">Descripción:</h4>
       <p class="px-5" style="font-size: 1.2em;">
         El factor evalúa la probabilidad de que la persona que

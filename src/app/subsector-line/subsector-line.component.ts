@@ -75,7 +75,7 @@ export class SubsectorLineComponent implements OnChanges, OnInit, OnDestroy {
 
     // create the first series, set the data and name
     let series1 = this.line.line(seriesData_1);
-    series1.name("Competencia");
+    series1.name("% apego puntaje Competencia");
 
     // configure the visual settings of the first series
     series1.normal().stroke("#0066cc");
@@ -119,7 +119,7 @@ export class SubsectorLineComponent implements OnChanges, OnInit, OnDestroy {
       let index = e['pointIndex'];
       let serie = e['series']['Br'];
       console.log(serie);
-      if (serie == "Competencia") {
+      if (serie == "% apego puntaje Competencia") {
         self.propertyNameEvent.emit(self.competenceVariables[index]['comp']);  
       } else {
         if (serie == "Veracidad") {

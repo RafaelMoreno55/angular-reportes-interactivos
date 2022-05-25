@@ -12,6 +12,8 @@ import { ReportsComponent } from './reports/reports.component';
 import { DataReportService } from './data-report.service';
 import { SubsectorDoughnutComponent } from './subsector-doughnut/subsector-doughnut.component';
 import { SubsectorLineComponent } from './subsector-line/subsector-line.component';
+import { MoreInformationComponent } from './more-information/more-information.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -22,13 +24,16 @@ import { SubsectorLineComponent } from './subsector-line/subsector-line.componen
     SubsectorReferenceReportComponent,
     ReportsComponent,
     SubsectorDoughnutComponent,
-    SubsectorLineComponent
+    SubsectorLineComponent,
+    MoreInformationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgbModule.forRoot()
   ],
+  entryComponents: [MoreInformationComponent],
   providers: [DataReportService],
   bootstrap: [AppComponent]
 })

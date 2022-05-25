@@ -3,6 +3,8 @@ import 'anychart';
 import { DataReportService, Options, DataSubsector } from 'app/data-report.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MoreInformationComponent } from 'app/more-information/more-information.component';
 
 @Component({
   selector: 'app-sector-report',
@@ -31,6 +33,10 @@ export class SectorReportComponent implements OnInit, OnDestroy {
 
   rows: any = [];
   indexs: any = [];
+  indexsAux: any = [];
+  arrayGeneral: any = [];
+  arrayQualitative: any = [];
+  arrayQuantitative: any = [];
   graphicsContainer: any = [];
   sectors: any = [];
   rowsSubSector: any = [];
@@ -42,6 +48,8 @@ export class SectorReportComponent implements OnInit, OnDestroy {
   title: string;
   ranges: any = [];
   colorConfig: number;
+  averageValue: number;
+  range: number;
   propertyName: string;
   propertyValue: number;
   propertyColorConfig: number;
@@ -57,7 +65,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
   itemDoughnut: number = -1;
   competenceVariables: any = [];
 
-  constructor(private optionsSvc: DataReportService, private activeRoute: ActivatedRoute, private el: ElementRef) {
+  constructor(private optionsSvc: DataReportService, private activeRoute: ActivatedRoute, private el: ElementRef, private modalService: NgbModal) {
   }
 
   ngOnDestroy(): void {
@@ -73,6 +81,9 @@ export class SectorReportComponent implements OnInit, OnDestroy {
 
     this.rows = this.optionsSvc.getRows();
     this.indexs = this.optionsSvc.indices;
+    this.indexsAux = this.indexs.filter(function(index){
+      return index != 4 && index != 5 && index != 11;
+    });
     this.indexs.sort(function(a,b) {
       return a - b;
     });
@@ -86,43 +97,82 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     let rango3 = 0;
     let last = this.rows.length - 1;
     let configColor = 0;
-    
+
+    this.rows.forEach(element => {
+      if (element['seccionReport'] === 4) {
+        let qualitativeData = new Object();
+        qualitativeData['name'] = element['name'];
+        qualitativeData['value'] = element['value'];
+        qualitativeData['sectionReport'] = element['seccionReport'];
+        this.arrayQualitative.push(qualitativeData);
+      } else {
+        if (element['seccionReport'] === 5) {
+          let quantitativeData = new Object();
+          quantitativeData['name'] = element['name'];
+          quantitativeData['value'] = element['value'];
+          quantitativeData['sectionReport'] = element['seccionReport'];
+          this.arrayQuantitative.push(quantitativeData);
+        } else {
+          if (element['seccionReport'] === 11 || element['seccionReport'] === 1) {
+            let generalData = new Object();
+            generalData['name'] = element['name'];
+            generalData['value'] = element['value'];
+            generalData['sectionReport'] = element['seccionReport'];
+            this.arrayGeneral.push(generalData);
+          }
+        }
+      }
+    });
     this.rows.forEach((element, index)=> {
       if (this.indexs[i] === element['seccionReport']) {
-        sum += parseInt(element['value']);
-        rango1 = element['rango1'];
-        rango2 = element['rango2'];
-        rango3 = element['rango3'];
-        configColor = element['configColor'];
-        count += 1;
+        if (this.indexs[i] !== 1 && this.indexs[i] !== 4 && this.indexs[i] !== 5 && this.indexs[i] !== 11) {
+          sum += parseInt(element['value']);
+          rango1 = element['rango1'];
+          rango2 = element['rango2'];
+          rango3 = element['rango3'];
+          configColor = element['configColor'];
+          count += 1;
+        }
       } else {
-        let graphicData = new Object();
-        graphicData['average'] = (sum/count);
-        graphicData['numItems'] = count;
-        graphicData['range1'] = rango1;
-        graphicData['range2'] = rango2;
-        graphicData['range3'] = rango3;
-        graphicData['sectionReport'] = this.indexs[i];
-        graphicData['colorConfig'] = configColor;
-        this.sectors.push(graphicData);
+        if (this.indexs[i] !== 1 && this.indexs[i] !== 4 && this.indexs[i] !== 5 && this.indexs[i] !== 11) {
+          let graphicData = new Object();
+          graphicData['average'] = this.Round(sum/count);
+          graphicData['numItems'] = count;
+          graphicData['range1'] = rango1;
+          graphicData['range2'] = rango2;
+          graphicData['range3'] = rango3;
+          graphicData['sectionReport'] = this.indexs[i];
+          graphicData['colorConfig'] = configColor;
+          this.sectors.push(graphicData);
+        }
+        if (element['seccionReport'] === 1 || element['seccionReport'] === 4 || element['seccionReport'] === 5 || element['seccionReport'] === 11) {
+          sum = 0;
+          rango1 = 0;
+          rango2 = 0;
+          rango3 = 0;
+          configColor = 0;
+        } else {
+          sum = parseInt(element['value']);
+          rango1 = element['rango1'];
+          rango2 = element['rango2'];
+          rango3 = element['rango3'];
+          configColor = element['configColor'];
+        }
         i += 1;
-        sum = parseInt(element['value']);
-        rango1 = element['rango1'];
-        rango2 = element['rango2'];
-        rango3 = element['rango3'];
-        configColor = element['configColor'];
         count = 1;
       }
       if (index === last) {
-        let graphicData = new Object();
-        graphicData['average'] = (sum/count);
-        graphicData['numItems'] = count;
-        graphicData['range1'] = rango1;
-        graphicData['range2'] = rango2;
-        graphicData['range3'] = rango3;
-        graphicData['sectionReport'] = this.indexs[i];
-        graphicData['colorConfig'] = configColor;
-        this.sectors.push(graphicData);
+        if (this.indexs[i] !== 1 && this.indexs[i] !== 4 && this.indexs[i] !== 5 && this.indexs[i] !== 11) {
+          let graphicData = new Object();
+          graphicData['average'] = this.Round(sum/count);
+          graphicData['numItems'] = count;
+          graphicData['range1'] = rango1;
+          graphicData['range2'] = rango2;
+          graphicData['range3'] = rango3;
+          graphicData['sectionReport'] = this.indexs[i];
+          graphicData['colorConfig'] = configColor;
+          this.sectors.push(graphicData);
+        }
       }
     });
   }
@@ -188,10 +238,10 @@ export class SectorReportComponent implements OnInit, OnDestroy {
       self.range3Yellow.length = 0;
       self.range4Green.length = 0;
       self.rowsSubSector.length = 0;
-      let value = e['currentTarget']['Rf'][0];
+      self.averageValue = e['currentTarget']['Rf'][0];
       let sectionReport = 0;
       self.sectors.forEach(element => {
-        if (value === element['average']) {
+        if (self.averageValue === element['average']) {
           sectionReport = element['sectionReport'];
         }
       });
@@ -200,15 +250,11 @@ export class SectorReportComponent implements OnInit, OnDestroy {
           self.rowsSubSector.push(element);
         }
       });
-
       if (sectionReport == 18) {
         self.selection['selectedComponent'] = 4;
       } else {
         if (sectionReport == 16) {
           self.selection['selectedComponent'] = 5;
-
-          /*********************************************************************************** */
-
           let newArrayComp = [];
           let newArrayVerac = [];
           let splitNameArray = [];
@@ -235,7 +281,6 @@ export class SectorReportComponent implements OnInit, OnDestroy {
               }
             }
           });
-
           newArrayComp.forEach(elementComp => {
             let words = elementComp['name'].split(' ');
             let stringSequenceObject = self.MakeMap(words[0]);
@@ -246,13 +291,18 @@ export class SectorReportComponent implements OnInit, OnDestroy {
               }
             });
           });
-          
           self.competenceVariables = self.competenceVariables.slice();
-          
-          /*********************************************************************************** */
-
         } else {
-          self.selection['selectedComponent'] = 1;
+          if (sectionReport == 27) {
+            self.selection['selectedComponent'] = 2;
+            if (self.rowsSubSector[0]['configColor'] == 1) {
+              self.range = self.rowsSubSector[0]['rango3'];
+            } else {
+              self.range = self.rowsSubSector[0]['rango2'];
+            }
+          } else {
+            self.selection['selectedComponent'] = 1;
+          }
         }
       } 
       self.selection['selectedIndex'] = sectionReport;
@@ -267,7 +317,6 @@ export class SectorReportComponent implements OnInit, OnDestroy {
       self.ranges.push(range3);
       self.title = self.optionsSvc.GetNameSectorReport(self.rowsSubSector[0]['seccionReport']);
       self.rowsSubSector.forEach(element => {
-        // self.competenceVariables.push({ name: element['name'], value: parseInt(element['value']) });
         if (self.colorConfig == 1 ) { // verde a rojo
           if (parseInt(element['value']) <= range1) {
             self.range4Green.push(element['name']);
@@ -312,7 +361,6 @@ export class SectorReportComponent implements OnInit, OnDestroy {
           }
         }
       });
-      // self.competenceVariables = self.competenceVariables.slice();
     });
     // set the container id
     this.gauge.container(stage);
@@ -321,7 +369,11 @@ export class SectorReportComponent implements OnInit, OnDestroy {
   }
 
   ShowInfo(): void {
-    this.isShowInfo == true ? this.isShowInfo = false : this.isShowInfo = true;
+    // this.isShowInfo == true ? this.isShowInfo = false : this.isShowInfo = true;
+    const modalRef = this.modalService.open(MoreInformationComponent);
+    modalRef.componentInstance.arrayGeneral = this.arrayGeneral;
+    modalRef.componentInstance.arrayQualitative = this.arrayQualitative;
+    modalRef.componentInstance.arrayQuantitative = this.arrayQuantitative;
   }
 
   SetOption(option: Options): void {

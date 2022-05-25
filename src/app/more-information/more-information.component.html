@@ -1,0 +1,50 @@
+<div class="modal-header">
+  <h6 class="modal-title text-uppercase" style="font-weight: 500">más información</h6>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <section *ngIf="arrayGeneral.length > 0">
+    <h5>Generales</h5>
+    <div class="table-responsive">
+      <table class="table table-sm align-middle">
+        <tbody style="font-size: small;">
+          <tr *ngFor="let element of arrayGeneral">
+            <td class="col-8">{{ element['name'] }}</td>
+            <td class="col-4">{{ element['value'] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section *ngIf="arrayQualitative.length > 0">
+    <h5>Información cualitativa</h5>
+    <div class="table-responsive">
+      <table class="table table-sm align-middle">
+        <tbody style="font-size: small;">
+          <tr *ngFor="let element of arrayQualitative">
+            <td class="col-8">{{ element['name'] }}</td>
+            <td class="col-4">{{ element['value'] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section *ngIf="arrayQuantitative.length > 0">
+    <h5>Información cuantitativa</h5>
+    <div class="table-responsive">
+      <table class="table table-sm align-middle">
+        <tbody style="font-size: small;">
+          <tr *ngFor="let element of arrayQuantitative">
+            <td class="col-8">{{ element['name'] }}</td>
+            <td class="col-4">{{ element['value'] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary text-uppercase" (click)="activeModal.close(true)">Cerrar</button>
+</div>
