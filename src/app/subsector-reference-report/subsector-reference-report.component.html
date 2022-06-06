@@ -21,7 +21,9 @@
               <td class="text-uppercase">porcentaje promedio obtenido</td>
             </tr>
             <tr style="background-color: white;">
-              <p style="font-size: calc(1.3rem + .6vw);">{{range}} %</p>
+              <td>
+                <p style="font-size: calc(1.3rem + .6vw);">{{range}} %</p>
+              </td>
               <td>
                 <p style="font-size: calc(1.3rem + .6vw);">{{averageValue}} %</p>
               </td>
@@ -35,35 +37,35 @@
   <!--   <div class="col-sm-12 col-md-12 col-lg-1 border"></div> -->
     <div class="col-sm-12 col-md-12 col-lg-12 border">
       <ul class="list-group">
-        <div *ngFor="let element of rowsReferenceData" >
-          <li class="list-group-item">{{ element['name'] }}</li>
+        <div *ngFor="let element of arrayReferences" >
+          <li class="list-group-item">{{ element['nameDescrip'] }}: {{ element['description'] }}</li>
           <div *ngIf="element['configColor'] == 1">
             <div *ngIf="element['value'] <= element['rango1']">
               <li class="list-group-item" style="color: #155724; background-color: #c3e6cb;">
                 <ul>
-                  <li *ngIf="element['value'] <= 0">Porcentaje de veracidad: 1 %</li>
-                  <li *ngIf="element['value'] > 0">Porcentaje de veracidad: {{ element['value'] }} %</li>
+                  <li *ngIf="element['value'] <= 0">{{ element['name'] }}: 1 %</li>
+                  <li *ngIf="element['value'] > 0">{{ element['name'] }}: {{ element['value'] }} %</li>
                 </ul>
               </li>
             </div>
             <div *ngIf="element['value'] > element['rango1'] && element['value'] <= element['rango2']">
               <li class="list-group-item" style="color: #856404; background-color: #ffeeba;">
                 <ul>
-                  <li>Porcentaje de veracidad: {{ element['value'] }} %</li>
+                  <li>{{ element['name'] }}: {{ element['value'] }} %</li>
                 </ul>
               </li>
             </div>
             <div *ngIf="element['value'] > element['rango2'] && element['value'] <= element['rango3']">
               <li class="list-group-item" style="color: #974b0c; background-color: #febe89;">
                 <ul>
-                  <li>Porcentaje de veracidad: {{ element['value'] }} %</li>
+                  <li>{{ element['name'] }}: {{ element['value'] }} %</li>
                 </ul>
               </li>
             </div>
             <div *ngIf="element['value'] > element['rango3']">
               <li class="list-group-item" style="color: #721c24; background-color: #f5c6cb;">
                 <ul>
-                  <li>Porcentaje de veracidad: {{ element['value'] }} %</li>
+                  <li>{{ element['name'] }}: {{ element['value'] }} %</li>
                 </ul>
               </li>
             </div>
@@ -72,29 +74,29 @@
             <div *ngIf="element['value'] <= element['rango1']">
               <li class="list-group-item" style="color: #721c24; background-color: #f5c6cb;">
                 <ul>
-                  <li *ngIf="element['value'] <= 0">Porcentaje de veracidad: 1 %</li>
-                  <li *ngIf="element['value'] > 0">Porcentaje de veracidad: {{ element['value'] }} %</li>
+                  <li *ngIf="element['value'] <= 0">{{ element['name'] }}: 1 %</li>
+                  <li *ngIf="element['value'] > 0">{{ element['name'] }}: {{ element['value'] }} %</li>
                 </ul>
               </li>
             </div>
             <div *ngIf="element['value'] > element['rango1'] && element['value'] <= element['rango2']">
               <li class="list-group-item" style="color: #974b0c; background-color: #febe89;">
                 <ul>
-                  <li>Porcentaje de veracidad: {{ element['value'] }} %</li>
+                  <li>{{ element['name'] }}: {{ element['value'] }} %</li>
                 </ul>
               </li>
             </div>
             <div *ngIf="element['value'] > element['rango2'] && element['value'] <= element['rango3']">
               <li class="list-group-item" style="color: #856404; background-color: #ffeeba;">
                 <ul>
-                  <li>Porcentaje de veracidad: {{ element['value'] }} %</li>
+                  <li>{{ element['name'] }}: {{ element['value'] }} %</li>
                 </ul>
               </li>
             </div>
             <div *ngIf="element['value'] > element['rango3']">
               <li class="list-group-item" style="color: #155724; background-color: #c3e6cb;">
                 <ul>
-                  <li>Porcentaje de veracidad: {{ element['value'] }} %</li>
+                  <li>{{ element['name'] }}: {{ element['value'] }} %</li>
                 </ul>
               </li>
             </div>
@@ -107,7 +109,7 @@
   <div class="row">
     <div class="col-12 border">
       <h4 style="margin-top: 3rem;" class="text-uppercase text-center">Descripción:</h4>
-      <p class="px-5" style="font-size: 1.2em;">{{GetDescription()}}</p>
+      <p class="px-5 text-justify" style="font-size: 1.2em;">{{GetDescription()}}</p>
     </div>
   </div>
 </div>

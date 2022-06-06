@@ -1,10 +1,11 @@
 import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import 'anychart';
-import { DataReportService, Options, DataSubsector } from 'app/data-report.service';
+import { DataReportService, Options } from 'app/data-report.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MoreInformationComponent } from 'app/more-information/more-information.component';
+import { getCompetenciasApegoResultadoAlto, getCompetenciasAutocalificacionResultadoMedio, getCompetenciasVeracidadResultadoBajo, getFraudeResultadoBajo, getReferenciasResultadoAlto, getRiesgosEntornoResultadoAlto, getRiesgosPersonalesResultadoAlto } from 'Utilities/UtilityObject';
 
 @Component({
   selector: 'app-sector-report',
@@ -37,6 +38,8 @@ export class SectorReportComponent implements OnInit, OnDestroy {
   arrayGeneral: any = [];
   arrayQualitative: any = [];
   arrayQuantitative: any = [];
+  arrayReferenceDescription: any = [];
+  arrayReferences: any = [];
   graphicsContainer: any = [];
   sectors: any = [];
   rowsSubSector: any = [];
@@ -119,14 +122,23 @@ export class SectorReportComponent implements OnInit, OnDestroy {
             generalData['value'] = element['value'];
             generalData['sectionReport'] = element['seccionReport'];
             this.arrayGeneral.push(generalData);
+          } else {
+            if (element['seccionReport'] === 27) {
+              if (isNaN(element['value'])) {
+                let referenceData = new Object();
+                referenceData['nameDescrip'] = element['name'];
+                referenceData['description'] = element['value'];
+                this.arrayReferenceDescription.push(referenceData);
+              }
+            }
           }
         }
       }
     });
     this.rows.forEach((element, index)=> {
       if (this.indexs[i] === element['seccionReport']) {
-        if (this.indexs[i] !== 1 && this.indexs[i] !== 4 && this.indexs[i] !== 5 && this.indexs[i] !== 11) {
-          sum += parseInt(element['value']);
+        if (this.indexs[i] !== 1 && this.indexs[i] !== 4 && this.indexs[i] !== 5 && this.indexs[i] !== 11 && !isNaN(element['value'])) {
+          sum += parseFloat(element['value']);
           rango1 = element['rango1'];
           rango2 = element['rango2'];
           rango3 = element['rango3'];
@@ -145,21 +157,22 @@ export class SectorReportComponent implements OnInit, OnDestroy {
           graphicData['colorConfig'] = configColor;
           this.sectors.push(graphicData);
         }
-        if (element['seccionReport'] === 1 || element['seccionReport'] === 4 || element['seccionReport'] === 5 || element['seccionReport'] === 11) {
+        if (element['seccionReport'] === 1 || element['seccionReport'] === 4 || element['seccionReport'] === 5 || element['seccionReport'] === 11 || isNaN(element['value'])) {
           sum = 0;
           rango1 = 0;
           rango2 = 0;
           rango3 = 0;
           configColor = 0;
+          count = 0;
         } else {
-          sum = parseInt(element['value']);
+          sum = parseFloat(element['value']);
           rango1 = element['rango1'];
           rango2 = element['rango2'];
           rango3 = element['rango3'];
           configColor = element['configColor'];
+          count = 1;
         }
         i += 1;
-        count = 1;
       }
       if (index === last) {
         if (this.indexs[i] !== 1 && this.indexs[i] !== 4 && this.indexs[i] !== 5 && this.indexs[i] !== 11) {
@@ -238,6 +251,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
       self.range3Yellow.length = 0;
       self.range4Green.length = 0;
       self.rowsSubSector.length = 0;
+      self.arrayReferences.length = 0;
       self.averageValue = e['currentTarget']['Rf'][0];
       let sectionReport = 0;
       self.sectors.forEach(element => {
@@ -246,7 +260,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
         }
       });
       self.rows.forEach(element => {
-        if (sectionReport === element['seccionReport']) {
+        if (sectionReport === element['seccionReport'] && !isNaN(element['value'])) {
           self.rowsSubSector.push(element);
         }
       });
@@ -284,9 +298,10 @@ export class SectorReportComponent implements OnInit, OnDestroy {
           newArrayComp.forEach(elementComp => {
             let words = elementComp['name'].split(' ');
             let stringSequenceObject = self.MakeMap(words[0]);
+            let stringSequenceObjectLast = self.MakeMap(words[words.length-1]);
             newArrayVerac.forEach(elementVerac => {
               let dictionary = elementVerac['name'].split(' ');
-              if (self.IsSubsequence(dictionary[0], stringSequenceObject)) {
+              if (self.IsSubsequence(dictionary[0], stringSequenceObject) && self.IsSubsequence(dictionary[dictionary.length-1], stringSequenceObjectLast)) {
                 self.competenceVariables.push({name: elementComp['name'], comp: elementComp['full_name'], value1: elementComp['value'], verac: elementVerac['full_name'], value2: elementVerac['value']});
               }
             });
@@ -299,6 +314,18 @@ export class SectorReportComponent implements OnInit, OnDestroy {
               self.range = self.rowsSubSector[0]['rango3'];
             } else {
               self.range = self.rowsSubSector[0]['rango2'];
+            }
+            for (let i = 0; i < self.rowsSubSector.length; i++) {
+              let referenceData = new Object();
+              referenceData['nameDescrip'] = self.arrayReferenceDescription[i]['nameDescrip'];
+              referenceData['description'] = self.arrayReferenceDescription[i]['description'];
+              referenceData['name'] = self.rowsSubSector[i]['name'];
+              referenceData['value'] = self.rowsSubSector[i]['value'];
+              referenceData['configColor'] = self.rowsSubSector[i]['configColor'];
+              referenceData['rango1'] = self.rowsSubSector[i]['rango1'];
+              referenceData['rango2'] = self.rowsSubSector[i]['rango2'];
+              referenceData['rango3'] = self.rowsSubSector[i]['rango3'];
+              self.arrayReferences.push(referenceData);
             }
           } else {
             self.selection['selectedComponent'] = 1;
@@ -318,19 +345,19 @@ export class SectorReportComponent implements OnInit, OnDestroy {
       self.title = self.optionsSvc.GetNameSectorReport(self.rowsSubSector[0]['seccionReport']);
       self.rowsSubSector.forEach(element => {
         if (self.colorConfig == 1 ) { // verde a rojo
-          if (parseInt(element['value']) <= range1) {
+          if (parseFloat(element['value']) <= range1) {
             self.range4Green.push(element['name']);
             self.totalVariables4 += 1;
           } else {
-            if (parseInt(element['value']) > range1 && parseInt(element['value']) <= range2) {
+            if (parseFloat(element['value']) > range1 && parseFloat(element['value']) <= range2) {
               self.range3Yellow.push(element['name']);
               self.totalVariables3 += 1;
             } else {
-              if (parseInt(element['value']) > range2 && parseInt(element['value']) <= range3) {
+              if (parseFloat(element['value']) > range2 && parseFloat(element['value']) <= range3) {
                 self.range2Orange.push(element['name']);
                 self.totalVariables2 += 1;
               } else {
-                if (parseInt(element['value']) > range3) {
+                if (parseFloat(element['value']) > range3) {
                   self.range1Red.push(element['name']);
                   self.totalVariables1 += 1;
                 }
@@ -339,19 +366,19 @@ export class SectorReportComponent implements OnInit, OnDestroy {
           }
         } else {// rojo a verde
           if (self.colorConfig == 2) {
-            if (parseInt(element['value']) <= range1) {
+            if (parseFloat(element['value']) <= range1) {
               self.range1Red.push(element['name']);
               self.totalVariables1 += 1;
             } else {
-              if (parseInt(element['value']) > range1 && parseInt(element['value']) <= range2) {
+              if (parseFloat(element['value']) > range1 && parseFloat(element['value']) <= range2) {
                 self.range2Orange.push(element['name']);
                 self.totalVariables2 += 1;
               } else {
-                if (parseInt(element['value']) > range2 && parseInt(element['value']) <= range3) {
+                if (parseFloat(element['value']) > range2 && parseFloat(element['value']) <= range3) {
                   self.range3Yellow.push(element['name']);
                   self.totalVariables3 += 1;
                 } else {
-                  if (parseInt(element['value']) > range3) {
+                  if (parseFloat(element['value']) > range3) {
                     self.range4Green.push(element['name']);
                     self.totalVariables4 += 1;
                   }
@@ -380,8 +407,8 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     this.optionsSvc.setOptions(option);
   }
 
-  GetTitleDescription(index: number): DataSubsector {
-    return this.optionsSvc.getTitleDescription(index);
+  GetDescription(): string {
+    return getFraudeResultadoBajo() + " Asimismo, " + getReferenciasResultadoAlto() + " En cuanto a las competencias, " + getCompetenciasApegoResultadoAlto() + " Por otro lado, " + getCompetenciasAutocalificacionResultadoMedio() + " Sin embargo, " + getCompetenciasVeracidadResultadoBajo() + " Respecto a los factores de riesgo, " + getRiesgosPersonalesResultadoAlto() + " Asimismo, " + getRiesgosEntornoResultadoAlto();
   }
 
   GetSelectedComponent(): number {
@@ -402,7 +429,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     this.rowsSubSector.forEach(element => {
       if (name === element['name']) {
         this.propertyColorConfig = element['configColor'];
-        let value = parseInt(element['value']);
+        let value = parseFloat(element['value']);
         let range1 = element['rango1'];
         let range2 = element['rango2'];
         let range3 = element['rango3'];

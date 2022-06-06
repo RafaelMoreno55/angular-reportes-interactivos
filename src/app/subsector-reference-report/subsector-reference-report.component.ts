@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, SimpleChanges } from '@angular/core';
 import { DataReportService, Options } from 'app/data-report.service';
 import { Subscription } from 'rxjs';
+import { getReferenciasResultadoAlto } from 'Utilities/UtilityObject';
 
 @Component({
   selector: 'app-subsector-reference-report',
@@ -14,7 +15,7 @@ export class SubsectorReferenceReportComponent implements OnInit, OnDestroy{
     selectedIndex: -1
   };
   private subscription: Subscription | undefined;
-  @Input() rowsReferenceData: any = [];
+  @Input() arrayReferences: any = [];
   @Input() averageValue: number;
   @Input() colorConfig: number;
   @Input() range: number;
@@ -40,7 +41,7 @@ export class SubsectorReferenceReportComponent implements OnInit, OnDestroy{
   }
   
   GetDescription(): string {
-    return " ";
+    return getReferenciasResultadoAlto();
   }
 
   SetOption(option: Options): void {

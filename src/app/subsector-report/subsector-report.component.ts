@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import 'anychart';
-import { DataReportService, Options, DataSubsector } from 'app/data-report.service';
+import { DataReportService, Options } from 'app/data-report.service';
 import { Subscription } from 'rxjs';
+import { getFraudeResultadoAlto } from 'Utilities/UtilityObject';
 
 @Component({
   selector: 'app-subsector-report',
@@ -10,22 +11,12 @@ import { Subscription } from 'rxjs';
 })
 export class SubsectorReportComponent implements OnInit, OnDestroy {
 
-  // @ViewChild('lineChartContainer') lineContainer;
-  // @ViewChild('doughnutChartContainer') doughnutContainer;
-  // line: anychart.charts.Cartesian = null;
-  // doughnut1: anychart.charts.Pie = null;
-  // doughnut2: anychart.charts.Pie = null;
   isShowCard: number = -1;
   selection: Options = {
     selectedComponent: -1,
     selectedIndex: -1
   }
   private subscription: Subscription | undefined;
-  /* @Input() selectedSubSectorData: DataSubsector = {
-    labelTitle: "",
-    labelDescription: ""
-  }; */
-  // @Input() selectedSubSectorData: Object[] | undefined;
   @Input() range1Red: any = [];
   @Input() range2Orange: any = [];
   @Input() range3Yellow: any = [];
@@ -34,7 +25,6 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
   @Input() ranges: any = [];
   @Input() colorConfig: number;
   @Input() itemDoughnut: number;
-  // selectedSubSector: number = -1;
   @Output() propertyNameEvent = new EventEmitter<string>();
 
   constructor(private optionsSvc: DataReportService) {
@@ -68,7 +58,11 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
   }
   
   GetDescription(): string {
-    return "Descripción";
+    if (this.selection['selectedIndex'] == 12) {
+      return getFraudeResultadoAlto();
+    } else {
+      return "Descripción";
+    }
   }
 
   GetSelectedSubSector(): number {

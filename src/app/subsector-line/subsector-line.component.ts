@@ -2,6 +2,7 @@ import { Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnIni
 import 'anychart';
 import { DataReportService, Options } from 'app/data-report.service';
 import { Subscription } from 'rxjs';
+import { getCompetenciasApegoDefinicion } from '../../Utilities/UtilityObject';
 
 @Component({
   selector: 'app-subsector-line',
@@ -118,7 +119,6 @@ export class SubsectorLineComponent implements OnChanges, OnInit, OnDestroy {
     this.line.listen('pointClick', function (e) {
       let index = e['pointIndex'];
       let serie = e['series']['Br'];
-      console.log(serie);
       if (serie == "% apego puntaje Competencia") {
         self.propertyNameEvent.emit(self.competenceVariables[index]['comp']);  
       } else {
@@ -146,7 +146,7 @@ export class SubsectorLineComponent implements OnChanges, OnInit, OnDestroy {
   }
 
   GetDescription(): string {
-    return "Los resultados indican un resultado promedio en las competencias evaluadas, el hecho de que haya un porcentaje de veracidad debajo del 75% indica que la persona exageró en el desempeño real de estas competencias.";
+    return getCompetenciasApegoDefinicion();
   }
 
   IsKeyExists(obj: Object, key: string): boolean{

@@ -464,7 +464,17 @@ export class DataReportService {
           mostrarTitulo: false
         },
         {
-          name: "Nombre del último lugar de trabajo: Clínica Dental Río",
+          name: "Nombre del último lugar de trabajo",
+          value: "Clínica Dental Río",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 1,
+          seccionReport: 27,
+          mostrarTitulo: false
+        },
+        {
+          name: "Porcentaje de veracidad",
           value: "60.83",
           rango1: 25,
           rango2: 50,
@@ -474,8 +484,8 @@ export class DataReportService {
           mostrarTitulo: false
         },
         {
-          name: "Puesto desempeño: Secretaria",
-          value: "87",
+          name: "Puesto desempeñado",
+          value: "Secretaria",
           rango1: 25,
           rango2: 50,
           rango3: 75,
@@ -484,8 +494,8 @@ export class DataReportService {
           mostrarTitulo: false
         },
         {
-          name: "Razón por la que renunció: Por la pandemia de COVID y seguí con los semestres de clases desde mi casa",
-          value: "59.67",
+          name: "Porcentaje de veracidad",
+          value: "62.33",
           rango1: 25,
           rango2: 50,
           rango3: 75,
@@ -494,7 +504,37 @@ export class DataReportService {
           mostrarTitulo: false
         },
         {
-          name: "Respuesta a estuvo involucrado en accidentes: No hubo ningún accidente",
+          name: "Razón por la que renunció",
+          value: "Por la pandemia de COVID y seguí con los semestres de clases desde mi casa",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 1,
+          seccionReport: 27,
+          mostrarTitulo: false
+        },
+        {
+          name: "Porcentaje de veracidad",
+          value: "89.67",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 1,
+          seccionReport: 27,
+          mostrarTitulo: false
+        },
+        {
+          name: "Respuesta a estuvo involucrado en accidentes",
+          value: "No hubo ningún accidente",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 1,
+          seccionReport: 27,
+          mostrarTitulo: false
+        },
+        {
+          name: "Porcentaje de veracidad",
           value: "41.33",
           rango1: 25,
           rango2: 50,
@@ -504,7 +544,17 @@ export class DataReportService {
           mostrarTitulo: false
         },
         {
-          name: "Respuesta a si lo recomendarían: Estoy seguro que me recomendarían",
+          name: "Respuesta a si lo recomendarían",
+          value: "Estoy seguro que me recomendarían",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 1,
+          seccionReport: 27,
+          mostrarTitulo: false
+        },
+        {
+          name: "Porcentaje de veracidad",
           value: "45.83",
           rango1: 25,
           rango2: 50,
@@ -514,8 +564,18 @@ export class DataReportService {
           mostrarTitulo: false
         },
         {
-          name: "Respuesta a si lo recontratarían: Estoy seguro que me recontratarían",
-          value: "-3",
+          name: "Respuesta a si lo recontratarían",
+          value: "Estoy seguro que me recontratarían",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 1,
+          seccionReport: 27,
+          mostrarTitulo: false
+        },
+        {
+          name: "Porcentaje de veracidad",
+          value: "3",
           rango1: 25,
           rango2: 50,
           rango3: 75,
