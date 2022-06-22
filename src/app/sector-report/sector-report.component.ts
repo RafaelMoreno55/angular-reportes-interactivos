@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MoreInformationComponent } from 'app/more-information/more-information.component';
-import { getCompetenciasApegoResultadoAlto, getCompetenciasAutocalificacionResultadoMedio, getCompetenciasVeracidadResultadoBajo, getFraudeResultadoBajo, getReferenciasResultadoAlto, getRiesgosEntornoResultadoAlto, getRiesgosPersonalesResultadoAlto } from 'Utilities/UtilityObject';
+import * as module from 'Utilities/UtilityObject';
 
 @Component({
   selector: 'app-sector-report',
@@ -67,6 +67,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
   totalVariables4: number;
   itemDoughnut: number = -1;
   competenceVariables: any = [];
+  descriptionText: string;
 
   constructor(private optionsSvc: DataReportService, private activeRoute: ActivatedRoute, private el: ElementRef, private modalService: NgbModal) {
   }
@@ -408,7 +409,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
   }
 
   GetDescription(): string {
-    return getFraudeResultadoBajo() + " Asimismo, " + getReferenciasResultadoAlto() + " En cuanto a las competencias, " + getCompetenciasApegoResultadoAlto() + " Por otro lado, " + getCompetenciasAutocalificacionResultadoMedio() + " Sin embargo, " + getCompetenciasVeracidadResultadoBajo() + " Respecto a los factores de riesgo, " + getRiesgosPersonalesResultadoAlto() + " Asimismo, " + getRiesgosEntornoResultadoAlto();
+    return this.descriptionText;
   }
 
   GetSelectedComponent(): number {
@@ -422,6 +423,14 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     this.graphicsContainer.forEach((element, index)=> {
       this.ShowTankGaugeChart(element, this.sectors[index]);
     });
+    let fraude = "bajo";
+    let competenciasApego = "alto";
+    let competenciasAutocalificacion = "alto";
+    let competenciasVeracidad = "alto";
+    let riesgosPersonales = "alto";
+    let riesgosEntorno = "medioBajo";
+    let referencias = "medioAlto";
+    this.descriptionText = module.metodoArbolDecision(fraude, competenciasApego, competenciasAutocalificacion, competenciasVeracidad, riesgosPersonales, riesgosEntorno, referencias);
   }
   
   GetpropertyName(name: string): void {

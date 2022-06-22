@@ -1,3 +1,521 @@
+export function metodoArbolDecision(fraude: string, competenciasApego: string, competenciasAutocalificacion: string, competenciasVeracidad: string, riesgosPersonales: string, riesgosEntorno: string, referencias: string): string{
+    let textoDescripcion = "";
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "alto" && riesgosEntorno == "alto" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Así mismo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "alto" && riesgosEntorno == "alto" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Así mismo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "alto" && riesgosEntorno == "alto" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Así mismo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "alto" && riesgosEntorno == "alto" && referencias == "bajo") { //4
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Así mismo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "alto" && riesgosEntorno == "medioAlto" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "alto" && riesgosEntorno == "medioAlto" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "alto" && riesgosEntorno == "medioAlto" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "alto" && riesgosEntorno == "medioAlto" && referencias == "bajo") { //8
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "alto" && riesgosEntorno == "medioBajo" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "alto" && riesgosEntorno == "medioBajo" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "alto" && riesgosEntorno == "medioBajo" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "alto" && riesgosEntorno == "medioBajo" && referencias == "bajo") { //12
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "alto" && riesgosEntorno == "bajo" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "alto" && riesgosEntorno == "bajo" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "alto" && riesgosEntorno == "bajo" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "alto" && riesgosEntorno == "bajo" && referencias == "bajo") { //16
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "alto" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "alto" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "alto" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "alto" && referencias == "bajo") { //20
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "medioAlto" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "medioAlto" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "medioAlto" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "medioAlto" && referencias == "bajo") { //24
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "medioBajo" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "medioBajo" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "medioBajo" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "medioBajo" && referencias == "bajo") { //28
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "bajo" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "bajo" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "bajo" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "bajo" && referencias == "bajo") { //32
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "alto" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "alto" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "alto" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "alto" && referencias == "bajo") { //36
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "medioAlto" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "medioAlto" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "medioAlto" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "medioAlto" && referencias == "bajo") { //40
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "medioBajo" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "medioBajo" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "medioBajo" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "medioBajo" && referencias == "bajo") { //44
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "bajo" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "bajo" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "bajo" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "bajo" && referencias == "bajo") { //48
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "bajo" && riesgosEntorno == "alto" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "bajo" && riesgosEntorno == "alto" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "bajo" && riesgosEntorno == "alto" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "bajo" && riesgosEntorno == "alto" && referencias == "bajo") { //52
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "bajo" && riesgosEntorno == "medioAlto" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "bajo" && riesgosEntorno == "medioAlto" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "bajo" && riesgosEntorno == "medioAlto" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "bajo" && riesgosEntorno == "medioAlto" && referencias == "bajo") { //56
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "bajo" && riesgosEntorno == "medioBajo" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "bajo" && riesgosEntorno == "medioBajo" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "bajo" && riesgosEntorno == "medioBajo" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "bajo" && riesgosEntorno == "medioBajo" && referencias == "bajo") { //60
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "bajo" && riesgosEntorno == "bajo" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "bajo" && riesgosEntorno == "bajo" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "bajo" && riesgosEntorno == "bajo" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "alto" && riesgosPersonales == "bajo" && riesgosEntorno == "bajo" && referencias == "bajo") { //64
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Por otro lado. " + getCompetenciasVeracidadResultadoAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "alto" && riesgosEntorno == "alto" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Así mismo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "alto" && riesgosEntorno == "alto" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Así mismo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "alto" && riesgosEntorno == "alto" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Así mismo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "alto" && riesgosEntorno == "alto" && referencias == "bajo") { //68
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Así mismo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "alto" && riesgosEntorno == "medioAlto" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "alto" && riesgosEntorno == "medioAlto" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "alto" && riesgosEntorno == "medioAlto" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "alto" && riesgosEntorno == "medioAlto" && referencias == "bajo") { //72
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "alto" && riesgosEntorno == "medioBajo" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "alto" && riesgosEntorno == "medioBajo" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "alto" && riesgosEntorno == "medioBajo" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "alto" && riesgosEntorno == "medioBajo" && referencias == "bajo") { //76
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "alto" && riesgosEntorno == "bajo" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "alto" && riesgosEntorno == "bajo" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "alto" && riesgosEntorno == "bajo" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "alto" && riesgosEntorno == "bajo" && referencias == "bajo") { //80
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoAlto() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "alto" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "alto" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "alto" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "alto" && referencias == "bajo") { //84
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "medioAlto" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "medioAlto" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "medioAlto" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "medioAlto" && referencias == "bajo") { //88
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "medioBajo" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "medioBajo" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "medioBajo" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "medioBajo" && referencias == "bajo") { //92
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "bajo" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "bajo" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "bajo" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioAlto" && riesgosEntorno == "bajo" && referencias == "bajo") { //96
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedioAlto() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "alto" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "alto" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "alto" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "alto" && referencias == "bajo") { //100
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "medioAlto" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "medioAlto" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "medioAlto" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "medioAlto" && referencias == "bajo") { //104
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "medioBajo" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "medioBajo" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "medioBajo" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "medioBajo" && referencias == "bajo") { //108
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "bajo" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "bajo" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "bajo" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "medioBajo" && riesgosEntorno == "bajo" && referencias == "bajo") { //112
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoMedio() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "bajo" && riesgosEntorno == "alto" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "bajo" && riesgosEntorno == "alto" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "bajo" && riesgosEntorno == "alto" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "bajo" && riesgosEntorno == "alto" && referencias == "bajo") { //116
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "bajo" && riesgosEntorno == "medioAlto" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "bajo" && riesgosEntorno == "medioAlto" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "bajo" && riesgosEntorno == "medioAlto" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "bajo" && riesgosEntorno == "medioAlto" && referencias == "bajo") { //120
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoMedioAlto();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "bajo" && riesgosEntorno == "medioBajo" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "bajo" && riesgosEntorno == "medioBajo" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "bajo" && riesgosEntorno == "medioBajo" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "bajo" && riesgosEntorno == "medioBajo" && referencias == "bajo") { //124
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoMedio();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "bajo" && riesgosEntorno == "bajo" && referencias == "alto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Así mismo. " + getReferenciasResultadoAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "bajo" && riesgosEntorno == "bajo" && referencias == "medioAlto") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedioAlto() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "bajo" && riesgosEntorno == "bajo" && referencias == "medioBajo") {
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoMedio() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+    if (fraude == "bajo" && competenciasApego == "alto" && competenciasAutocalificacion == "alto" && competenciasVeracidad == "medioAlto" && riesgosPersonales == "bajo" && riesgosEntorno == "bajo" && referencias == "bajo") { //128
+        textoDescripcion = getFraudeResultadoBajo() + " Sin embargo. " + getReferenciasResultadoBajo() + " En cuanto a las competencias. " + getCompetenciasApegoResultadoAlto() + " Por otro lado. " + getCompetenciasAutocalificacionResultadoAlto() + " Sin embargo. " + getCompetenciasVeracidadResultadoMedioAlto() + " Respecto a los factores de riesgo. " + getRiesgosPersonalesResultadoBajo() + " Sin embargo. " + getRiesgosEntornoResultadoBajo();
+    }else {
+
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    return textoDescripcion;
+}
+
 /**
  * Recursos Humanos
  * Grupo: FRAUDE
@@ -9,6 +527,10 @@ export function getFraudeDefinicion(): string{
 }
 export function getFraudeResultadoAlto(): string{
     let result = "La persona presenta un riesgo importante de fraude referente a (no es el empleado, nivel socioeconómico o cuantitativa), lo que indica que ha omitido o mentido de forma importante en la información proporcionada.";
+    return result;
+}
+export function getFraudeResultadoMedioAlto(): string{
+    let result = "";
     return result;
 }
 export function getFraudeResultadoMedio(): string{
@@ -25,7 +547,7 @@ export function getFraudeResultadoBajo(): string{
  * Grupo: RIESGO FRAUDE
  */
 
-export function getRiesgoFraudeProbabilidadDefinicion(): string{
+/* export function getRiesgoFraudeProbabilidadDefinicion(): string{
     let result = "Este factor evalúa que la persona que contesta la entrevista es efectivamente quien dice ser y no fue apoyado o asesorado durante la entrevista por un tercero.";
     return result;
 }
@@ -72,7 +594,7 @@ export function getRiesgoFraudeSocioeconomicaResultadoMedio(): string{
 export function getRiesgoFraudeSocioeconomicaResultadoBajo(): string{
     let result = "Los datos personales proporcionados por la persona entrevistada respecto a su contexto, lugar de vivienda, tiempo de recidencia, gasto familiar, bienes, etc. presentan importantes indicadores de alerta, detectádose una reacción emocional y fisiológica importante, lo cual indica que la persona ha mentido u omitido información en esta área.";
     return result;
-}
+} */
 
 /**
  * Recursos Humanos
@@ -85,6 +607,10 @@ export function getCompetenciasApegoDefinicion(): string{
 }
 export function getCompetenciasApegoResultadoAlto(): string{
     let result = "La persona evaluada muestra en general un resultado de alto apego a las competencias: (poner aquí las evaluadas) lo que indica que cuenta con las habilidades necesarias para desempeñarse en su lugar de trabajo bajo los estándares deseados. Facilitando el correcto funcionamiento de la organización.";
+    return result;
+}
+export function getCompetenciasApegoResultadoMedioAlto(): string{
+    let result = "";
     return result;
 }
 export function getCompetenciasApegoResultadoMedio(): string{
@@ -103,6 +629,10 @@ export function getCompetenciasAutocalificacionResultadoAlto(): string{
     let result = "La persona considera que en general su calificación en (mencionar las competencias) ha sido excelente o buena dentro de su último trabajo o actual.";
     return result;
 }
+export function getCompetenciasAutocalificacionResultadoMedioAlto(): string{
+    let result = "";
+    return result;
+}
 export function getCompetenciasAutocalificacionResultadoMedio(): string{
     let result = "opción a) opciones variadas: La persona considera que ha tenido calificaciones variadas en su desempeño dentro de su último trabajo o actual, siendo excelente en (nombrarlas), regular en (nombrarla) y malo en (nombrarlas) Opción b) En general la persona considera que autocalificación en (nombrarlas) ha sido regular en su último trabajo o actual.";
     return result;
@@ -119,6 +649,10 @@ export function getCompetenciasVeracidadResultadoAlto(): string{
     let result = "En general la persona ha respondido de forma veráz en lo referente a su autocalificación en las competencias (insertarlas) y en apego a las competencias (insertarlas) lo cual indica que la información proporcionada puede ser considerada fidedigna.";
     return result;
 }
+export function getCompetenciasVeracidadResultadoMedioAlto(): string{
+    let result = "";
+    return result;
+}
 export function getCompetenciasVeracidadResultadoMedio(): string{
     let result = "Los resultados obtenidos por la persona evaluada, señalan que la información ha sido proporcionada de forma distorsionada en lo relativo a la autocalificación de las competencias (insertarlas), lo cual indica que pudo haber una ligera exageración o minización del verdadero desempeño y apego a las competencias.";
     return result;
@@ -127,7 +661,7 @@ export function getCompetenciasVeracidadResultadoBajo(): string{
     let result = "En general la persona ha respondido de forma poco veráz en lo referente a su autocalificación en las competencias (insertarlas) y en apego a las competencias (insertarlas) lo cual indica que la información proporcionada no puede ser considerada fidedigna.";
     return result;
 }
-export function getCompetenciasNegociacionDefinicion(): string{
+/* export function getCompetenciasNegociacionDefinicion(): string{
     let result = "Integra los principales rasgos y tendencias necesarias para llevar a cabo una negociación: dominio de argumentos, duerza negociadora, sentido de anticipación y visión negociadora.";
     return result;
 }
@@ -414,7 +948,7 @@ export function getCompetenciasConcienciaResultadoMedio(): string{
 export function getCompetenciasConcienciaResultadoBajo(): string{
     let result = "No logra identificar ni actuar ante situaciones de riesgo, no muestra mayor interés por procurar condiciones seguras en la organización.";
     return result;
-}
+} */
 
 /**
  * Recursos Humanos
@@ -427,6 +961,10 @@ export function getRiesgosPersonalesDefinicion(): string{
 }
 export function getRiesgosPersonalesResultadoAlto(): string{
     let result = "La persona no presenta respuestas emocionales que puedan indicar que ha estado involucrada en lo personal en temas de: (insertar los riesgos evaluados), haciendola una persona de bajo riesgo para la organización.";
+    return result;
+}
+export function getRiesgosPersonalesResultadoMedioAlto(): string{
+    let result = "";
     return result;
 }
 export function getRiesgosPersonalesResultadoMedio(): string{
@@ -443,6 +981,10 @@ export function getRiesgosEntornoDefinicion(): string{
 }
 export function getRiesgosEntornoResultadoAlto(): string{
     let result = "La persona no presenta respuestas emocionales que puedan indicar que en su entorno cercano se presentan actividades relacionadas con (nombrar los factores), esto indica que no las malas prácticas no se encuentran normalizadas a su alrededor, haciéndolo un entorno seguro.";
+    return result;
+}
+export function getRiesgosEntornoResultadoMedioAlto(): string{
+    let result = "";
     return result;
 }
 export function getRiesgosEntornoResultadoMedio(): string{
@@ -465,6 +1007,10 @@ export function getReferenciasDefinicion(): string{
 }
 export function getReferenciasResultadoAlto(): string{
     let result = "La persona ha respondido en general de forma veráz las referencias y experiencias previas en otros trabajos por lo que las respuestas otorgadas pueden ser consideradas fidedignas. No se encuentran indicios de alerta respecto a referencias laborales";
+    return result;
+}
+export function getReferenciasResultadoMedioAlto(): string{
+    let result = "";
     return result;
 }
 export function getReferenciasResultadoMedio(): string{
