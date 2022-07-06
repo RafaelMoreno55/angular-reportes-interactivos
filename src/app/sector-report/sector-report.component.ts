@@ -189,6 +189,14 @@ export class SectorReportComponent implements OnInit, OnDestroy {
         }
       }
     });
+    let fraude = "bajo";
+    let competenciasApego = "bajo";
+    let competenciasAutocalificacion = "alto";
+    let competenciasVeracidad = "medioBajo";
+    let riesgosPersonales = "alto";
+    let riesgosEntorno = "medioBajo";
+    let referencias = "medioAlto";
+    this.descriptionText = module.metodoArbolDecision(fraude, competenciasApego, competenciasAutocalificacion, competenciasVeracidad, riesgosPersonales, riesgosEntorno, referencias);
   }
 
   SortAsc(rows, key): void {
@@ -423,14 +431,6 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     this.graphicsContainer.forEach((element, index)=> {
       this.ShowTankGaugeChart(element, this.sectors[index]);
     });
-    let fraude = "bajo";
-    let competenciasApego = "alto";
-    let competenciasAutocalificacion = "alto";
-    let competenciasVeracidad = "alto";
-    let riesgosPersonales = "alto";
-    let riesgosEntorno = "medioBajo";
-    let referencias = "medioAlto";
-    this.descriptionText = module.metodoArbolDecision(fraude, competenciasApego, competenciasAutocalificacion, competenciasVeracidad, riesgosPersonales, riesgosEntorno, referencias);
   }
   
   GetpropertyName(name: string): void {
