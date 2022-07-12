@@ -101,6 +101,30 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     let rango3 = 0;
     let last = this.rows.length - 1;
     let configColor = 0;
+    let indexAuto = -1;
+    let indexVera = -1;
+    let indexApeg = -1;
+    let indexPers = -1;
+    let indexEnto = -1;
+    let splitNameArray = [];
+    let countAuto = 0;
+    let sumAuto = 0;
+    let countVera = 0;
+    let sumVera = 0;
+    let countApeg = 0;
+    let sumApeg = 0;
+    let countPers = 0;
+    let sumPers = 0;
+    let countEnto = 0;
+    let sumEnto = 0;
+    let range1Comp = 0;
+    let range2Comp = 0;
+    let range3Comp = 0;
+    let configColorComp = 0;
+    let range1Ries = 0;
+    let range2Ries = 0;
+    let range3Ries = 0;
+    let configColorRies = 0;
 
     this.rows.forEach(element => {
       if (element['seccionReport'] === 4) {
@@ -124,13 +148,59 @@ export class SectorReportComponent implements OnInit, OnDestroy {
             generalData['sectionReport'] = element['seccionReport'];
             this.arrayGeneral.push(generalData);
           } else {
-            if (element['seccionReport'] === 27) {
-              if (isNaN(element['value'])) {
-                let referenceData = new Object();
-                referenceData['nameDescrip'] = element['name'];
-                referenceData['description'] = element['value'];
-                this.arrayReferenceDescription.push(referenceData);
+            if (element['seccionReport'] === 16) {
+              splitNameArray = element['name'].split(' ');
+              indexApeg = splitNameArray.indexOf("apego");
+              indexVera = splitNameArray.indexOf("veracidad");
+              indexAuto = splitNameArray.indexOf("autocalificación");
+              range1Comp = element['rango1'];
+              range2Comp = element['rango2'];
+              range3Comp = element['rango3'];
+              configColorComp = element['configColor'];
+              if (indexApeg != -1) {
+                sumApeg += parseFloat(element['value']);
+                countApeg += 1;
+              } else {
+                if (indexVera != -1) {
+                  sumVera += parseFloat(element['value']);
+                  countVera += 1;
+                } else {
+                  if (indexAuto != -1) {
+                    sumAuto += parseFloat(element['value']);
+                    countAuto += 1;
+                  }
+                }
               }
+            }
+            else {
+              if (element['seccionReport'] === 18) {
+                splitNameArray = element['name'].split(' ');
+                indexPers = splitNameArray.indexOf("personal");
+                indexEnto = splitNameArray.indexOf("entorno");
+                range1Ries = element['rango1'];
+                range2Ries = element['rango2'];
+                range3Ries = element['rango3'];
+                configColorRies = element['configColor'];
+                if (indexPers != -1) {
+                  sumPers += parseFloat(element['value']);
+                  countPers += 1;
+                } else {
+                  if (indexEnto != -1) {
+                    sumEnto += parseFloat(element['value']);
+                    countEnto += 1;
+                  } 
+                }
+              } else {
+                if (element['seccionReport'] === 27) {
+                  if (isNaN(element['value'])) {
+                    let referenceData = new Object();
+                    referenceData['nameDescrip'] = element['name'];
+                    referenceData['description'] = element['value'];
+                    this.arrayReferenceDescription.push(referenceData);
+                  }
+                }
+              }
+
             }
           }
         }
@@ -189,14 +259,55 @@ export class SectorReportComponent implements OnInit, OnDestroy {
         }
       }
     });
-    let fraude = "bajo";
-    let competenciasApego = "bajo";
-    let competenciasAutocalificacion = "alto";
-    let competenciasVeracidad = "medioBajo";
-    let riesgosPersonales = "alto";
-    let riesgosEntorno = "medioBajo";
-    let referencias = "medioAlto";
-    this.descriptionText = module.metodoArbolDecision(fraude, competenciasApego, competenciasAutocalificacion, competenciasVeracidad, riesgosPersonales, riesgosEntorno, referencias);
+    let fraude = "";
+    let competencias = "";
+    let competenciasApego = "";
+    let competenciasAutocalificacion = "";
+    let competenciasVeracidad = "";
+    let riesgos = "";
+    let riesgosPersonal = "";
+    let riesgosEntorno = "";
+    let referencias = "";
+    
+    this.sectors.forEach(element => {
+      if (element['sectionReport'] == 12) {
+        fraude = this.GetFactorScore(element['range1'], element['range2'], element['range3'], element['average'], element['colorConfig']);
+      } else {
+          if (element['sectionReport'] == 27) {
+            referencias = this.GetFactorScore(element['range1'], element['range2'], element['range3'], element['average'], element['colorConfig']);
+          }
+      }
+    });
+    console.log('Promedio fraude: ' + fraude);
+    console.log('Promedio referencias: ' + referencias);
+    
+    if (countApeg != 0 && countVera != 0 && countAuto != 0) {
+      let averageApeg = this.Round(sumApeg/countApeg);
+      competenciasApego = this.GetFactorScore(range1Comp, range2Comp, range3Comp, averageApeg, configColorComp);
+      console.log(competenciasApego);
+      let averageVera = this.Round(sumVera/countVera);
+      competenciasVeracidad = this.GetFactorScore(range1Comp, range2Comp, range3Comp, averageVera, configColorComp);
+      console.log(competenciasVeracidad);
+      let averageAuto = this.Round(sumAuto/countAuto);
+      competenciasAutocalificacion = this.GetFactorScore(range1Comp, range2Comp, range3Comp, averageAuto, configColorComp);
+      console.log(competenciasAutocalificacion);
+      competencias = this.GetFactorScore(range1Comp, range2Comp, range3Comp, this.Round((averageApeg + averageVera + averageAuto)/3), configColorComp);
+      console.log('Promedio competencias: ' + competencias);
+      
+    }
+    if (countPers != 0 && countEnto != 0) {
+      let averagePers = this.Round(sumPers/countPers);
+      riesgosPersonal = this.GetFactorScore(range1Ries, range2Ries, range3Ries, averagePers, configColorRies);
+      console.log(riesgosPersonal);
+      let averageEnto = this.Round(sumEnto/countEnto);
+      riesgosEntorno = this.GetFactorScore(range1Ries, range2Ries, range3Ries, averageEnto, configColorRies);
+      console.log(riesgosEntorno);
+      riesgos = this.GetFactorScore(range1Ries, range2Ries, range3Ries, this.Round((averagePers + averageEnto)/2), configColorRies);
+      console.log('Promedio riesgos: ' + riesgos);
+      
+    }
+
+    this.descriptionText = module.metodoArbolDecision(fraude, competencias, competenciasApego, competenciasAutocalificacion, competenciasVeracidad, riesgos, riesgosPersonal, riesgosEntorno, referencias);
   }
 
   SortAsc(rows, key): void {
@@ -520,5 +631,46 @@ export class SectorReportComponent implements OnInit, OnDestroy {
       }
     }
     return 0;
+  }
+
+  GetFactorScore(range1: number, range2: number, range3: number, average: number, configColor: number): string {
+    let factorScore = "";
+
+    if (configColor == 1 ) {
+      if (average <= range1) {
+        factorScore = "alto";
+      } else {
+        if (average > range1 && average <= range2) {
+          factorScore = "medioAlto";
+        } else {
+          if (average > range2 && average <= range3) {
+            factorScore = "medioBajo";
+          } else {
+            if (average > range3) {
+              factorScore = "bajo";
+            }
+          }
+        }
+      }
+    } else {
+      if (configColor == 2) {
+        if (average <= range1) {
+          factorScore = "bajo";
+        } else {
+          if (average > range1 && average <= range2) {
+            factorScore = "medioBajo";
+          } else {
+            if (average > range2 && average <= range3) {
+              factorScore = "medioAlto";
+            } else {
+              if (average > range3) {
+                factorScore = "alto";
+              }
+            }
+          }
+        }
+      }
+    }
+    return factorScore;
   }
 }

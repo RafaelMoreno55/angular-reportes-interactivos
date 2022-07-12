@@ -134,7 +134,7 @@ export class DataReportService {
           mostrarTitulo: false
         },
         {
-          name: "Habilidades 10",
+          name: "Riesgo personal robo",
           value: "45",
           rango1: 25,
           rango2: 50,
@@ -144,7 +144,7 @@ export class DataReportService {
           mostrarTitulo: true
         },
         {
-          name: "Habilidades 9",
+          name: "Riesgo de entorno robo",
           value: "29",
           rango1: 25,
           rango2: 50,
@@ -154,7 +154,7 @@ export class DataReportService {
           mostrarTitulo: true
         },
         {
-          name: "Habilidades 11",
+          name: "Riesgo personal fuga de información",
           value: "79",
           rango1: 25,
           rango2: 50,
@@ -164,7 +164,7 @@ export class DataReportService {
           mostrarTitulo: false
         },
         {
-          name: "Habilidades 12",
+          name: "Riesgo de entorno fuga de información",
           value: "88",
           rango1: 25,
           rango2: 50,
@@ -175,7 +175,17 @@ export class DataReportService {
         },
         {
           name: "% apego puntaje competencia planeación",
-          value: "58",
+          value: "38",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 16,
+          mostrarTitulo: true
+        },
+        {
+          name: "autocalificación planeación",
+          value: "90",
           rango1: 25,
           rango2: 50,
           rango3: 75,
@@ -185,7 +195,7 @@ export class DataReportService {
         },
         {
           name: "veracidad plan",
-          value: "76.56",
+          value: "16.56",
           rango1: 25,
           rango2: 50,
           rango3: 75,
@@ -195,7 +205,17 @@ export class DataReportService {
         },
         {
           name: "% apego puntaje competencia empatía",
-          value: "69",
+          value: "49",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 16,
+          mostrarTitulo: true
+        },
+        {
+          name: "autocalificación empatía",
+          value: "90",
           rango1: 25,
           rango2: 50,
           rango3: 75,
@@ -205,7 +225,7 @@ export class DataReportService {
         },
         {
           name: "veracidad emp",
-          value: "75.29",
+          value: "20.29",
           rango1: 25,
           rango2: 50,
           rango3: 75,
@@ -215,7 +235,17 @@ export class DataReportService {
         },
         {
           name: "% apego puntaje competencia satisfacción del cliente",
-          value: "69",
+          value: "49",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 16,
+          mostrarTitulo: true
+        },
+        {
+          name: "autocalificación satisfacción del cliente",
+          value: "90",
           rango1: 25,
           rango2: 50,
           rango3: 75,
@@ -225,7 +255,7 @@ export class DataReportService {
         },
         {
           name: "veracidad satisf cliente",
-          value: "68.25",
+          value: "18.25",
           rango1: 25,
           rango2: 50,
           rango3: 75,
