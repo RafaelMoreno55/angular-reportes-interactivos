@@ -25,6 +25,7 @@ export class SubsectorDoughnutComponent implements OnChanges, OnInit, OnDestroy 
   @Input() totalVariables4: number;
   @Input() propertyColorConfig: number;
   @Output() itemDoughnutEvent = new EventEmitter<number>();
+  @Input() descriptionText: string;
   totalVar1: number;
   totalVar2: number;
   totalVar3: number;
@@ -51,12 +52,8 @@ export class SubsectorDoughnutComponent implements OnChanges, OnInit, OnDestroy 
     if (this.IsKeyExists(changes, "propertyColorConfig")) {
       this.colorConfig = changes['propertyColorConfig']['currentValue'];
     }
-
+    
     if (this.totalVar1 != undefined && this.totalVar2 != undefined && this.totalVar3 != undefined && this.totalVar4 != undefined) {
-      /* console.log(this.totalVar1);
-      console.log(this.totalVar2);
-      console.log(this.totalVar3);
-      console.log(this.totalVar4); */
       let asContainer = this.doughnutContainer.nativeElement;
       if (asContainer.firstElementChild) {
         this.renderer2.removeChild(asContainer, asContainer.firstChild);
@@ -99,13 +96,13 @@ export class SubsectorDoughnutComponent implements OnChanges, OnInit, OnDestroy 
       if (this.colorConfig == 1) {
         data.push({ x: "Medio-alto", value: totalVar2, normal: { fill: aColorConfig[2] } });
       } else {
-        data.push({ x: "Medio", value: totalVar2, normal: { fill: aColorConfig[1] } });
+        data.push({ x: "Medio-bajo", value: totalVar2, normal: { fill: aColorConfig[1] } });
       }
     }
     
     if (totalVar3 > 0) {
       if (this.colorConfig == 1) {
-        data.push({ x: "Medio", value: totalVar3, normal: { fill: aColorConfig[1] } });
+        data.push({ x: "Medio-bajo", value: totalVar3, normal: { fill: aColorConfig[1] } });
       } else {
         data.push({ x: "Medio-alto", value: totalVar3, normal: { fill: aColorConfig[2] } });
       }
@@ -183,7 +180,7 @@ export class SubsectorDoughnutComponent implements OnChanges, OnInit, OnDestroy 
   }
 
   GetDescription(): string {
-    return "Existe una consistencia entre los resultados riesgo persona y riesgo entorno, en el caso específico se encuentra información distorcionada por el sujeto en la mayoría de los factores, sin embargo, esta no genera el suficiente estrés para ser considerando un riesgo de importancia por lo que se recomienda proceder con preguntas específicas de los riesgos para clarificar en el tema. Se presentan como principales riesgos: la fuga de información como factor personal y consumo de drogas en el entorno del candidato.";
+    return this.descriptionText;
   }
 
   IsKeyExists(obj: Object, key: string): boolean{

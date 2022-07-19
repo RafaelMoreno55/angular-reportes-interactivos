@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
 import 'anychart';
-import { DataReportService, DataSubsector, Options } from 'app/data-report.service';
+import { DataReportService, Options } from 'app/data-report.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -17,15 +17,12 @@ export class VariableReportComponent implements OnChanges, OnInit, OnDestroy {
     selectedIndex: -1
   };
   private subscription: Subscription | undefined;
-  /* @Input() selectedVariableData: DataSubsector = {
-    labelTitle: "",
-    labelDescription: ""
-  }; */
   @Input() propertyName: string;
   @Input() propertyValue: number;
   @Input() propertyColorConfig: number;
   @Input() recommendedScore: number;
   @Input() variableScore: number;
+  @Input() descriptionText: string;
   colorConfig: number;
   value: number;
 
@@ -87,8 +84,6 @@ export class VariableReportComponent implements OnChanges, OnInit, OnDestroy {
     }
 
     if (this.colorConfig != undefined && this.value != undefined) {
-      console.log(this.colorConfig);
-      console.log(this.value);
       let asContainer = this.container.nativeElement;
       if (asContainer.firstElementChild) {
         this.renderer2.removeChild(asContainer, asContainer.firstChild);
@@ -103,7 +98,6 @@ export class VariableReportComponent implements OnChanges, OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.optionsSvc.selectedOption$.subscribe((option: Options) => this.selection = option);
-    // this.ShowLineGaugeChart();
   }
 
   ShowLineGaugeChart(value: number, colorConfig: number): void {
@@ -201,5 +195,9 @@ export class VariableReportComponent implements OnChanges, OnInit, OnDestroy {
 
   IsKeyExists(obj: Object, key: string): boolean{
     return obj.hasOwnProperty(key);
+  }
+
+  GetDescription(): string {
+    return this.descriptionText;
   }
 }

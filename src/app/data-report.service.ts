@@ -74,8 +74,28 @@ export class DataReportService {
           mostrarTitulo: true
         },
         {
-          name: "Habilidades 3",
-          value: "78",
+          name: "probabilidad de que la persona que contesta no sea el empleado",
+          value: "28",
+          rango1: 20,
+          rango2: 45,
+          rango3: 70,
+          configColor: 1,
+          seccionReport: 12,
+          mostrarTitulo: true
+        },
+        {
+          name: "% de información cuantitativa falsa",
+          value: "48",
+          rango1: 20,
+          rango2: 45,
+          rango3: 70,
+          configColor: 1,
+          seccionReport: 12,
+          mostrarTitulo: true
+        },
+        {
+          name: "% de veracidad información socioeconómica",
+          value: "18",
           rango1: 20,
           rango2: 45,
           rango3: 70,
@@ -134,8 +154,8 @@ export class DataReportService {
           mostrarTitulo: false
         },
         {
-          name: "Riesgo personal robo",
-          value: "45",
+          name: "riesgo personal acoso laboral",
+          value: "5",
           rango1: 25,
           rango2: 50,
           rango3: 75,
@@ -144,7 +164,27 @@ export class DataReportService {
           mostrarTitulo: true
         },
         {
-          name: "Riesgo de entorno robo",
+          name: "riesgo personal grupo delictivo",
+          value: "10",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 1,
+          seccionReport: 18,
+          mostrarTitulo: true
+        },
+        {
+          name: "riesgo entorno robo",
+          value: "65",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 1,
+          seccionReport: 18,
+          mostrarTitulo: true
+        },
+        {
+          name: "riesgo personal soborno",
           value: "29",
           rango1: 25,
           rango2: 50,
@@ -154,7 +194,7 @@ export class DataReportService {
           mostrarTitulo: true
         },
         {
-          name: "Riesgo personal fuga de información",
+          name: "riesgo entorno reportar información falsa",
           value: "79",
           rango1: 25,
           rango2: 50,
@@ -164,8 +204,8 @@ export class DataReportService {
           mostrarTitulo: false
         },
         {
-          name: "Riesgo de entorno fuga de información",
-          value: "88",
+          name: "riesgo entorno fuga de información",
+          value: "45",
           rango1: 25,
           rango2: 50,
           rango3: 75,
@@ -174,7 +214,7 @@ export class DataReportService {
           mostrarTitulo: false
         },
         {
-          name: "% apego puntaje competencia planeación",
+          name: "% apego puntaje competencia analítico",
           value: "38",
           rango1: 25,
           rango2: 50,
@@ -184,7 +224,7 @@ export class DataReportService {
           mostrarTitulo: true
         },
         {
-          name: "autocalificación planeación",
+          name: "autocalificación analítico",
           value: "90",
           rango1: 25,
           rango2: 50,
@@ -194,7 +234,7 @@ export class DataReportService {
           mostrarTitulo: true
         },
         {
-          name: "veracidad plan",
+          name: "veracidad analítico",
           value: "16.56",
           rango1: 25,
           rango2: 50,
@@ -204,7 +244,7 @@ export class DataReportService {
           mostrarTitulo: true
         },
         {
-          name: "% apego puntaje competencia empatía",
+          name: "% apego puntaje competencia aprendizaje práctico",
           value: "49",
           rango1: 25,
           rango2: 50,
@@ -214,7 +254,7 @@ export class DataReportService {
           mostrarTitulo: true
         },
         {
-          name: "autocalificación empatía",
+          name: "autocalificación aprendizaje práctico",
           value: "90",
           rango1: 25,
           rango2: 50,
@@ -224,7 +264,7 @@ export class DataReportService {
           mostrarTitulo: true
         },
         {
-          name: "veracidad emp",
+          name: "veracidad aprendizaje práctico",
           value: "20.29",
           rango1: 25,
           rango2: 50,
@@ -234,7 +274,7 @@ export class DataReportService {
           mostrarTitulo: true
         },
         {
-          name: "% apego puntaje competencia satisfacción del cliente",
+          name: "% apego puntaje competencia negociación",
           value: "49",
           rango1: 25,
           rango2: 50,
@@ -244,7 +284,7 @@ export class DataReportService {
           mostrarTitulo: true
         },
         {
-          name: "autocalificación satisfacción del cliente",
+          name: "autocalificación negociación",
           value: "90",
           rango1: 25,
           rango2: 50,
@@ -254,7 +294,37 @@ export class DataReportService {
           mostrarTitulo: true
         },
         {
-          name: "veracidad satisf cliente",
+          name: "veracidad negociación",
+          value: "18.25",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 16,
+          mostrarTitulo: true
+        },
+        {
+          name: "% apego puntaje competencia trabajo en equipo",
+          value: "49",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 16,
+          mostrarTitulo: true
+        },
+        {
+          name: "autocalificación trabajo en equipo",
+          value: "90",
+          rango1: 25,
+          rango2: 50,
+          rango3: 75,
+          configColor: 2,
+          seccionReport: 16,
+          mostrarTitulo: true
+        },
+        {
+          name: "veracidad trabajo en equipo",
           value: "18.25",
           rango1: 25,
           rango2: 50,
@@ -614,6 +684,46 @@ export class DataReportService {
           mostrarTitulo: false
         },
     ];
+    variableNamesFraud = [
+      "probabilidad de que la persona que contesta no sea el empleado",
+      "% de información cuantitativa falsa",
+      "% de veracidad información socioeconómica"
+    ];
+    variableNamesCompetencies = [
+      "negociación",
+      "orientación a resultado",
+      "habilidad de comunicación",
+      "orientación servicio al cliente",
+      "liderazgo e influencia",
+      "analítico",
+      "planeación y organización",
+      "aprendizaje práctico",
+      "tolerancia a la frustración",
+      "solución de problemas",
+      "trabajo en equipo",
+      "seguimiento",
+      "atención al cliente",
+      "manejo de conflictos",
+      "gusto por la rutina",
+      "interés por satisfacción del cliente",
+      "persuación y ventas",
+      "conciencia de seguridad"
+    ];
+    variableNamesRisks = [
+      "fuga de información",
+      "robo",
+      "riesgo de cometer delitos",
+      "soborno",
+      "reportar información falsa",
+      "drogas",
+      "alcohol",
+      "apuestas",
+      "grupo delictivo",
+      "extorsión",
+      "acoso laboral",
+      "hostigamiento sexual"
+    ];
+
     rows: any = [];
     indices: any = [];
 

@@ -1,4 +1,4 @@
-export function metodoArbolDecision(fraude: string, competencias: string, competenciasApego: string, competenciasAutocalificacion: string, competenciasVeracidad: string, riesgos: string, riesgosPersonales: string, riesgosEntorno: string, referencias: string): string{
+export function metodoArbolDecision(fraude: string, competencias: string, competenciasApego: string, competenciasAutocalificacion: string, competenciasVeracidad: string, riesgos: string, riesgosPersonales: string, riesgosEntorno: string, referencias: string): string[]{
     let textoDescripcion = "";
     let textoFraude = "";
     let textoReferencias = "";
@@ -230,13 +230,634 @@ export function metodoArbolDecision(fraude: string, competencias: string, compet
         escalaAnterior = element['escala'];
     });
 
-    return textoDescripcion;
+    return [textoFraude, textoReferencias, textoCompetencias, textoRiesgos, textoDescripcion];
 }
 
 function SortAsc(rows, key): void {
     rows.sort(function (a, b) {
        return b[key] - a[key];
     });
+}
+
+export function getTextoVariablesFraude(variableNamesFraud: string[], variableName: string, variableScore: string): string{
+    let texto = "";
+    if (variableNamesFraud[0] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgoFraudeProbabilidadResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgoFraudeProbabilidadResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgoFraudeProbabilidadResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgoFraudeProbabilidadResultadoAlto();
+        }
+    }
+    if (variableNamesFraud[1] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgoFraudeCuantitativaResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgoFraudeCuantitativaResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgoFraudeCuantitativaResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgoFraudeCuantitativaResultadoAlto();
+        }
+    }
+    if (variableNamesFraud[2] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgoFraudeSocioeconomicaResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgoFraudeSocioeconomicaResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgoFraudeSocioeconomicaResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgoFraudeSocioeconomicaResultadoAlto();
+        }
+    }
+    return texto;
+}
+
+export function getTextoVariablesCompetencias(variableNamesCompetencies: string[], variableName: string, variableScore: string): string{
+    let texto = "";
+    if (variableNamesCompetencies[0] === variableName) {
+        if (variableScore === "alto") {
+            texto = getCompetenciasNegociacionResultadoAlto();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getCompetenciasNegociacionResultadoMedioAlto();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getCompetenciasNegociacionResultadoMedioBajo();
+        }
+        if (variableScore === "bajo") {
+            texto = getCompetenciasNegociacionResultadoBajo();
+        }
+    }
+    if (variableNamesCompetencies[1] === variableName) {
+        if (variableScore === "alto") {
+            texto = getCompetenciasOrientacionResultadosResultadoAlto();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getCompetenciasOrientacionResultadosResultadoMedioAlto();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getCompetenciasOrientacionResultadosResultadoMedioBajo();
+        }
+        if (variableScore === "bajo") {
+            texto = getCompetenciasOrientacionResultadosResultadoBajo();
+        }
+    }
+    if (variableNamesCompetencies[2] === variableName) {
+        if (variableScore === "alto") {
+            texto = getCompetenciasHabilidadComunicacionResultadoAlto();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getCompetenciasHabilidadComunicacionResultadoMedioAlto();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getCompetenciasHabilidadComunicacionResultadoMedioBajo();
+        }
+        if (variableScore === "bajo") {
+            texto = getCompetenciasHabilidadComunicacionResultadoBajo();
+        }
+    }
+    if (variableNamesCompetencies[3] === variableName) {
+        if (variableScore === "alto") {
+            texto = getCompetenciasOrientacionServicioResultadoAlto();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getCompetenciasOrientacionServicioResultadoMedioAlto();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getCompetenciasOrientacionServicioResultadoMedioBajo();
+        }
+        if (variableScore === "bajo") {
+            texto = getCompetenciasOrientacionServicioResultadoBajo();
+        }
+    }
+    if (variableNamesCompetencies[4] === variableName) {
+        if (variableScore === "alto") {
+            texto = getCompetenciasLiderazgoInfluenciaResultadoAlto();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getCompetenciasLiderazgoInfluenciaResultadoMedioAlto();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getCompetenciasLiderazgoInfluenciaResultadoMedioBajo();
+        }
+        if (variableScore === "bajo") {
+            texto = getCompetenciasLiderazgoInfluenciaResultadoBajo();
+        }
+    }
+    if (variableNamesCompetencies[5] === variableName) {
+        if (variableScore === "alto") {
+            texto = getCompetenciasAnaliticoResultadoAlto();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getCompetenciasAnaliticoResultadoMedioAlto();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getCompetenciasAnaliticoResultadoMedioBajo();
+        }
+        if (variableScore === "bajo") {
+            texto = getCompetenciasAnaliticoResultadoBajo();
+        }
+    }
+    if (variableNamesCompetencies[6] === variableName) {
+        if (variableScore === "alto") {
+            texto = getCompetenciasPlaneacionOrganizacionResultadoAlto();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getCompetenciasPlaneacionOrganizacionResultadoMedioAlto();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getCompetenciasPlaneacionOrganizacionResultadoMedioBajo();
+        }
+        if (variableScore === "bajo") {
+            texto = getCompetenciasPlaneacionOrganizacionResultadoBajo();
+        }
+    }
+    if (variableNamesCompetencies[7] === variableName) {
+        if (variableScore === "alto") {
+            texto = getCompetenciasAprendizajePracticoResultadoAlto();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getCompetenciasAprendizajePracticoResultadoMedioAlto();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getCompetenciasAprendizajePracticoResultadoMedioBajo();
+        }
+        if (variableScore === "bajo") {
+            texto = getCompetenciasAprendizajePracticoResultadoBajo();
+        }
+    }
+    if (variableNamesCompetencies[8] === variableName) {
+        if (variableScore === "alto") {
+            texto = getCompetenciasToleranciaFrustracionResultadoAlto();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getCompetenciasToleranciaFrustracionResultadoMedioAlto();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getCompetenciasToleranciaFrustracionResultadoMedioBajo();
+        }
+        if (variableScore === "bajo") {
+            texto = getCompetenciasToleranciaFrustracionResultadoBajo();
+        }
+    }
+    if (variableNamesCompetencies[9] === variableName) {
+        if (variableScore === "alto") {
+            texto = getCompetenciasSolucionProblemaResultadoAlto();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getCompetenciasSolucionProblemaResultadoMedioAlto();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getCompetenciasSolucionProblemaResultadoMedioBajo();
+        }
+        if (variableScore === "bajo") {
+            texto = getCompetenciasSolucionProblemaResultadoBajo();
+        }
+    }
+    if (variableNamesCompetencies[10] === variableName) {
+        if (variableScore === "alto") {
+            texto = getCompetenciasTrabajoEquipoResultadoAlto();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getCompetenciasTrabajoEquipoResultadoMedioAlto();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getCompetenciasTrabajoEquipoResultadoMedioBajo();
+        }
+        if (variableScore === "bajo") {
+            texto = getCompetenciasTrabajoEquipoResultadoBajo();
+        }
+    }
+    if (variableNamesCompetencies[11] === variableName) {
+        if (variableScore === "alto") {
+            texto = getCompetenciasSeguimientoResultadoAlto();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getCompetenciasSeguimientoResultadoMedioAlto();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getCompetenciasSeguimientoResultadoMedioBajo();
+        }
+        if (variableScore === "bajo") {
+            texto = getCompetenciasSeguimientoResultadoBajo();
+        }
+    }
+    if (variableNamesCompetencies[12] === variableName) {
+        if (variableScore === "alto") {
+            texto = getCompetenciasAtencionDetalleResultadoAlto();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getCompetenciasAtencionDetalleResultadoMedioAlto();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getCompetenciasAtencionDetalleResultadoMedioBajo();
+        }
+        if (variableScore === "bajo") {
+            texto = getCompetenciasAtencionDetalleResultadoBajo();
+        }
+    }
+    if (variableNamesCompetencies[13] === variableName) {
+        if (variableScore === "alto") {
+            texto = getCompetenciasManejoConflictosResultadoAlto();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getCompetenciasManejoConflictosResultadoMedioAlto();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getCompetenciasManejoConflictosResultadoMedioBajo();
+        }
+        if (variableScore === "bajo") {
+            texto = getCompetenciasManejoConflictosResultadoBajo();
+        }
+    }
+    if (variableNamesCompetencies[14] === variableName) {
+        if (variableScore === "alto") {
+            texto = getCompetenciasGustoRutinaResultadoAlto();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getCompetenciasGustoRutinaResultadoMedioAlto();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getCompetenciasGustoRutinaResultadoMedioBajo();
+        }
+        if (variableScore === "bajo") {
+            texto = getCompetenciasGustoRutinaResultadoBajo();
+        }
+    }
+    if (variableNamesCompetencies[15] === variableName) {
+        if (variableScore === "alto") {
+            texto = getCompetenciasInteresSatisfaccionResultadoAlto();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getCompetenciasInteresSatisfaccionResultadoMedioAlto();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getCompetenciasInteresSatisfaccionResultadoMedioBajo();
+        }
+        if (variableScore === "bajo") {
+            texto = getCompetenciasInteresSatisfaccionResultadoBajo();
+        }
+    }
+    if (variableNamesCompetencies[16] === variableName) {
+        if (variableScore === "alto") {
+            texto = getCompetenciasPersuacionVentasResultadoAlto();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getCompetenciasPersuacionVentasResultadoMedioAlto();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getCompetenciasPersuacionVentasResultadoMedioBajo();
+        }
+        if (variableScore === "bajo") {
+            texto = getCompetenciasPersuacionVentasResultadoBajo();
+        }
+    }
+    if (variableNamesCompetencies[17] === variableName) {
+        if (variableScore === "alto") {
+            texto = getCompetenciasConcienciaSeguridadResultadoAlto();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getCompetenciasConcienciaSeguridadResultadoMedioAlto();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getCompetenciasConcienciaSeguridadResultadoMedioBajo();
+        }
+        if (variableScore === "bajo") {
+            texto = getCompetenciasConcienciaSeguridadResultadoBajo();
+        }
+    }
+    return texto;
+}
+
+export function getTextoVariablesRiesgosPersonal(variableNamesRisks: string[], variableName: string, variableScore: string): string{
+    let texto = "";
+    if (variableNamesRisks[0] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgosPersonalesFugaInformacionResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgosPersonalesFugaInformacionResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgosPersonalesFugaInformacionResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgosPersonalesFugaInformacionResultadoAlto();
+        }
+    }
+    if (variableNamesRisks[1] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgosPersonalesRoboResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgosPersonalesRoboResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgosPersonalesRoboResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgosPersonalesRoboResultadoAlto();
+        }
+    }
+    if (variableNamesRisks[2] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgosPersonalesCometerDelitosResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgosPersonalesCometerDelitosResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgosPersonalesCometerDelitosResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgosPersonalesCometerDelitosResultadoAlto();
+        }
+    }
+    if (variableNamesRisks[3] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgosPersonalesSobornoResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgosPersonalesSobornoResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgosPersonalesSobornoResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgosPersonalesSobornoResultadoAlto();
+        }
+    }
+    if (variableNamesRisks[4] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgosPersonalesInformacionFalsaResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgosPersonalesInformacionFalsaResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgosPersonalesInformacionFalsaResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgosPersonalesInformacionFalsaResultadoAlto();
+        }
+    }
+    if (variableNamesRisks[5] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgosPersonalesDrogasResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgosPersonalesDrogasResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgosPersonalesDrogasResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgosPersonalesDrogasResultadoAlto();
+        }
+    }
+    if (variableNamesRisks[6] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgosPersonalesAlcoholResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgosPersonalesAlcoholResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgosPersonalesAlcoholResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgosPersonalesAlcoholResultadoAlto();
+        }
+    }
+    if (variableNamesRisks[7] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgosPersonalesApuestasResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgosPersonalesApuestasResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgosPersonalesApuestasResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgosPersonalesApuestasResultadoAlto();
+        }
+    }
+    if (variableNamesRisks[8] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgosPersonalesGrupoDelictivoResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgosPersonalesGrupoDelictivoResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgosPersonalesGrupoDelictivoResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgosPersonalesGrupoDelictivoResultadoAlto();
+        }
+    }
+    if (variableNamesRisks[9] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgosPersonalesExtorsionResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgosPersonalesExtorsionResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgosPersonalesExtorsionResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgosPersonalesExtorsionResultadoAlto();
+        }
+    }
+    if (variableNamesRisks[10] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgosPersonalesAcosoLaboralResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgosPersonalesAcosoLaboralResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgosPersonalesAcosoLaboralResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgosPersonalesAcosoLaboralResultadoAlto();
+        }
+    }
+    if (variableNamesRisks[11] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgosPersonalesHostigamientoSexualResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgosPersonalesHostigamientoSexualResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgosPersonalesHostigamientoSexualResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgosPersonalesHostigamientoSexualResultadoAlto();
+        }
+    }
+    return texto;
+}
+export function getTextoVariablesRiesgosEntorno(variableNamesRisks: string[], variableName: string, variableScore: string): string{
+    let texto = "";
+    if (variableNamesRisks[0] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgosEntornoFugaInformacionResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgosEntornoFugaInformacionResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgosEntornoFugaInformacionResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgosEntornoFugaInformacionResultadoAlto();
+        }
+    }
+    if (variableNamesRisks[1] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgosEntornoRoboResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgosEntornoRoboResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgosEntornoRoboResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgosEntornoRoboResultadoAlto();
+        }
+    }
+    if (variableNamesRisks[2] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgosEntornoCometerDelitosResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgosEntornoCometerDelitosResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgosEntornoCometerDelitosResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgosEntornoCometerDelitosResultadoAlto();
+        }
+    }
+    if (variableNamesRisks[3] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgosEntornoSobornoResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgosEntornoSobornoResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgosEntornoSobornoResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgosEntornoSobornoResultadoAlto();
+        }
+    }
+    if (variableNamesRisks[4] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgosEntornoInformacionFalsaResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgosEntornoInformacionFalsaResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgosEntornoInformacionFalsaResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgosEntornoInformacionFalsaResultadoAlto();
+        }
+    }
+    if (variableNamesRisks[5] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgosEntornoDrogasResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgosEntornoDrogasResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgosEntornoDrogasResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgosEntornoDrogasResultadoAlto();
+        }
+    }
+    if (variableNamesRisks[6] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgosEntornoAlcoholResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgosEntornoAlcoholResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgosEntornoAlcoholResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgosEntornoAlcoholResultadoAlto();
+        }
+    }
+    if (variableNamesRisks[7] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgosEntornoApuestasResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgosEntornoApuestasResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgosEntornoApuestasResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgosEntornoApuestasResultadoAlto();
+        }
+    }
+    if (variableNamesRisks[8] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgosEntornoGrupoDelictivoResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgosEntornoGrupoDelictivoResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgosEntornoGrupoDelictivoResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgosEntornoGrupoDelictivoResultadoAlto();
+        }
+    }
+    if (variableNamesRisks[9] === variableName) {
+        if (variableScore === "bajo") {
+            texto = getRiesgosEntornoExtorsionResultadoBajo();
+        }
+        if (variableScore === "medioBajo") {
+            texto = getRiesgosEntornoExtorsionResultadoMedioBajo();
+        }
+        if (variableScore === "medioAlto") {
+            texto = getRiesgosEntornoExtorsionResultadoMedioAlto();
+        }
+        if (variableScore === "alto") {
+            texto = getRiesgosEntornoExtorsionResultadoAlto();
+        }
+    }
+    return texto;
 }
 
 /**
@@ -1180,7 +1801,7 @@ export function getRiesgosEntornoInformacionFalsaResultadoMedioAlto(): string{
     return result;
 }
 export function getRiesgosEntornoInformacionFalsaResultadoAlto(): string{
-    let result = "Se observa un resultado de riesgo respecto proporcionar reportes inexactos e información alterada, mientir o distorsionar infromación relativa a su trabajo a sus superiores en su entorno, lo que señala que en el contexto cercano, esta actividad se presenta con alta incidencia.";
+    let result = "Se observa un resultado de riesgo respecto proporcionar reportes inexactos e información alterada, mentir o distorsionar información relativa a su trabajo a sus superiores en su entorno, lo que señala que en el contexto cercano, esta actividad se presenta con alta incidencia.";
     return result;
 }
 

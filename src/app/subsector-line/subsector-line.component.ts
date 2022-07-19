@@ -2,7 +2,6 @@ import { Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnIni
 import 'anychart';
 import { DataReportService, Options } from 'app/data-report.service';
 import { Subscription } from 'rxjs';
-import { getCompetenciasApegoDefinicion } from '../../Utilities/UtilityObject';
 
 @Component({
   selector: 'app-subsector-line',
@@ -22,6 +21,7 @@ export class SubsectorLineComponent implements OnChanges, OnInit, OnDestroy {
 
   @Input() competenceVariables: any = [];
   @Output() propertyNameEvent = new EventEmitter<string>();
+  @Input() descriptionText: string;
 
   constructor(private optionsSvc: DataReportService, private renderer2: Renderer2) { 
   }
@@ -142,11 +142,11 @@ export class SubsectorLineComponent implements OnChanges, OnInit, OnDestroy {
   }
 
   GetTitle(): string {
-    return "resultados de variables competencias ";
+    return "resultado de variables competencias ";
   }
 
   GetDescription(): string {
-    return getCompetenciasApegoDefinicion();
+    return this.descriptionText;
   }
 
   IsKeyExists(obj: Object, key: string): boolean{

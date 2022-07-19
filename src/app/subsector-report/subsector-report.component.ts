@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit, ViewChild, Input, Output, EventEmitter } 
 import 'anychart';
 import { DataReportService, Options } from 'app/data-report.service';
 import { Subscription } from 'rxjs';
-import { getFraudeResultadoAlto } from 'Utilities/UtilityObject';
 
 @Component({
   selector: 'app-subsector-report',
@@ -26,6 +25,7 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
   @Input() colorConfig: number;
   @Input() itemDoughnut: number;
   @Output() propertyNameEvent = new EventEmitter<string>();
+  @Input() descriptionText: string;
 
   constructor(private optionsSvc: DataReportService) {
    }
@@ -58,10 +58,10 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
   }
   
   GetDescription(): string {
-    if (this.selection['selectedIndex'] == 12) {
-      return getFraudeResultadoAlto();
+    if (this.selection['selectedIndex'] == 12 || this.selection['selectedIndex'] == 18) {
+      return this.descriptionText;
     } else {
-      return "Descripción";
+      return "";
     }
   }
 

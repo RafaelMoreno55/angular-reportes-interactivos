@@ -1,8 +1,8 @@
 <div [hidden]="GetSelectedComponent() != 0" class="container mt-2">
   <div class="row">
-    <div class="col-sm-12 col-md-6 col-lg-4 border">
+    <div class="col-sm-12 col-md-6 col-lg-4 ">
       <div class="row">
-        <div class="col-6 border">
+        <div class="col-6 ">
           <p class="text-capitalize" style="font-size: x-large;">
             gerald <span style="font-weight: bold;">morris</span>
           </p>
@@ -12,15 +12,16 @@
           <span style="color: #0d6efd;">www.example.com</span>
           <span style="color: #0d6efd;">+1234567890</span>
         </div>
-        <div class="col-6 border">
+        <div class="col-6 ">
           <div class="w-100 h-100 d-flex flex-column align-items-center justify-content-around">
             <div class="rounded-circle bg-secondary" style="width: 90px; height: 90px"></div>
+            <button type="button" (click)="ExportPDF()" class="btn" style="color: #fff; background-color: #0091ea; border-color: #0091ea;">Exportar a PDF</button>
             <button type="button" (click)="ShowInfo()" class="btn" style="color: #fff; background-color: #0091ea; border-color: #0091ea;">Más Información</button>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-sm-12 col-md-6 col-lg-4 border">
+    <div class="col-sm-12 col-md-6 col-lg-4 ">
       <ul class="mt-2">
         <li class="d-flex justify-content-center">
           <div class="h-100 py-2 px-1 d-flex flex-row align-items-center" [style.background-color]="resultado == 'no-recomendado' ? 'rgba(255,0,0,0.3)': 'none'" style="width: 70%">
@@ -42,7 +43,7 @@
         </li>
       </ul>
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-4 border">
+    <div class="col-sm-12 col-md-12 col-lg-4 ">
       <div class="table-responsive">
         <table class="table table-bordered align-middle text-center mt-2">
           <tbody>
@@ -68,33 +69,52 @@
     </div>
   </div>
   <div id="row2" class="row">
-    <div class="col-sm-12 col-md-12 col-lg-1 border"></div>
-    <div class="column2 col-sm-12 col-md-12 col-lg-10 border">
+    <div class="col-sm-12 col-md-12 col-lg-1 "></div>
+    <div class="column2 col-sm-12 col-md-12 col-lg-10 ">
       <div class="graphics row">
-        <div *ngFor="let id of indexsAux" class="tank col-sm-6 col-md-3 pb-3" style="height: 400px;"></div>
+        <div *ngFor="let id of indexsAux" class="tank col-sm-6 col-md-3 pb-3" style="height: 400px; margin: 0 auto"></div>
       </div>
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-1 border"></div>
+    <div class="col-sm-12 col-md-12 col-lg-1 "></div>
   </div>
   <div class="row">
-    <div class="col-12 border">
+    <div class="col-12 ">
       <h4 class="text-uppercase text-center" style="margin-top: 3rem;">Descripción:</h4>
       <p class="px-5 text-justify" style="font-size: 1.2em;">{{GetDescription()}}</p>
     </div>
   </div>
 </div>
 <div [hidden]="GetSelectedComponent() != 1">
-  <app-subsector-report [range1Red]="range1Red" [range2Orange]="range2Orange" [range3Yellow]="range3Yellow" [range4Green]="range4Green" [ranges]="ranges" [title]="title" [colorConfig]="colorConfig" [itemDoughnut]="itemDoughnut" (propertyNameEvent)="GetpropertyName($event)"></app-subsector-report>
+  <app-subsector-report [range1Red]="range1Red" [range2Orange]="range2Orange" [range3Yellow]="range3Yellow" [range4Green]="range4Green" [ranges]="ranges" [title]="title" [colorConfig]="colorConfig" [itemDoughnut]="itemDoughnut" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="descriptionTextSubsector"></app-subsector-report>
 </div> 
 <div [hidden]="GetSelectedComponent() != 2">
-  <app-subsector-reference-report [arrayReferences]="arrayReferences" [averageValue]="averageValue" [colorConfig]="colorConfig" [range]="range"></app-subsector-reference-report>
+  <app-subsector-reference-report [arrayReferences]="arrayReferences" [averageValue]="averageValue" [colorConfig]="colorConfigReferences" [range]="range" [descriptionText]="referencesText"></app-subsector-reference-report>
 </div> 
 <div [hidden]="GetSelectedComponent() != 3">
-  <app-variable-report [propertyName]="propertyName" [propertyColorConfig]="propertyColorConfig" [propertyValue]="propertyValue" [recommendedScore]="recommendedScore" [variableScore]="variableScore"></app-variable-report>
+  <app-variable-report [propertyName]="propertyName" [propertyColorConfig]="propertyColorConfig" [propertyValue]="propertyValue" [recommendedScore]="recommendedScore" [variableScore]="variableScore" [descriptionText]="variableDescriptionText"></app-variable-report>
 </div>
 <div [hidden]="GetSelectedComponent() != 4">
-  <app-subsector-doughnut [totalVariables1]="totalVariables1" [totalVariables2]="totalVariables2" [totalVariables3]="totalVariables3" [totalVariables4]="totalVariables4" [propertyColorConfig]="colorConfig" (itemDoughnutEvent)="GetItemDoughnut($event)"></app-subsector-doughnut>
+  <app-subsector-doughnut [totalVariables1]="totalVariables1" [totalVariables2]="totalVariables2" [totalVariables3]="totalVariables3" [totalVariables4]="totalVariables4" [propertyColorConfig]="colorConfigRisks" (itemDoughnutEvent)="GetItemDoughnut($event)" [descriptionText]="risksText"></app-subsector-doughnut>
 </div>
 <div [hidden]="GetSelectedComponent() != 5">
-  <app-subsector-line [competenceVariables]="competenceVariables" (propertyNameEvent)="GetpropertyName($event)"></app-subsector-line>
+  <app-subsector-line [competenceVariables]="competenceVariables" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="competenciesText"></app-subsector-line>
+</div>
+<div *ngIf="isExport">
+  <app-subsector-report [range1Red]="range1Red" [range2Orange]="range2Orange" [range3Yellow]="range3Yellow" [range4Green]="range4Green" [ranges]="ranges" [title]="title" [colorConfig]="colorConfig" [itemDoughnut]="itemDoughnut" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="descriptionTextSubsector"></app-subsector-report>
+  <div *ngFor="let variable of fraudReportSection">
+    <app-variable-report [propertyName]="propertyName" [propertyColorConfig]="propertyColorConfig" [propertyValue]="propertyValue" [recommendedScore]="recommendedScore" [variableScore]="variableScore" [descriptionText]="variableDescriptionText"></app-variable-report>
+  </div>
+  <app-subsector-reference-report [arrayReferences]="arrayReferences" [averageValue]="averageValue" [colorConfig]="colorConfigReferences" [range]="range" [descriptionText]="referencesText"></app-subsector-reference-report>
+  <app-subsector-doughnut [totalVariables1]="totalVariables1" [totalVariables2]="totalVariables2" [totalVariables3]="totalVariables3" [totalVariables4]="totalVariables4" [propertyColorConfig]="colorConfigRisks" (itemDoughnutEvent)="GetItemDoughnut($event)" [descriptionText]="risksText"></app-subsector-doughnut>
+  <app-subsector-report [range1Red]="range1Red" [range2Orange]="range2Orange" [range3Yellow]="range3Yellow" [range4Green]="range4Green" [ranges]="ranges" [title]="title" [colorConfig]="colorConfig" [itemDoughnut]="itemDoughnut" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="descriptionTextSubsector"></app-subsector-report>
+  <div *ngFor="let variable of risksReportSection">
+    <app-variable-report [propertyName]="propertyName" [propertyColorConfig]="propertyColorConfig" [propertyValue]="propertyValue" [recommendedScore]="recommendedScore" [variableScore]="variableScore" [descriptionText]="variableDescriptionText"></app-variable-report>
+  </div>
+  <app-subsector-line [competenceVariables]="competenceVariables" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="competenciesText"></app-subsector-line>
+  <div *ngFor="let variable of newArrayComp">
+    <app-variable-report [propertyName]="propertyName" [propertyColorConfig]="propertyColorConfig" [propertyValue]="propertyValue" [recommendedScore]="recommendedScore" [variableScore]="variableScore" [descriptionText]="variableDescriptionText"></app-variable-report>
+  </div>
+  <div *ngFor="let variable of newArrayVerac">
+    <app-variable-report [propertyName]="propertyName" [propertyColorConfig]="propertyColorConfig" [propertyValue]="propertyValue" [recommendedScore]="recommendedScore" [variableScore]="variableScore" [descriptionText]="variableDescriptionText"></app-variable-report>
+  </div>
 </div>
