@@ -1,22 +1,22 @@
-import { Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, /* OnDestroy, */ OnInit, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
 import 'anychart';
-import { DataReportService, Options } from 'app/data-report.service';
-import { Subscription } from 'rxjs';
+/* import { DataReportService, Options } from 'app/data-report.service';
+import { Subscription } from 'rxjs'; */
 
 @Component({
   selector: 'app-variable-report',
   templateUrl: './variable-report.component.html',
   styleUrls: ['./variable-report.component.css']
 })
-export class VariableReportComponent implements OnChanges, OnInit, OnDestroy {
+export class VariableReportComponent implements OnChanges, OnInit/* , OnDestroy  */{
 
   @ViewChild('chartContainer') container: ElementRef;
   gauge: anychart.charts.LinearGauge = null;
-  selection: Options = {
+  /* selection: Options = {
     selectedComponent: 0,
     selectedIndex: -1
-  };
-  private subscription: Subscription | undefined;
+  }; 
+  private subscription: Subscription | undefined; */
   @Input() propertyName: string;
   @Input() propertyValue: number;
   @Input() propertyColorConfig: number;
@@ -72,7 +72,7 @@ export class VariableReportComponent implements OnChanges, OnInit, OnDestroy {
     },
   ];
 
-  constructor(private optionsSvc: DataReportService, private renderer2: Renderer2) { }
+  constructor(/* private optionsSvc: DataReportService, */ private renderer2: Renderer2) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.IsKeyExists(changes, "propertyColorConfig")) {
@@ -92,12 +92,12 @@ export class VariableReportComponent implements OnChanges, OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
+  /* ngOnDestroy(): void {
     this.subscription.unsubscribe();
-  }
+  } */
 
   ngOnInit() {
-    this.subscription = this.optionsSvc.selectedOption$.subscribe((option: Options) => this.selection = option);
+    // this.subscription = this.optionsSvc.selectedOption$.subscribe((option: Options) => this.selection = option);
   }
 
   ShowLineGaugeChart(value: number, colorConfig: number): void {
@@ -122,8 +122,8 @@ export class VariableReportComponent implements OnChanges, OnInit, OnDestroy {
     let scaleBar = this.gauge.scaleBar(0);
 
     // set the height and offset of the Scale Bar (both as percentages of the gauge height)
-    scaleBar.width('35%');
-    scaleBar.offset('31.5%');
+    scaleBar.width('70%');
+    // scaleBar.offset('31.5%');
 
     // use the color scale (defined earlier) as the color scale of the Scale Bar
     scaleBar.colorScale(scaleBarColorScale);
@@ -132,13 +132,14 @@ export class VariableReportComponent implements OnChanges, OnInit, OnDestroy {
     let marker = this.gauge.marker(0);
 
     // set the offset of the pointer as a percentage of the gauge width
-    marker.offset('31.5%');
+    // marker.offset('31.5%');
 
     // set the color of the marker
     marker.color('black');
 
     // set the width of the marker
-    marker.width('15');
+    // marker.width('15');
+    marker.width('35');
 
     // set the marker type
     marker.type('triangle-up');
@@ -171,7 +172,7 @@ export class VariableReportComponent implements OnChanges, OnInit, OnDestroy {
     axis.labels().format('{%value}%'); */
 
     // set paddings
-    this.gauge.padding([0, 50]);
+    // this.gauge.padding([0, 50]);
 
     // set the container id
     this.gauge.container(stage);
@@ -180,7 +181,7 @@ export class VariableReportComponent implements OnChanges, OnInit, OnDestroy {
     this.gauge.draw();
   }
 
-  GoToBack(): void {
+  /* GoToBack(): void {
     if (this.selection['selectedIndex'] == 16) {
       this.selection['selectedComponent'] = 5;
     } else {
@@ -191,7 +192,7 @@ export class VariableReportComponent implements OnChanges, OnInit, OnDestroy {
 
   SetOption(option: Options): void {
     this.optionsSvc.setOptions(option);
-  }
+  } */
 
   IsKeyExists(obj: Object, key: string): boolean{
     return obj.hasOwnProperty(key);

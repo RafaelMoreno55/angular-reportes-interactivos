@@ -1,8 +1,8 @@
-<div class="container mt-2">
+<!-- <div class="container mt-2">
   <nav class="navbar flex-row">
     <button type="button" (click)="GoToBack()" class="btn" style="color: #fff; background-color: #0091ea; border-color: #0091ea;">Regresar</button>
   </nav>
-</div>
+</div> -->
 <div class="container mt-2">
   <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12 border">
@@ -56,7 +56,7 @@
               </li>
             </div>
             <div *ngIf="element['value'] > element['rango2'] && element['value'] <= element['rango3']">
-              <li class="list-group-item" style="color: #974b0c; background-color: #febe89;">
+              <li class="list-group-item" style="color: #974b0c; background-color: #df900f;">
                 <ul>
                   <li>{{ element['name'] }}: {{ element['value'] }} %</li>
                 </ul>
@@ -80,7 +80,7 @@
               </li>
             </div>
             <div *ngIf="element['value'] > element['rango1'] && element['value'] <= element['rango2']">
-              <li class="list-group-item" style="color: #974b0c; background-color: #febe89;">
+              <li class="list-group-item" style="color: #974b0c; background-color: #df900f;">
                 <ul>
                   <li>{{ element['name'] }}: {{ element['value'] }} %</li>
                 </ul>

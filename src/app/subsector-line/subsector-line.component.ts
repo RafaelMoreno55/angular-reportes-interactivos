@@ -44,10 +44,10 @@ export class SubsectorLineComponent implements OnChanges, OnInit, OnDestroy {
     this.subscription = this.optionsSvc.selectedOption$.subscribe((option: Options) => {this.selection = option;});
   }
 
-  GoToBack(): void {
+  /* GoToBack(): void {
     this.selection['selectedComponent'] = 0;
     this.SetOption(this.selection); 
-  }
+  } */
 
   ShowLineChart(competenceVariables: any[]): void {
     // Do not use the absolute path of the svg definitions.

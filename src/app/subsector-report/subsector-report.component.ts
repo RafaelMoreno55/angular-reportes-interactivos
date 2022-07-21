@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnDestroy, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import 'anychart';
 import { DataReportService, Options } from 'app/data-report.service';
 import { Subscription } from 'rxjs';
@@ -38,14 +38,14 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
     this.subscription = this.optionsSvc.selectedOption$.subscribe((option: Options) => {this.selection = option;});
   }
 
-  GoToBack(): void {
+  /* GoToBack(): void {
     if (this.selection['selectedIndex'] == 18 ) {
       this.selection['selectedComponent'] = 4;
     } else {
       this.selection['selectedComponent'] = 0;
     } 
     this.SetOption(this.selection); 
-  }
+  } */
 
   GoToVariableReport(propertyName: string): void{
     this.propertyNameEvent.emit(propertyName);
@@ -65,9 +65,9 @@ export class SubsectorReportComponent implements OnInit, OnDestroy {
     }
   }
 
-  GetSelectedSubSector(): number {
+  /* GetSelectedSubSector(): number {
     return this.selection['selectedIndex'];
-  }
+  } */
 
   SetOption(option: Options): void {
     this.optionsSvc.setOptions(option);

@@ -70,10 +70,10 @@ export class SubsectorDoughnutComponent implements OnChanges, OnInit, OnDestroy 
     this.subscription = this.optionsSvc.selectedOption$.subscribe((option: Options) => {this.selection = option;});
   }
 
-  GoToBack(): void {
+  /* GoToBack(): void {
     this.selection['selectedComponent'] = 0;
     this.SetOption(this.selection); 
-  }
+  } */
 
   ShowDoughnutChart(totalVar1: number, totalVar2: number, totalVar3: number, totalVar4: number, aColorConfig: string[]): void {
     // Do not use the absolute path of the svg definitions.

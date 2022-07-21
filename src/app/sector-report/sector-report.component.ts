@@ -116,8 +116,8 @@ export class SectorReportComponent implements OnInit, OnDestroy {
   risksReportSection: any = [];
   referencesReportSection: any = [];
   colorConfigReferences: number;
-  newArrayComp: any = [];
-  newArrayVerac: any = [];
+  // newArrayComp: any = [];
+  // newArrayVerac: any = [];
   // colorConfigRisks: number;
 
   constructor(private optionsSvc: DataReportService, private activeRoute: ActivatedRoute, private el: ElementRef, private modalService: NgbModal) {
@@ -185,7 +185,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     /** 
      * Se recorre el arreglo rows para obtener y almacenar información de las siguientes secciones de reporte:
      * (4)Información cualitativa, (5)Información cuantitativa, (1 y 11)Generales, (16)Competencias,
-     * (18)Factores de riesgos y (27)Referencias.
+     * (18)Factores de riesgos y (29)Referencias.
      */
     this.rows.forEach(element => {
       /**
@@ -275,7 +275,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
                  * Dentro de la condición se almacenan los campos name y value de los objectos que no tienen una
                  * cantidad numérica, por lo que estos datos solo se muestran en la interfaz como información adicional
                  */
-                if (element['seccionReport'] === 27) {
+                if (element['seccionReport'] === 29) {
                   if (isNaN(element['value'])) {
                     let referenceData = new Object();
                     referenceData['nameDescrip'] = element['name'];
@@ -299,7 +299,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
       /**
        * Condición que se utiliza para realizar la suma y el conteo de las variables que tengan el mismo tipo de sección de reporte.
        * Excepto las secciones de reporte: (1 y 11)Generales, (4)Información cualitativa, (5)Información cuantitativa y
-       * las variables de la sección (27)Referencias que no contengan una cantidad numérica en su campo value,
+       * las variables de la sección (29)Referencias que no contengan una cantidad numérica en su campo value,
        */
       if (this.indexs[i] === element['seccionReport']) {
         if (this.indexs[i] !== 1 && this.indexs[i] !== 4 && this.indexs[i] !== 5 && this.indexs[i] !== 11 && !isNaN(element['value'])) {
@@ -329,7 +329,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
         }
         /**
          * En caso de tratarse de secciones de reporte: (1 y 11)Generales, (4)Información cualitativa, (5)Información cuantitativa y
-         * las variables de la sección (27)Referencias que no contengan una cantidad numérica en su campo value. No se realizará 
+         * las variables de la sección (29)Referencias que no contengan una cantidad numérica en su campo value. No se realizará 
          * ninguna acción en caso contrario se almacenan los datos de la siguiente variable de sección de reporte en variables auxiliares
          */
         if (element['seccionReport'] === 1 || element['seccionReport'] === 4 || element['seccionReport'] === 5 || element['seccionReport'] === 11 || isNaN(element['value'])) {
@@ -370,7 +370,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
 
     /**
      * Se itera el arreglo rows para formar los arreglos con la información correspondiente a la sección de reporte:
-     * (12)Fraude, (16)Competencias, (18)Factores riesgos y (27)Referencias
+     * (12)Fraude, (16)Competencias, (18)Factores riesgos y (29)Referencias
      */
     this.rows.forEach(element => {
       if (!isNaN(element['value'])) {
@@ -386,7 +386,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
             if (element['seccionReport'] == 18) {
               this.risksReportSection.push(element);
             } else {
-              if (element['seccionReport'] == 27) {
+              if (element['seccionReport'] == 29) {
                 // arreglo de la sección de reporte: referencias
                 this.referencesReportSection.push(element);
               } 
@@ -399,8 +399,10 @@ export class SectorReportComponent implements OnInit, OnDestroy {
      * Se itera el arreglo fraudReportSection para calcular los valores requeridos para el componente subsector-report
      * el cual muestra información de la sección de reporte Fraude
      */
-    [this.totalVariables1Fraud, this.totalVariables2Fraud, this.totalVariables3Fraud, this.totalVariables4Fraud, this.colorConfigFraud] = this.GetInformationForComponent(this.fraudReportSection, this.rangesFraud, this.range1RedFraud, this.range2OrangeFraud, this.range3YellowFraud, this.range4GreenFraud);
-    this.titleFraud = this.optionsSvc.GetNameSectorReport(this.fraudReportSection[0]['seccionReport']);
+    if (this.fraudReportSection.length > 0) {
+      [this.totalVariables1Fraud, this.totalVariables2Fraud, this.totalVariables3Fraud, this.totalVariables4Fraud, this.colorConfigFraud] = this.GetInformationForComponent(this.fraudReportSection, this.rangesFraud, this.range1RedFraud, this.range2OrangeFraud, this.range3YellowFraud, this.range4GreenFraud);
+      this.titleFraud = this.optionsSvc.GetNameSectorReport(this.fraudReportSection[0]['seccionReport']);
+    }
     /* let range1 = this.fraudReportSection[0]['rango1'];
     let range2 = this.fraudReportSection[0]['rango2'];
     let range3 = this.fraudReportSection[0]['rango3'];
@@ -451,77 +453,83 @@ export class SectorReportComponent implements OnInit, OnDestroy {
      * el cual muestra información de la sección de reporte Referencias. El número de iteraciones depende de la 
      * cantidad de elementos almacenados en el arreglo referencesReportSection
      */
-    let objectSector = this.sectors.find(sector => {return sector['sectionReport'] == 27});
-    this.averageValue = objectSector['average'];
-    this.colorConfigReferences = this.referencesReportSection[0]['configColor'];
-    if (this.colorConfigReferences == 1) {
-      this.range = this.referencesReportSection[0]['rango3'];
-    } else {
-      this.range = this.referencesReportSection[0]['rango2'];
-    }
-    for (let i = 0; i < this.referencesReportSection.length; i++) {
-      let referenceData = new Object();
-      referenceData['nameDescrip'] = this.arrayReferenceDescription[i]['nameDescrip'];
-      referenceData['description'] = this.arrayReferenceDescription[i]['description'];
-      referenceData['name'] = this.referencesReportSection[i]['name'];
-      referenceData['value'] = this.referencesReportSection[i]['value'];
-      referenceData['configColor'] = this.referencesReportSection[i]['configColor'];
-      referenceData['rango1'] = this.referencesReportSection[i]['rango1'];
-      referenceData['rango2'] = this.referencesReportSection[i]['rango2'];
-      referenceData['rango3'] = this.referencesReportSection[i]['rango3'];
-      this.arrayReferences.push(referenceData);
+    if (this.referencesReportSection.length > 0) {
+      let objectSector = this.sectors.find(sector => {return sector['sectionReport'] == 29});
+      this.averageValue = objectSector['average'];
+      this.colorConfigReferences = this.referencesReportSection[0]['configColor'];
+      if (this.colorConfigReferences == 1) {
+        this.range = this.referencesReportSection[0]['rango3'];
+      } else {
+        this.range = this.referencesReportSection[0]['rango2'];
+      }
+      for (let i = 0; i < this.referencesReportSection.length; i++) {
+        let referenceData = new Object();
+        referenceData['nameDescrip'] = this.arrayReferenceDescription[i]['nameDescrip'];
+        referenceData['description'] = this.arrayReferenceDescription[i]['description'];
+        referenceData['name'] = this.referencesReportSection[i]['name'];
+        referenceData['value'] = this.referencesReportSection[i]['value'];
+        referenceData['configColor'] = this.referencesReportSection[i]['configColor'];
+        referenceData['rango1'] = this.referencesReportSection[i]['rango1'];
+        referenceData['rango2'] = this.referencesReportSection[i]['rango2'];
+        referenceData['rango3'] = this.referencesReportSection[i]['rango3'];
+        this.arrayReferences.push(referenceData);
+      }
     }
     /**
      * Se itera el arreglo competenciesReportSection para calcular los valores requeridos para el componente subsector-line
      * el cual muestra información de la sección de reporte Competencias
      */
-    // let newArrayComp = [];
-    // let newArrayVerac = [];
-    let indexComp = -1;
-    let indexVerac = -1;
-    let varName = "";
-
-    this.competenciesReportSection.forEach(element=> {
-      splitNameArray = element['name'].split(' ');
-      indexComp = splitNameArray.indexOf("competencia");
-      indexVerac = splitNameArray.indexOf("veracidad");
-      varName = "";
-      /**
-       * Se copia el resto del string después de la cadena 'competencia' o 'veracidad' del campo 'name' la cual corresponde
-       * al nombre de la variable de la sección de reporte Competencias
-       */
-      if (indexComp != -1) {
-        for (let i = indexComp+1; i < splitNameArray.length; i++) {
-          varName = varName + " " + splitNameArray[i];
-        }
-        this.newArrayComp.push({name: varName.trim(), value: element['value'], full_name: element['name']});
-      } else {
-        if (indexVerac != -1) {
-          for (let i = indexVerac+1; i < splitNameArray.length; i++) {
+    if (this.competenciesReportSection.length > 0) {
+      let newArrayComp = [];
+      let newArrayVerac = [];
+      let indexComp = -1;
+      let indexVerac = -1;
+      let varName = "";
+  
+      this.competenciesReportSection.forEach(element=> {
+        splitNameArray = element['name'].split(' ');
+        indexComp = splitNameArray.indexOf("competencia");
+        indexVerac = splitNameArray.indexOf("veracidad");
+        varName = "";
+        /**
+         * Se copia el resto del string después de la cadena 'competencia' o 'veracidad' del campo 'name' la cual corresponde
+         * al nombre de la variable de la sección de reporte Competencias
+         */
+        if (indexComp != -1) {
+          for (let i = indexComp+1; i < splitNameArray.length; i++) {
             varName = varName + " " + splitNameArray[i];
           }
-          this.newArrayVerac.push({name: varName.trim(), value: element['value'], full_name: element['name']});
-        }
-      }
-    });
-    this.newArrayComp.forEach(elementComp => {
-      let words = elementComp['name'].split(' ');
-      let stringSequenceObject = this.MakeMap(words[0]);
-      let stringSequenceObjectLast = this.MakeMap(words[words.length-1]);
-      this.newArrayVerac.forEach(elementVerac => {
-        let dictionary = elementVerac['name'].split(' ');
-        if (this.IsSubsequence(dictionary[0], stringSequenceObject) && this.IsSubsequence(dictionary[dictionary.length-1], stringSequenceObjectLast)) {
-          this.competenceVariables.push({name: elementComp['name'], comp: elementComp['full_name'], value1: elementComp['value'], verac: elementVerac['full_name'], value2: elementVerac['value']});
+          newArrayComp.push({name: varName.trim(), value: element['value'], full_name: element['name']});
+        } else {
+          if (indexVerac != -1) {
+            for (let i = indexVerac+1; i < splitNameArray.length; i++) {
+              varName = varName + " " + splitNameArray[i];
+            }
+            newArrayVerac.push({name: varName.trim(), value: element['value'], full_name: element['name']});
+          }
         }
       });
-    });
+      newArrayComp.forEach(elementComp => {
+        let words = elementComp['name'].split(' ');
+        let stringSequenceObject = this.MakeMap(words[0]);
+        let stringSequenceObjectLast = this.MakeMap(words[words.length-1]);
+        newArrayVerac.forEach(elementVerac => {
+          let dictionary = elementVerac['name'].split(' ');
+          if (this.IsSubsequence(dictionary[0], stringSequenceObject) && this.IsSubsequence(dictionary[dictionary.length-1], stringSequenceObjectLast)) {
+            this.competenceVariables.push({name: elementComp['name'], comp: elementComp['full_name'], value1: elementComp['value'], verac: elementVerac['full_name'], value2: elementVerac['value']});
+          }
+        });
+      });
+    }
     // this.competenceVariables = this.competenceVariables.slice();
     /**
      * Se itera el arreglo risksReportSection para calcular los valores requeridos para el componente subsector-doughnut
      * el cual muestra información de la sección de reporte Riesgos
      */
-    [this.totalVariables1Risk, this.totalVariables2Risk, this.totalVariables3Risk, this.totalVariables4Risk, this.colorConfigRisk] = this.GetInformationForComponent(this.risksReportSection, this.rangesRisk, this.range1RedRisk, this.range2OrangeRisk, this.range3YellowRisk, this.range4GreenRisk);
-    this.titleRisk = this.optionsSvc.GetNameSectorReport(this.risksReportSection[0]['seccionReport']);
+    if (this.risksReportSection.length > 0) {
+      [this.totalVariables1Risk, this.totalVariables2Risk, this.totalVariables3Risk, this.totalVariables4Risk, this.colorConfigRisk] = this.GetInformationForComponent(this.risksReportSection, this.rangesRisk, this.range1RedRisk, this.range2OrangeRisk, this.range3YellowRisk, this.range4GreenRisk);
+      this.titleRisk = this.optionsSvc.GetNameSectorReport(this.risksReportSection[0]['seccionReport']);
+    }
     /* range1 = this.risksReportSection[0]['rango1'];
     range2 = this.risksReportSection[0]['rango2'];
     range3 = this.risksReportSection[0]['rango3'];
@@ -581,7 +589,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
       if (element['sectionReport'] == 12) {
         fraudScope = this.GetFactorScore(element['range1'], element['range2'], element['range3'], element['average'], element['colorConfig']);
       } else {
-          if (element['sectionReport'] == 27) {
+          if (element['sectionReport'] == 29) {
             referencesScope = this.GetFactorScore(element['range1'], element['range2'], element['range3'], element['average'], element['colorConfig']);
           }
       }
@@ -704,7 +712,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
             self.colorConfig = self.colorConfigRisk;
           } else {
             // sección de reporte Referencias
-            if (sectionReport == 27) {
+            if (sectionReport == 29) {
               self.selection['selectedComponent'] = 2;
             } else {
               // sección de reporte Varios
@@ -797,7 +805,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
           self.competenceVariables = self.competenceVariables.slice();
         } else {
           // sección de reporte Referencias
-          if (sectionReport == 27) {
+          if (sectionReport == 29) {
             self.selection['selectedComponent'] = 2;
             if (self.rowsSubSector[0]['configColor'] == 1) {
               self.range = self.rowsSubSector[0]['rango3'];
@@ -978,6 +986,137 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     });
   }
 
+  GetPropertyValue(variable: object): number{
+    let value = parseFloat(variable['value']);
+    let range1 = variable['rango1'];
+    let range2 = variable['rango2'];
+    let range3 = variable['rango3'];
+    let propertyValue_ = -1;
+
+    if (value <= 0) {
+      propertyValue_ = 1;
+    } else {
+      if (value <= range1) {
+        propertyValue_ = this.Round(this.normalizeRange(value, range1, this.multiplier1));
+      } else {
+        if (value > range1 && value <= range2) {
+          propertyValue_ = this.Round(this.normalizeRange(value, range2, this.multiplier2));
+        } else {
+          if (value > range2 && value <= range3) {
+            propertyValue_ = this.Round(this.normalizeRange(value, range3, this.multiplier3));
+          } else {
+            if (value > range3) {
+              propertyValue_ = 99;
+            }
+          }
+        }
+      }
+    }
+    return propertyValue_;
+  }
+
+  GetRecommendedScore(colorConfig: number, range3: number, range2: number): number{
+    let recommendedScore_ = -1;
+    if (colorConfig == 1) {
+      recommendedScore_ = this.normalizeRange(range3, range3, this.multiplier3);
+    } else {
+      recommendedScore_ = this.normalizeRange(range2, range2, this.multiplier2);
+    }
+    return recommendedScore_;
+  }
+
+  GetDescriptionTextFraud(variable: object): string{
+    let variableNamesFraud = this.optionsSvc.variableNamesFraud.slice();
+    let score = this.GetVariableScore(variable['value'], variable['rango1'], variable['rango2'], variable['rango3']);
+    let text = module.getTextoVariablesFraude(variableNamesFraud, variable['name'], score);
+    return text;
+  }
+
+  GetVariableScore(variableValue: string, variableRange1: number, variableRange2: number, variableRange3: number): string{
+    let value = parseFloat(variableValue);
+    let range1 = variableRange1;
+    let range2 = variableRange2;
+    let range3 = variableRange3;
+    let score = "";
+
+    if (value <= 0) {
+      score = "bajo";
+    } else {
+      if (value <= range1) {
+        score = "bajo";
+      } else {
+        if (value > range1 && value <= range2) {
+          score = "medioBajo";
+        } else {
+          if (value > range2 && value <= range3) {
+            score = "medioAlto";
+          } else {
+            if (value > range3) {
+              score = "alto";
+            }
+          }
+        }
+      }
+    }
+    return score;
+  }
+
+  GetDescriptionTextRisk(variable: object): string{
+    let splitNameArray = variable['name'].split(' ');
+    let indexPers = splitNameArray.indexOf("personal");
+    let indexEnto = splitNameArray.indexOf("entorno");
+    let score = this.GetVariableScore(variable['value'], variable['rango1'], variable['rango2'], variable['rango3']);
+    let variableNamesRisks = this.optionsSvc.variableNamesRisks.slice();
+    let varName = "";
+    let typeRisk = "";
+    let text = "";
+    
+    if (indexPers != -1) {
+      for (let i = indexPers+1; i < splitNameArray.length; i++) {
+        varName = varName + " " + splitNameArray[i];
+        typeRisk = "personal";
+      }
+    }
+    if (indexEnto != -1) {
+      for (let i = indexEnto+1; i < splitNameArray.length; i++) {
+        varName = varName + " " + splitNameArray[i];
+        typeRisk = "entorno";
+      }
+    }
+    varName = varName.trim();
+    if (typeRisk === "personal") {
+      text = module.getTextoVariablesRiesgosPersonal(variableNamesRisks, varName, score);
+    }
+    if (typeRisk === "entorno") {
+      text = module.getTextoVariablesRiesgosEntorno(variableNamesRisks, varName, score);
+    }
+    return text;
+  }
+
+  GetDescriptionTextCompetencies(variable: object): string{
+    let splitNameArray = variable['name'].split(' ');
+    let indexComp = splitNameArray.indexOf("competencia");
+    let indexVerac = splitNameArray.indexOf("veracidad");
+    let score = this.GetVariableScore(variable['value'], variable['rango1'], variable['rango2'], variable['rango3']);
+    let variableNamesCompetencies = this.optionsSvc.variableNamesCompetencies.slice();
+    let varName = "";
+    let text = "";
+    
+    if (indexComp != -1) {
+      for (let i = indexComp+1; i < splitNameArray.length; i++) {
+        varName = varName + " " + splitNameArray[i];
+      }
+    }
+    if (indexVerac != -1) {
+      for (let i = indexVerac+1; i < splitNameArray.length; i++) {
+        varName = varName + " " + splitNameArray[i];
+      }
+    }
+    varName = varName.trim();
+    text = module.getTextoVariablesCompetencias(variableNamesCompetencies, varName, score);
+    return text;
+  }
+
   normalizeRange(value: number, range: number , multiplier: number): number{
     var result = ((value*100)/range)*multiplier;
     return result;
@@ -1084,6 +1223,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
         let splitNameArray = variableName.split(' ');
         let indexComp = splitNameArray.indexOf("competencia");
         let indexVerac = splitNameArray.indexOf("veracidad");
+        let variableNamesCompetencies = this.optionsSvc.variableNamesCompetencies.slice();
         let varName = "";
         
         if (indexComp != -1) {
@@ -1097,13 +1237,13 @@ export class SectorReportComponent implements OnInit, OnDestroy {
           }
         }
         varName = varName.trim();
-        let variableNamesCompetencies = this.optionsSvc.variableNamesCompetencies.slice();
         text = module.getTextoVariablesCompetencias(variableNamesCompetencies, varName, variableScore);
       } else {
         if (sectionReport == 18) {
           let splitNameArray = variableName.split(' ');
           let indexPers = splitNameArray.indexOf("personal");
           let indexEnto = splitNameArray.indexOf("entorno");
+          let variableNamesRisks = this.optionsSvc.variableNamesRisks.slice();
           let varName = "";
           let typeRisk = "";
           
@@ -1120,7 +1260,6 @@ export class SectorReportComponent implements OnInit, OnDestroy {
             }
           }
           varName = varName.trim();
-          let variableNamesRisks = this.optionsSvc.variableNamesRisks.slice();
           if (typeRisk === "personal") {
             text = module.getTextoVariablesRiesgosPersonal(variableNamesRisks, varName, variableScore);
           }

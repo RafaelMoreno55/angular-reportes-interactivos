@@ -570,7 +570,7 @@ export class DataReportService {
           rango2: 50,
           rango3: 75,
           configColor: 1,
-          seccionReport: 27,
+          seccionReport: 29,
           mostrarTitulo: false
         },
         {
@@ -580,7 +580,7 @@ export class DataReportService {
           rango2: 50,
           rango3: 75,
           configColor: 1,
-          seccionReport: 27,
+          seccionReport: 29,
           mostrarTitulo: false
         },
         {
@@ -590,7 +590,7 @@ export class DataReportService {
           rango2: 50,
           rango3: 75,
           configColor: 1,
-          seccionReport: 27,
+          seccionReport: 29,
           mostrarTitulo: false
         },
         {
@@ -600,7 +600,7 @@ export class DataReportService {
           rango2: 50,
           rango3: 75,
           configColor: 1,
-          seccionReport: 27,
+          seccionReport: 29,
           mostrarTitulo: false
         },
         {
@@ -610,7 +610,7 @@ export class DataReportService {
           rango2: 50,
           rango3: 75,
           configColor: 1,
-          seccionReport: 27,
+          seccionReport: 29,
           mostrarTitulo: false
         },
         {
@@ -620,7 +620,7 @@ export class DataReportService {
           rango2: 50,
           rango3: 75,
           configColor: 1,
-          seccionReport: 27,
+          seccionReport: 29,
           mostrarTitulo: false
         },
         {
@@ -630,7 +630,7 @@ export class DataReportService {
           rango2: 50,
           rango3: 75,
           configColor: 1,
-          seccionReport: 27,
+          seccionReport: 29,
           mostrarTitulo: false
         },
         {
@@ -640,7 +640,7 @@ export class DataReportService {
           rango2: 50,
           rango3: 75,
           configColor: 1,
-          seccionReport: 27,
+          seccionReport: 29,
           mostrarTitulo: false
         },
         {
@@ -650,7 +650,7 @@ export class DataReportService {
           rango2: 50,
           rango3: 75,
           configColor: 1,
-          seccionReport: 27,
+          seccionReport: 29,
           mostrarTitulo: false
         },
         {
@@ -660,7 +660,7 @@ export class DataReportService {
           rango2: 50,
           rango3: 75,
           configColor: 1,
-          seccionReport: 27,
+          seccionReport: 29,
           mostrarTitulo: false
         },
         {
@@ -670,7 +670,7 @@ export class DataReportService {
           rango2: 50,
           rango3: 75,
           configColor: 1,
-          seccionReport: 27,
+          seccionReport: 29,
           mostrarTitulo: false
         },
         {
@@ -680,7 +680,7 @@ export class DataReportService {
           rango2: 50,
           rango3: 75,
           configColor: 1,
-          seccionReport: 27,
+          seccionReport: 29,
           mostrarTitulo: false
         },
     ];
@@ -841,14 +841,14 @@ export class DataReportService {
           case 26:
             name = "Nivel de honestidad";
             break;
-          /* case 27:
-            name = "Prueba de Inteligencia";
-            break; */
           case 27:
-            name = "Referencias";
+            name = "Prueba de Inteligencia";
             break;
           case 28:
             name = "Comparaciones múltiples";
+            break;
+          case 29:
+            name = "Referencias";
             break;
         
           default:

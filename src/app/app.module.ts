@@ -14,6 +14,7 @@ import { SubsectorDoughnutComponent } from './subsector-doughnut/subsector-dough
 import { SubsectorLineComponent } from './subsector-line/subsector-line.component';
 import { MoreInformationComponent } from './more-information/more-information.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BackButtonComponent } from './back-button/back-button.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReportsComponent,
     SubsectorDoughnutComponent,
     SubsectorLineComponent,
-    MoreInformationComponent
+    MoreInformationComponent,
+    BackButtonComponent
   ],
   imports: [
     BrowserModule,

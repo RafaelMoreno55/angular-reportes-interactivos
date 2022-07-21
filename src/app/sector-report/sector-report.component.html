@@ -85,36 +85,53 @@
   </div>
 </div>
 <div [hidden]="GetSelectedComponent() != 1">
+  <app-back-button></app-back-button>
   <app-subsector-report [range1Red]="range1Red" [range2Orange]="range2Orange" [range3Yellow]="range3Yellow" [range4Green]="range4Green" [ranges]="ranges" [title]="title" [colorConfig]="colorConfig" [itemDoughnut]="itemDoughnut" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="descriptionTextSubsector"></app-subsector-report>
 </div> 
 <div [hidden]="GetSelectedComponent() != 2">
+  <app-back-button></app-back-button>
   <app-subsector-reference-report [arrayReferences]="arrayReferences" [averageValue]="averageValue" [colorConfig]="colorConfigReferences" [range]="range" [descriptionText]="referencesText"></app-subsector-reference-report>
 </div> 
 <div [hidden]="GetSelectedComponent() != 3">
+  <app-back-button></app-back-button>
   <app-variable-report [propertyName]="propertyName" [propertyColorConfig]="propertyColorConfig" [propertyValue]="propertyValue" [recommendedScore]="recommendedScore" [variableScore]="variableScore" [descriptionText]="variableDescriptionText"></app-variable-report>
 </div>
 <div [hidden]="GetSelectedComponent() != 4">
+  <app-back-button></app-back-button>
   <app-subsector-doughnut [totalVariables1]="totalVariables1" [totalVariables2]="totalVariables2" [totalVariables3]="totalVariables3" [totalVariables4]="totalVariables4" [propertyColorConfig]="colorConfigRisks" (itemDoughnutEvent)="GetItemDoughnut($event)" [descriptionText]="risksText"></app-subsector-doughnut>
 </div>
 <div [hidden]="GetSelectedComponent() != 5">
+  <app-back-button></app-back-button>
   <app-subsector-line [competenceVariables]="competenceVariables" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="competenciesText"></app-subsector-line>
 </div>
+
 <div *ngIf="isExport">
-  <app-subsector-report [range1Red]="range1Red" [range2Orange]="range2Orange" [range3Yellow]="range3Yellow" [range4Green]="range4Green" [ranges]="ranges" [title]="title" [colorConfig]="colorConfig" [itemDoughnut]="itemDoughnut" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="descriptionTextSubsector"></app-subsector-report>
-  <div *ngFor="let variable of fraudReportSection">
-    <app-variable-report [propertyName]="propertyName" [propertyColorConfig]="propertyColorConfig" [propertyValue]="propertyValue" [recommendedScore]="recommendedScore" [variableScore]="variableScore" [descriptionText]="variableDescriptionText"></app-variable-report>
+  <div *ngIf="fraudReportSection.length > 0">
+    <div style="display: none">{{selection['selectedIndex'] = 12}} {{SetOption(selection)}}</div>
+    <app-subsector-report [range1Red]="range1RedFraud" [range2Orange]="range2OrangeFraud" [range3Yellow]="range3YellowFraud" [range4Green]="range4GreenFraud" [ranges]="rangesFraud" [title]="titleFraud" [colorConfig]="colorConfigFraud" [itemDoughnut]="'-1'" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="fraudText"></app-subsector-report>
+    <div *ngFor="let variable of fraudReportSection">
+      <app-variable-report [propertyName]="variable['name']" [propertyColorConfig]="variable['configColor']" [propertyValue]="GetPropertyValue(variable)" [recommendedScore]="GetRecommendedScore(variable['colorConfig'], variable['rango3'], variable['rango2'])" [variableScore]="variable['value']" [descriptionText]="GetDescriptionTextFraud(variable)"></app-variable-report>
+    </div>
   </div>
-  <app-subsector-reference-report [arrayReferences]="arrayReferences" [averageValue]="averageValue" [colorConfig]="colorConfigReferences" [range]="range" [descriptionText]="referencesText"></app-subsector-reference-report>
-  <app-subsector-doughnut [totalVariables1]="totalVariables1" [totalVariables2]="totalVariables2" [totalVariables3]="totalVariables3" [totalVariables4]="totalVariables4" [propertyColorConfig]="colorConfigRisks" (itemDoughnutEvent)="GetItemDoughnut($event)" [descriptionText]="risksText"></app-subsector-doughnut>
-  <app-subsector-report [range1Red]="range1Red" [range2Orange]="range2Orange" [range3Yellow]="range3Yellow" [range4Green]="range4Green" [ranges]="ranges" [title]="title" [colorConfig]="colorConfig" [itemDoughnut]="itemDoughnut" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="descriptionTextSubsector"></app-subsector-report>
-  <div *ngFor="let variable of risksReportSection">
-    <app-variable-report [propertyName]="propertyName" [propertyColorConfig]="propertyColorConfig" [propertyValue]="propertyValue" [recommendedScore]="recommendedScore" [variableScore]="variableScore" [descriptionText]="variableDescriptionText"></app-variable-report>
+  
+  <div *ngIf="referencesReportSection.length > 0">
+    <app-subsector-reference-report [arrayReferences]="arrayReferences" [averageValue]="averageValue" [colorConfig]="colorConfigReferences" [range]="range" [descriptionText]="referencesText"></app-subsector-reference-report>
   </div>
-  <app-subsector-line [competenceVariables]="competenceVariables" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="competenciesText"></app-subsector-line>
-  <div *ngFor="let variable of newArrayComp">
-    <app-variable-report [propertyName]="propertyName" [propertyColorConfig]="propertyColorConfig" [propertyValue]="propertyValue" [recommendedScore]="recommendedScore" [variableScore]="variableScore" [descriptionText]="variableDescriptionText"></app-variable-report>
+  
+  <div *ngIf="risksReportSection.length > 0">
+    <app-subsector-doughnut [totalVariables1]="totalVariables1Risk" [totalVariables2]="totalVariables2Risk" [totalVariables3]="totalVariables3Risk" [totalVariables4]="totalVariables4Risk" [propertyColorConfig]="colorConfigRisks" (itemDoughnutEvent)="GetItemDoughnut($event)" [descriptionText]="risksText"></app-subsector-doughnut>
+    
+    <div style="display: none">{{selection['selectedIndex'] = 18}} {{SetOption(selection)}}</div>
+    <app-subsector-report [range1Red]="range1RedRisk" [range2Orange]="range2OrangeRisk" [range3Yellow]="range3YellowRisk" [range4Green]="range4GreenRisk" [ranges]="rangesRisk" [title]="titleRisk" [colorConfig]="colorConfigRisk" [itemDoughnut]="'-1'" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="risksText"></app-subsector-report>
+    <div *ngFor="let variable of risksReportSection">
+      <app-variable-report [propertyName]="variable['name']" [propertyColorConfig]="variable['configColor']" [propertyValue]="GetPropertyValue(variable)" [recommendedScore]="GetRecommendedScore(variable['colorConfig'], variable['rango3'], variable['rango2'])" [variableScore]="variable['value']" [descriptionText]="GetDescriptionTextRisk(variable)"></app-variable-report>
+    </div>
   </div>
-  <div *ngFor="let variable of newArrayVerac">
-    <app-variable-report [propertyName]="propertyName" [propertyColorConfig]="propertyColorConfig" [propertyValue]="propertyValue" [recommendedScore]="recommendedScore" [variableScore]="variableScore" [descriptionText]="variableDescriptionText"></app-variable-report>
+  
+  <div *ngIf="competenciesReportSection.length > 0">
+    <app-subsector-line [competenceVariables]="competenceVariables" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="competenciesText"></app-subsector-line>
+    <div *ngFor="let variable of competenciesReportSection">
+      <app-variable-report [propertyName]="variable['name']" [propertyColorConfig]="variable['configColor']" [propertyValue]="GetPropertyValue(variable)" [recommendedScore]="GetRecommendedScore(variable['colorConfig'], variable['rango3'], variable['rango2'])" [variableScore]="variable['value']" [descriptionText]="GetDescriptionTextCompetencies(variable)"></app-variable-report>
+    </div>
   </div>
 </div>

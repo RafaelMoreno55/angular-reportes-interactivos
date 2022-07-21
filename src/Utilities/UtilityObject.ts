@@ -229,7 +229,11 @@ export function metodoArbolDecision(fraude: string, competencias: string, compet
         }
         escalaAnterior = element['escala'];
     });
-
+    if (textoDescripcion === " Sin embargo.  En cuanto a las competencias.  Respecto a los factores de riesgo. ") {
+        textoCompetencias = "";
+        textoRiesgos = "";
+        textoDescripcion = "";
+    } 
     return [textoFraude, textoReferencias, textoCompetencias, textoRiesgos, textoDescripcion];
 }
 
