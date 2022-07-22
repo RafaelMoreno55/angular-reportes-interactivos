@@ -6,6 +6,11 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MoreInformationComponent } from 'app/more-information/more-information.component';
 import * as module from 'Utilities/UtilityObject';
+// import 'jspdf-autotable';
+import * as jsPDF from 'jspdf';
+import * as html2canvas from 'html2canvas';
+
+// declare var jsPDF: any; // Important
 
 @Component({
   selector: 'app-sector-report',
@@ -1211,6 +1216,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
 
   ExportPDF(): void {
     this.isExport == true ? this.isExport = false : this.isExport = true;
+    this.downloadPDF();
   }
 
   GetDescriptionTextVariable(sectionReport: number, variableName: string, variableScore: string): string {
@@ -1337,5 +1343,37 @@ export class SectorReportComponent implements OnInit, OnDestroy {
       }
     });
     return [totalVariables1, totalVariables2, totalVariables3, totalVariables4, colorConfig];
+  }
+
+  downloadPDF() {
+    const DATA = document.getElementById('htmlData');
+    const doc = new jsPDF('p', 'mm', 'letter');
+    const options = {
+      background: 'white',
+      scale: 2
+    };
+    html2canvas(DATA,options).then((canvas) => {
+
+      const img = canvas.toDataURL('image/PNG');
+      var imgWidth = 210; 
+      var pageHeight = 265;  
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var heightLeft = imgHeight;
+      var position = 10; 
+
+     doc.addImage(img, 'JPEG', 15, position, imgWidth, imgHeight, undefined, 'FAST');
+      heightLeft -= pageHeight;
+      while (heightLeft >= 20) {
+        position = heightLeft - imgHeight; // limits each page with 297mm
+        doc.addPage();
+        doc.addImage(img, 'JPEG', 15, position, imgWidth, imgHeight, undefined, 'FAST');
+        heightLeft -= pageHeight; 
+      }
+      doc.save('ReportApplicationAnswers_' + this.getIsoDate(new Date()) + '.pdf');
+    });
+  }
+
+  getIsoDate(dateTmp: Date): string {
+    return dateTmp ? dateTmp.getFullYear() + '-' + (dateTmp.getMonth() + 1).toString() + '-' + dateTmp.getDate().toString() : '';
   }
 }
