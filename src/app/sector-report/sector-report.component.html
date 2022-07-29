@@ -1,139 +1,139 @@
-<div id="htmlData">
-<div [hidden]="GetSelectedComponent() != 0" class="container mt-2">
-  <div class="row">
-    <div class="col-sm-12 col-md-6 col-lg-4 ">
-      <div class="row">
-        <div class="col-6 ">
-          <p class="text-capitalize" style="font-size: x-large;">
-            gerald <span style="font-weight: bold;">morris</span>
-          </p>
-          <span>gerald@morris.com</span>
-          <span>UX Developer</span>
-          <span style="color: #0d6efd;">email@contact.com</span>
-          <span style="color: #0d6efd;">www.example.com</span>
-          <span style="color: #0d6efd;">+1234567890</span>
-        </div>
-        <div class="col-6 ">
-          <div class="w-100 h-100 d-flex flex-column align-items-center justify-content-around">
-            <div class="rounded-circle bg-secondary" style="width: 90px; height: 90px"></div>
-            <button type="button" (click)="ExportPDF()" class="btn" style="color: #fff; background-color: #0091ea; border-color: #0091ea;">Exportar a PDF</button>
-            <button type="button" (click)="ShowInfo()" class="btn" style="color: #fff; background-color: #0091ea; border-color: #0091ea;">Más Información</button>
+<div #container>
+  <div [hidden]="GetSelectedComponent() != 0" class="container mt-2">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-4 ">
+        <div class="row">
+          <div class="col-6 ">
+            <p class="text-capitalize" style="font-size: x-large;">
+              gerald <span style="font-weight: bold;">morris</span>
+            </p>
+            <span>gerald@morris.com</span>
+            <span>UX Developer</span>
+            <span style="color: #0d6efd;">email@contact.com</span>
+            <span style="color: #0d6efd;">www.example.com</span>
+            <span style="color: #0d6efd;">+1234567890</span>
+          </div>
+          <div class="col-6 ">
+            <div class="w-100 h-100 d-flex flex-column align-items-center justify-content-around">
+              <div class="rounded-circle bg-secondary" style="width: 90px; height: 90px"></div>
+              <button type="button" (click)="ExportPDF()" class="btn" style="color: #fff; background-color: #0091ea; border-color: #0091ea;">Exportar a PDF</button>
+              <button type="button" (click)="ShowInfo()" class="btn" style="color: #fff; background-color: #0091ea; border-color: #0091ea;">Más Información</button>
+            </div>
           </div>
         </div>
       </div>
+      <div class="col-sm-12 col-md-6 col-lg-4 ">
+        <ul class="mt-2">
+          <li class="d-flex justify-content-center">
+            <div class="h-100 py-2 px-1 d-flex flex-row align-items-center" [style.background-color]="resultado == 'no-recomendado' ? 'rgba(255,0,0,0.3)': 'none'" style="width: 70%">
+              <div class="rounded-circle bg-danger" style="width: 32px; height: 32px"></div>
+              <span class="mx-2">No recomendado</span>
+            </div>
+          </li>
+          <li class="d-flex justify-content-center">
+            <div class="h-100 py-2 px-1 d-flex flex-row align-items-center" [style.background-color]="resultado == 'recomendado' ? 'rgba(0,255,0,0.3)': 'none'" style="width: 70%">
+              <div class="rounded-circle bg-success" style="width: 32px; height: 32px"></div>
+              <span class="mx-2">Recomendado</span>
+            </div>
+          </li>
+          <li class="d-flex justify-content-center">
+            <div class="h-100 py-2 px-1 d-flex flex-row align-items-center" [style.background-color]="resultado == 'revision-asesor' ? 'rgba(255,255,0,0.3)': 'none'" style="width: 70%">
+              <div class="rounded-circle bg-warning" style="width: 32px; height: 32px"></div>
+              <span class="mx-2">Revisión asesor</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-4 ">
+        <div class="table-responsive">
+          <table class="table table-bordered align-middle text-center mt-2">
+            <tbody>
+              <tr style="background-color: rgba(192, 192, 192, 0.5);">
+                <td class="text-uppercase">score mínimo recomendado</td>
+                <td class="text-uppercase">ko</td>
+                <td class="text-uppercase">score obtenido</td>
+              </tr>
+              <tr style="background-color: white;">
+                <td>
+                  <p style="font-size: calc(1.3rem + .6vw);">71.5</p>
+                </td>
+                <td>
+                  <p class="text-uppercase">na</p>
+                </td>
+                <td>
+                  <p style="font-size: calc(1.3rem + .6vw);">{{ obtainedScore }}</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-    <div class="col-sm-12 col-md-6 col-lg-4 ">
-      <ul class="mt-2">
-        <li class="d-flex justify-content-center">
-          <div class="h-100 py-2 px-1 d-flex flex-row align-items-center" [style.background-color]="resultado == 'no-recomendado' ? 'rgba(255,0,0,0.3)': 'none'" style="width: 70%">
-            <div class="rounded-circle bg-danger" style="width: 32px; height: 32px"></div>
-            <span class="mx-2">No recomendado</span>
-          </div>
-        </li>
-        <li class="d-flex justify-content-center">
-          <div class="h-100 py-2 px-1 d-flex flex-row align-items-center" [style.background-color]="resultado == 'recomendado' ? 'rgba(0,255,0,0.3)': 'none'" style="width: 70%">
-            <div class="rounded-circle bg-success" style="width: 32px; height: 32px"></div>
-            <span class="mx-2">Recomendado</span>
-          </div>
-        </li>
-        <li class="d-flex justify-content-center">
-          <div class="h-100 py-2 px-1 d-flex flex-row align-items-center" [style.background-color]="resultado == 'revision-asesor' ? 'rgba(255,255,0,0.3)': 'none'" style="width: 70%">
-            <div class="rounded-circle bg-warning" style="width: 32px; height: 32px"></div>
-            <span class="mx-2">Revisión asesor</span>
-          </div>
-        </li>
-      </ul>
+    <div id="row2" class="row">
+      <div class="col-sm-12 col-md-12 col-lg-1 "></div>
+      <div class="column2 col-sm-12 col-md-12 col-lg-10 ">
+        <div class="graphics row">
+          <div *ngFor="let id of indexsAux" class="tank col-sm-6 col-md-3 pb-3" style="height: 400px; margin: 0 auto"></div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-1 "></div>
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-4 ">
-      <div class="table-responsive">
-        <table class="table table-bordered align-middle text-center mt-2">
-          <tbody>
-            <tr style="background-color: rgba(192, 192, 192, 0.5);">
-              <td class="text-uppercase">score mínimo recomendado</td>
-              <td class="text-uppercase">ko</td>
-              <td class="text-uppercase">score obtenido</td>
-            </tr>
-            <tr style="background-color: white;">
-              <td>
-                <p style="font-size: calc(1.3rem + .6vw);">71.5</p>
-              </td>
-              <td>
-                <p class="text-uppercase">na</p>
-              </td>
-              <td>
-                <p style="font-size: calc(1.3rem + .6vw);">{{ obtainedScore }}</p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="row">
+      <div class="col-12 ">
+        <h4 class="text-uppercase text-center" style="margin-top: 3rem;">Descripción:</h4>
+        <p class="px-5 text-justify" style="font-size: 1.2em;">{{GetDescription()}}</p>
       </div>
     </div>
   </div>
-  <div id="row2" class="row">
-    <div class="col-sm-12 col-md-12 col-lg-1 "></div>
-    <div class="column2 col-sm-12 col-md-12 col-lg-10 ">
-      <div class="graphics row">
-        <div *ngFor="let id of indexsAux" class="tank col-sm-6 col-md-3 pb-3" style="height: 400px; margin: 0 auto"></div>
-      </div>
-    </div>
-    <div class="col-sm-12 col-md-12 col-lg-1 "></div>
-  </div>
-  <div class="row">
-    <div class="col-12 ">
-      <h4 class="text-uppercase text-center" style="margin-top: 3rem;">Descripción:</h4>
-      <p class="px-5 text-justify" style="font-size: 1.2em;">{{GetDescription()}}</p>
-    </div>
-  </div>
-</div>
-<div [hidden]="GetSelectedComponent() != 1">
-  <app-back-button></app-back-button>
-  <app-subsector-report [range1Red]="range1Red" [range2Orange]="range2Orange" [range3Yellow]="range3Yellow" [range4Green]="range4Green" [ranges]="ranges" [title]="title" [colorConfig]="colorConfig" [itemDoughnut]="itemDoughnut" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="descriptionTextSubsector"></app-subsector-report>
-</div> 
-<div [hidden]="GetSelectedComponent() != 2">
-  <app-back-button></app-back-button>
-  <app-subsector-reference-report [arrayReferences]="arrayReferences" [averageValue]="averageValue" [colorConfig]="colorConfigReferences" [range]="range" [descriptionText]="referencesText"></app-subsector-reference-report>
-</div> 
-<div [hidden]="GetSelectedComponent() != 3">
-  <app-back-button></app-back-button>
-  <app-variable-report [propertyName]="propertyName" [propertyColorConfig]="propertyColorConfig" [propertyValue]="propertyValue" [recommendedScore]="recommendedScore" [variableScore]="variableScore" [descriptionText]="variableDescriptionText"></app-variable-report>
-</div>
-<div [hidden]="GetSelectedComponent() != 4">
-  <app-back-button></app-back-button>
-  <app-subsector-doughnut [totalVariables1]="totalVariables1" [totalVariables2]="totalVariables2" [totalVariables3]="totalVariables3" [totalVariables4]="totalVariables4" [propertyColorConfig]="colorConfigRisks" (itemDoughnutEvent)="GetItemDoughnut($event)" [descriptionText]="risksText"></app-subsector-doughnut>
-</div>
-<div [hidden]="GetSelectedComponent() != 5">
-  <app-back-button></app-back-button>
-  <app-subsector-line [competenceVariables]="competenceVariables" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="competenciesText"></app-subsector-line>
-</div>
-
-<div *ngIf="isExport">
-  <div *ngIf="fraudReportSection.length > 0">
-    <div style="display: none">{{selection['selectedIndex'] = 12}} {{SetOption(selection)}}</div>
-    <app-subsector-report [range1Red]="range1RedFraud" [range2Orange]="range2OrangeFraud" [range3Yellow]="range3YellowFraud" [range4Green]="range4GreenFraud" [ranges]="rangesFraud" [title]="titleFraud" [colorConfig]="colorConfigFraud" [itemDoughnut]="'-1'" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="fraudText"></app-subsector-report>
-    <div *ngFor="let variable of fraudReportSection">
-      <app-variable-report [propertyName]="variable['name']" [propertyColorConfig]="variable['configColor']" [propertyValue]="GetPropertyValue(variable)" [recommendedScore]="GetRecommendedScore(variable['colorConfig'], variable['rango3'], variable['rango2'])" [variableScore]="variable['value']" [descriptionText]="GetDescriptionTextFraud(variable)"></app-variable-report>
-    </div>
-  </div>
-  
-  <div *ngIf="referencesReportSection.length > 0">
+  <div [hidden]="GetSelectedComponent() != 1">
+    <app-back-button></app-back-button>
+    <app-subsector-report [range1Red]="range1Red" [range2Orange]="range2Orange" [range3Yellow]="range3Yellow" [range4Green]="range4Green" [ranges]="ranges" [title]="title" [colorConfig]="colorConfig" [itemDoughnut]="itemDoughnut" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="descriptionTextSubsector"></app-subsector-report>
+  </div> 
+  <div [hidden]="GetSelectedComponent() != 2">
+    <app-back-button></app-back-button>
     <app-subsector-reference-report [arrayReferences]="arrayReferences" [averageValue]="averageValue" [colorConfig]="colorConfigReferences" [range]="range" [descriptionText]="referencesText"></app-subsector-reference-report>
+  </div> 
+  <div [hidden]="GetSelectedComponent() != 3">
+    <app-back-button></app-back-button>
+    <app-variable-report [propertyName]="propertyName" [propertyColorConfig]="propertyColorConfig" [propertyValue]="propertyValue" [recommendedScore]="recommendedScore" [variableScore]="variableScore" [descriptionText]="variableDescriptionText"></app-variable-report>
   </div>
-  
-  <div *ngIf="risksReportSection.length > 0">
-    <app-subsector-doughnut [totalVariables1]="totalVariables1Risk" [totalVariables2]="totalVariables2Risk" [totalVariables3]="totalVariables3Risk" [totalVariables4]="totalVariables4Risk" [propertyColorConfig]="colorConfigRisks" (itemDoughnutEvent)="GetItemDoughnut($event)" [descriptionText]="risksText"></app-subsector-doughnut>
-    
-    <div style="display: none">{{selection['selectedIndex'] = 18}} {{SetOption(selection)}}</div>
-    <app-subsector-report [range1Red]="range1RedRisk" [range2Orange]="range2OrangeRisk" [range3Yellow]="range3YellowRisk" [range4Green]="range4GreenRisk" [ranges]="rangesRisk" [title]="titleRisk" [colorConfig]="colorConfigRisk" [itemDoughnut]="'-1'" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="risksText"></app-subsector-report>
-    <div *ngFor="let variable of risksReportSection">
-      <app-variable-report [propertyName]="variable['name']" [propertyColorConfig]="variable['configColor']" [propertyValue]="GetPropertyValue(variable)" [recommendedScore]="GetRecommendedScore(variable['colorConfig'], variable['rango3'], variable['rango2'])" [variableScore]="variable['value']" [descriptionText]="GetDescriptionTextRisk(variable)"></app-variable-report>
-    </div>
+  <div [hidden]="GetSelectedComponent() != 4">
+    <app-back-button></app-back-button>
+    <app-subsector-doughnut [totalVariables1]="totalVariables1" [totalVariables2]="totalVariables2" [totalVariables3]="totalVariables3" [totalVariables4]="totalVariables4" [propertyColorConfig]="colorConfigRisks" (itemDoughnutEvent)="GetItemDoughnut($event)" [descriptionText]="risksText"></app-subsector-doughnut>
   </div>
-  
-  <div *ngIf="competenciesReportSection.length > 0">
+  <div [hidden]="GetSelectedComponent() != 5">
+    <app-back-button></app-back-button>
     <app-subsector-line [competenceVariables]="competenceVariables" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="competenciesText"></app-subsector-line>
-    <div *ngFor="let variable of competenciesReportSection">
-      <app-variable-report [propertyName]="variable['name']" [propertyColorConfig]="variable['configColor']" [propertyValue]="GetPropertyValue(variable)" [recommendedScore]="GetRecommendedScore(variable['colorConfig'], variable['rango3'], variable['rango2'])" [variableScore]="variable['value']" [descriptionText]="GetDescriptionTextCompetencies(variable)"></app-variable-report>
+  </div>
+
+  <div *ngIf="isExport">
+    <div *ngIf="fraudReportSection.length > 0">
+      <div style="display: none">{{selection['selectedIndex'] = 12}} {{SetOption(selection)}}</div>
+      <app-subsector-report [range1Red]="range1RedFraud" [range2Orange]="range2OrangeFraud" [range3Yellow]="range3YellowFraud" [range4Green]="range4GreenFraud" [ranges]="rangesFraud" [title]="titleFraud" [colorConfig]="colorConfigFraud" [itemDoughnut]="'-1'" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="fraudText"></app-subsector-report>
+      <div *ngFor="let variable of fraudReportSection">
+        <app-variable-report [propertyName]="variable['name']" [propertyColorConfig]="variable['configColor']" [propertyValue]="GetPropertyValue(variable)" [recommendedScore]="GetRecommendedScore(variable['colorConfig'], variable['rango3'], variable['rango2'])" [variableScore]="variable['value']" [descriptionText]="GetDescriptionTextFraud(variable)"></app-variable-report>
+      </div>
+    </div>
+    
+    <div *ngIf="referencesReportSection.length > 0">
+      <app-subsector-reference-report [arrayReferences]="arrayReferences" [averageValue]="averageValue" [colorConfig]="colorConfigReferences" [range]="range" [descriptionText]="referencesText"></app-subsector-reference-report>
+    </div>
+    
+    <div *ngIf="risksReportSection.length > 0">
+      <app-subsector-doughnut [totalVariables1]="totalVariables1Risk" [totalVariables2]="totalVariables2Risk" [totalVariables3]="totalVariables3Risk" [totalVariables4]="totalVariables4Risk" [propertyColorConfig]="colorConfigRisks" (itemDoughnutEvent)="GetItemDoughnut($event)" [descriptionText]="risksText"></app-subsector-doughnut>
+      
+      <div style="display: none">{{selection['selectedIndex'] = 18}} {{SetOption(selection)}}</div>
+      <app-subsector-report [range1Red]="range1RedRisk" [range2Orange]="range2OrangeRisk" [range3Yellow]="range3YellowRisk" [range4Green]="range4GreenRisk" [ranges]="rangesRisk" [title]="titleRisk" [colorConfig]="colorConfigRisk" [itemDoughnut]="'-1'" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="risksText"></app-subsector-report>
+      <div *ngFor="let variable of risksReportSection">
+        <app-variable-report [propertyName]="variable['name']" [propertyColorConfig]="variable['configColor']" [propertyValue]="GetPropertyValue(variable)" [recommendedScore]="GetRecommendedScore(variable['colorConfig'], variable['rango3'], variable['rango2'])" [variableScore]="variable['value']" [descriptionText]="GetDescriptionTextRisk(variable)"></app-variable-report>
+      </div>
+    </div>
+    
+    <div *ngIf="competenciesReportSection.length > 0">
+      <app-subsector-line [competenceVariables]="competenceVariables" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="competenciesText"></app-subsector-line>
+      <div *ngFor="let variable of competenciesReportSection">
+        <app-variable-report [propertyName]="variable['name']" [propertyColorConfig]="variable['configColor']" [propertyValue]="GetPropertyValue(variable)" [recommendedScore]="GetRecommendedScore(variable['colorConfig'], variable['rango3'], variable['rango2'])" [variableScore]="variable['value']" [descriptionText]="GetDescriptionTextCompetencies(variable)"></app-variable-report>
+      </div>
     </div>
   </div>
-</div>
 </div>

@@ -25,7 +25,9 @@
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/@popperjs/core/dist/umd/popper.min.js",
-        "../node_modules/bootstrap/dist/js/bootstrap.min.js"
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "../node_modules/jspdf/dist/jspdf.min.js",
+        "../node_modules/dom-to-image-more/dist/dom-to-image-more.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import 'anychart';
 import { DataReportService, Options } from 'app/data-report.service';
 import { Subscription } from 'rxjs';
@@ -9,6 +9,7 @@ import * as module from 'Utilities/UtilityObject';
 // import 'jspdf-autotable';
 import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
+import * as domtoimage from 'dom-to-image-more';
 
 // declare var jsPDF: any; // Important
 
@@ -18,6 +19,8 @@ import * as html2canvas from 'html2canvas';
   styleUrls: ['./sector-report.component.css']
 })
 export class SectorReportComponent implements OnInit, OnDestroy {
+
+  @ViewChild('container') container: any;
 
   // línea de código utilizado para declarar un tipo de gráfico en AnyChart
   gauge: anychart.charts.LinearGauge = null;
@@ -661,6 +664,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     lScale.minimum(0);
     lScale.maximum(100);
     lScale.ticks().interval(10);
+    lScale.minorTicks().interval(1);
     // configure the axis
     let axis = this.gauge.axis();
     axis.minorTicks(true);
@@ -1215,8 +1219,12 @@ export class SectorReportComponent implements OnInit, OnDestroy {
   }
 
   ExportPDF(): void {
-    this.isExport == true ? this.isExport = false : this.isExport = true;
-    this.downloadPDF();
+    if (this.isExport == true) {
+      this.isExport = false;
+    } else {
+      this.isExport = true;
+      setTimeout(() => { this.DownloadPDF(); }, 3000);
+    }
   }
 
   GetDescriptionTextVariable(sectionReport: number, variableName: string, variableScore: string): string {
@@ -1345,7 +1353,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     return [totalVariables1, totalVariables2, totalVariables3, totalVariables4, colorConfig];
   }
 
-  downloadPDF() {
+  /* downloadPDF() {
     const DATA = document.getElementById('htmlData');
     const doc = new jsPDF('p', 'mm', 'letter');
     const options = {
@@ -1369,7 +1377,57 @@ export class SectorReportComponent implements OnInit, OnDestroy {
         doc.addImage(img, 'JPEG', 15, position, imgWidth, imgHeight, undefined, 'FAST');
         heightLeft -= pageHeight; 
       }
-      doc.save('ReportApplicationAnswers_' + this.getIsoDate(new Date()) + '.pdf');
+      doc.save('InteractiveGraphicsReport_' + this.getIsoDate(new Date()) + '.pdf');
+    });
+  } */
+
+  DownloadPDF(): void {
+    
+    const node = this.container.nativeElement;
+    let doc = new jsPDF('p', 'mm', 'letter');
+    let scale = 2;
+
+    const style = {
+      transform: 'scale(' + scale + ')',
+      transformOrigin: 'top left',
+      width: node.offsetWidth + 'px',
+      height: node.offsetHeight + 'px',
+      background: 'white',
+    };
+
+    const param = {
+      height: node.offsetHeight * scale,
+      width: node.offsetWidth * scale,
+      quality: 1,
+      style: style
+    };
+
+    console.log('node ::', this.container.nativeElement);
+    const self = this;
+    domtoimage.toJpeg(node, param).then((dataUrl) => {
+      let img = new Image();
+      img.crossOrigin = 'Anonymous';
+      img.id = 'getshot';
+      img.src = dataUrl;
+
+      let pdfWidth = 210;
+      let pdfHeight = (param.height * pdfWidth) / param.width;
+      let pageHeight = 265;
+      let heightLeft = pdfHeight;
+      let position = 10; 
+      
+      doc.addImage(img, 'JPEG', 15, position, pdfWidth, pdfHeight, undefined, 'FAST');
+      heightLeft -= pageHeight;
+      while (heightLeft >= 20) {
+        position = heightLeft - pdfHeight; // limits each page with 297mm
+        doc.addPage();
+        doc.addImage(img, 'JPEG', 15, position, pdfWidth, pdfHeight, undefined, 'FAST');
+        heightLeft -= pageHeight; 
+      }
+      doc.save('InteractiveGraphicsReport_' + this.getIsoDate(new Date()) + '.pdf');
+    })
+    .catch(function(error: any) {
+      console.error('oops, something went wrong!', error);
     });
   }
 

@@ -53,7 +53,7 @@ export class DataReportService {
 
     private optionReport$ = new BehaviorSubject<Options>(initReport);
     dataRows = [
-        {
+        /* {
           name: "Habilidades 1",
           value: "25",
           rango1: 23,
@@ -72,7 +72,7 @@ export class DataReportService {
           configColor: 2,
           seccionReport: 26,
           mostrarTitulo: true
-        },
+        }, */
         {
           name: "probabilidad de que la persona que contesta no sea el empleado",
           value: "28",
@@ -103,7 +103,7 @@ export class DataReportService {
           seccionReport: 12,
           mostrarTitulo: true
         },
-        {
+        /* {
           name: "Habilidades 4",
           value: "87",
           rango1: 30,
@@ -152,7 +152,7 @@ export class DataReportService {
           configColor: 1,
           seccionReport: 23,
           mostrarTitulo: false
-        },
+        }, */
         {
           name: "riesgo personal acoso laboral",
           value: "5",
