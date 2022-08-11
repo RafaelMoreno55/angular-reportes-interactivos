@@ -878,15 +878,15 @@ export function getFraudeResultadoBajo(): string{
     return result;
 }
 export function getFraudeResultadoMedioBajo(): string{
-    let result = "La persona presenta información distorsionada en lo referente a (poner si quien contesta no es el empleado, nivel socioeconómico o cuantitativa), lo que indica que estos  pueden ser factores que le generen estrés al entrevistado, llevandolo a proporcionar información no del todo verídica.";
+    let result = "La persona presenta información distorsionada en lo referente a, lo que indica que estos  pueden ser factores que le generen estrés al entrevistado, llevandolo a proporcionar información no del todo verídica.";
     return result;
 }
 export function getFraudeResultadoMedioAlto(): string{
-    let result = "Los indicadores encontrados en los factores ( persona no es el empleado, nivel socioeconómico o cuantitativa) indican que la persona distorsionó información por lo que se recomienda hacer una revisión profunda de estos.";
+    let result = "Los indicadores encontrados en los factores indican que la persona distorsionó información por lo que se recomienda hacer una revisión profunda de estos.";
     return result;
 }
 export function getFraudeResultadoAlto(): string{
-    let result = "La persona presenta un riesgo importante de fraude referente a (no es el empleado, nivel socioeconómico o cuantitativa), lo que indica que ha omitido o mentido de forma importante en la información proporcionada.";
+    let result = "La persona presenta un riesgo importante de fraude referente a, lo que indica que ha omitido o mentido de forma importante en la información proporcionada.";
     return result;
 }
 
@@ -964,15 +964,15 @@ export function getRiesgoFraudeSocioeconomicaResultadoAlto(): string{
  */
 
 export function getCompetenciasApegoDefinicion(): string{
-    let result = "Evalúa el nivel de apego que la persona evaluada tiene en las competencias necesarias para desempeñarse dentro de su lugar de trabajo. En este caso se consideraron para evaluación: (insertar aquí las competencias evaluadas).";
+    let result = "Evalúa el nivel de apego que la persona evaluada tiene en las competencias necesarias para desempeñarse dentro de su lugar de trabajo. En este caso se consideraron para evaluación: .";
     return result;
 }
 export function getCompetenciasApegoResultadoAlto(): string{
-    let result = "La persona evaluada muestra en general un resultado de alto apego a las competencias: (poner aquí las evaluadas) lo que indica que cuenta con las habilidades necesarias para desempeñarse en su lugar de trabajo bajo los estándares deseados. Facilitando el correcto funcionamiento de la organización.";
+    let result = "La persona evaluada muestra en general un resultado de alto apego a las competencias: lo que indica que cuenta con las habilidades necesarias para desempeñarse en su lugar de trabajo bajo los estándares deseados. Facilitando el correcto funcionamiento de la organización.";
     return result;
 }
 export function getCompetenciasApegoResultadoMedioAlto(): string{
-    let result = "Se presentan resultados altos en las competencias: (mencionarlas) y bajas / medias en las competencias (mencionarlas) lo cual indica que la persona tiene áreas de oportunidad para desarrollar ciertas habilidades necesarias para ejecutar sus tareas laborales del día a día.";
+    let result = "Se presentan resultados altos en las competencias: y bajas / medias en las competencias lo cual indica que la persona tiene áreas de oportunidad para desarrollar ciertas habilidades necesarias para ejecutar sus tareas laborales del día a día.";
     return result;
 }
 export function getCompetenciasApegoResultadoMedioBajo(): string{
@@ -980,49 +980,49 @@ export function getCompetenciasApegoResultadoMedioBajo(): string{
     return result;
 }
 export function getCompetenciasApegoResultadoBajo(): string{
-    let result = "La persona evaluada presenta en general un bajo apego en las competencias evaluadas (mencionarlas) lo cual es un indicador de falta de desarrollo de habilidades específicas para el adecuado desempeño de sus actividades cotidianas, pudiendo generar un impacto negativo en el funcionamiento de su lugar de trabajo.";
+    let result = "La persona evaluada presenta en general un bajo apego en las competencias evaluadas lo cual es un indicador de falta de desarrollo de habilidades específicas para el adecuado desempeño de sus actividades cotidianas, pudiendo generar un impacto negativo en el funcionamiento de su lugar de trabajo.";
     return result;
 }
 
 export function getCompetenciasAutocalificacionDefinicion(): string{
-    let result = "Este factor mide la evaluación que la persona se atribuye sí misma en las competencias (insertarlas) en su trabajo actual o último trabajo.";
+    let result = "Este factor mide la evaluación que la persona se atribuye sí misma en las competencias en su trabajo actual o último trabajo.";
     return result;
 }
 export function getCompetenciasAutocalificacionResultadoAlto(): string{
-    let result = "La persona considera que en general su calificación en (mencionar las competencias) ha sido excelente o buena dentro de su último trabajo o actual.";
+    let result = "La persona considera que en general su calificación en ha sido excelente o buena dentro de su último trabajo o actual.";
     return result;
 }
 export function getCompetenciasAutocalificacionResultadoMedioAlto(): string{
-    let result = "Opción a) opciones variadas: La persona considera que ha tenido calificaciones variadas en su desempeño dentro de su último trabajo o actual, siendo excelente en (nombrarlas), regular en (nombrarla) y malo en (nombrarlas).";
+    let result = "Opción a) opciones variadas: La persona considera que ha tenido calificaciones variadas en su desempeño dentro de su último trabajo o actual, siendo excelente en , regular en  y malo en .";
     return result;
 }
 export function getCompetenciasAutocalificacionResultadoMedioBajo(): string{
-    let result = "En general la persona considera que autocalificación en (nombrarlas) ha sido regular en su último trabajo o actual.";
+    let result = "En general la persona considera que autocalificación en  ha sido regular en su último trabajo o actual.";
     return result;
 }
 export function getCompetenciasAutocalificacionResultadoBajo(): string{
-    let result = "La persona considera que en general su calificación en (mencionar las competencias) ha sido malo dentro de su último trabajo o actual.";
+    let result = "La persona considera que en general su calificación en  ha sido malo dentro de su último trabajo o actual.";
     return result;
 }
 
 export function getCompetenciasVeracidadDefinicion(): string{
-    let result = "Evalúa la veracidad con la que la persona ha respondido la entrevista en lo relativo a la autocalificación otorgada en las competencias (insertarlas) y el apego a las competencias evaluadas (insertarlas) de forma que se otorga un comparativo de la calificación y el apego obtenido versus la veracidad.";
+    let result = "Evalúa la veracidad con la que la persona ha respondido la entrevista en lo relativo a la autocalificación otorgada en las competencias  y el apego a las competencias evaluadas  de forma que se otorga un comparativo de la calificación y el apego obtenido versus la veracidad.";
     return result;
 }
 export function getCompetenciasVeracidadResultadoAlto(): string{
-    let result = "En general la persona ha respondido de forma veráz en lo referente a su autocalificación en las competencias (insertarlas) y en apego a las competencias (insertarlas) lo cual indica que la información proporcionada puede ser considerada fidedigna.";
+    let result = "En general la persona ha respondido de forma veráz en lo referente a su autocalificación en las competencias  y en apego a las competencias  lo cual indica que la información proporcionada puede ser considerada fidedigna.";
     return result;
 }
 export function getCompetenciasVeracidadResultadoMedioAlto(): string{
-    let result = "Los resultados obtenidos por la persona evaluada, señalan que la información ha sido proporcionada de forma distorsionada en algunas competencias como: (insertarlas), lo cual indica que pudo haber una ligera exageración o minización del verdadero desempeño y apego a las competencias.";
+    let result = "Los resultados obtenidos por la persona evaluada, señalan que la información ha sido proporcionada de forma distorsionada en algunas competencias como: , lo cual indica que pudo haber una ligera exageración o minización del verdadero desempeño y apego a las competencias.";
     return result;
 }
 export function getCompetenciasVeracidadResultadoMedioBajo(): string{
-    let result = "Los resultados obtenidos por la persona evaluada, señalan que la información ha sido proporcionada en su mayoría de forma distorsionada en lo relativo a la autocalificación de las competencias (insertarlas), lo cual indica que pudo haber una exageración o minización del verdadero desempeño y apego a las competencias.";
+    let result = "Los resultados obtenidos por la persona evaluada, señalan que la información ha sido proporcionada en su mayoría de forma distorsionada en lo relativo a la autocalificación de las competencias , lo cual indica que pudo haber una exageración o minización del verdadero desempeño y apego a las competencias.";
     return result;
 }
 export function getCompetenciasVeracidadResultadoBajo(): string{
-    let result = "En general la persona ha respondido de forma poco veráz en lo referente a su autocalificación en las competencias (insertarlas) y en apego a las competencias (insertarlas) lo cual indica que la información proporcionada no puede ser considerada fidedigna.";
+    let result = "En general la persona ha respondido de forma poco veráz en lo referente a su autocalificación en las competencias  y en apego a las competencias  lo cual indica que la información proporcionada no puede ser considerada fidedigna.";
     return result;
 }
 
@@ -1411,15 +1411,15 @@ export function getCompetenciasConcienciaSeguridadResultadoBajo(): string{
  */
 
 export function getRiesgosPersonalesDefinicion(): string{
-    let result = "Grupo compuesto por la evaluación de los riesgos (insertarlos), dando información respecto a la probabilidad de que la persona se haya visto involucrada en lo personal en la ejecución de alguno de estos.";
+    let result = "Grupo compuesto por la evaluación de los riesgos , dando información respecto a la probabilidad de que la persona se haya visto involucrada en lo personal en la ejecución de alguno de estos.";
     return result;
 }
 export function getRiesgosPersonalesResultadoBajo(): string{
-    let result = "La persona no presenta respuestas emocionales que puedan indicar que ha estado involucrada en lo personal en temas de: (insertar los riesgos evaluados), haciendola una persona de bajo riesgo para la organización.";
+    let result = "La persona no presenta respuestas emocionales que puedan indicar que ha estado involucrada en lo personal en temas de: , haciendola una persona de bajo riesgo para la organización.";
     return result;
 }
 export function getRiesgosPersonalesResultadoMedioBajo(): string{
-    let result = "Se presentan medios que pueden indicar un estrés en los factores (nombrarlos) lo que indica que puede haber un estresor detonante vinculado a éstos y a un posible involucramiento. Se recomienda explorar en entrevista.";
+    let result = "Se presentan medios que pueden indicar un estrés en los factores  lo que indica que puede haber un estresor detonante vinculado a éstos y a un posible involucramiento. Se recomienda explorar en entrevista.";
     return result;
 }
 export function getRiesgosPersonalesResultadoMedioAlto(): string{
@@ -1427,20 +1427,20 @@ export function getRiesgosPersonalesResultadoMedioAlto(): string{
     return result;
 }
 export function getRiesgosPersonalesResultadoAlto(): string{
-    let result = "Se observan resultados de riesgo de alarma en los factores (nombrarlos) donde la persona ha tenido una reacción importante, lo cual indica que existe un riesgo de que la persona se encuentre en lo personal involucrada en la ejecución de estos por lo que es considerada de riesgo para la organización.";
+    let result = "Se observan resultados de riesgo de alarma en los factores  donde la persona ha tenido una reacción importante, lo cual indica que existe un riesgo de que la persona se encuentre en lo personal involucrada en la ejecución de estos por lo que es considerada de riesgo para la organización.";
     return result;
 }
 
 export function getRiesgosEntornoDefinicion(): string{
-    let result = "Grupo compuesto por la evaluación de los riesgos (insertarlos) en el entorno cercado del evaluado, dando información respecto a que ciertas actividades sean normalizadas en el contexto cercano, aumentando  la probabilidad de que la persona pueda en algún momento incidir en alguno de estos.";
+    let result = "Grupo compuesto por la evaluación de los riesgos  en el entorno cercado del evaluado, dando información respecto a que ciertas actividades sean normalizadas en el contexto cercano, aumentando  la probabilidad de que la persona pueda en algún momento incidir en alguno de estos.";
     return result;
 }
 export function getRiesgosEntornoResultadoBajo(): string{
-    let result = "La persona no presenta respuestas emocionales que puedan indicar que en su entorno cercano se presentan actividades relacionadas con (nombrar los factores), esto indica que no las malas prácticas no se encuentran normalizadas a su alrededor, haciéndolo un entorno seguro.";
+    let result = "La persona no presenta respuestas emocionales que puedan indicar que en su entorno cercano se presentan actividades relacionadas con , esto indica que no las malas prácticas no se encuentran normalizadas a su alrededor, haciéndolo un entorno seguro.";
     return result;
 }
 export function getRiesgosEntornoResultadoMedioBajo(): string{
-    let result = "Se presentan indicadores de riesgo que pueden indicar un estrés en los factores del entorno (nombrarlos) lo que indica que puede haber un estresor detonante vinculado a éstos y a una posible práctica en su contexto cercano. Se recomienda explorar en entrevista.";
+    let result = "Se presentan indicadores de riesgo que pueden indicar un estrés en los factores del entorno  lo que indica que puede haber un estresor detonante vinculado a éstos y a una posible práctica en su contexto cercano. Se recomienda explorar en entrevista.";
     return result;
 }
 export function getRiesgosEntornoResultadoMedioAlto(): string{
@@ -1448,7 +1448,7 @@ export function getRiesgosEntornoResultadoMedioAlto(): string{
     return result;
 }
 export function getRiesgosEntornoResultadoAlto(): string{
-    let result = "Se observan resultados de alarma en los factores del entorno (nombrarlos) donde la persona ha tenido una reacción importante, lo cual indica que existe un riesgo de que las actividades relacioanadas con éstos sean recurrentes en su contexto cercano, haciéndolo un entorno de riesgo.";
+    let result = "Se observan resultados de alarma en los factores del entorno  donde la persona ha tenido una reacción importante, lo cual indica que existe un riesgo de que las actividades relacioanadas con éstos sean recurrentes en su contexto cercano, haciéndolo un entorno de riesgo.";
     return result;
 }
 
@@ -1831,7 +1831,7 @@ export function getRiesgosEntornoDrogasResultadoAlto(): string{
 }
 
 export function getRiesgosEntornoAlcoholDefinicion(): string{
-    let result = "Ingerir bebidas embriagantes durante la jornada lanboral.";
+    let result = "Ingerir bebidas embriagantes durante la jornada laboral.";
     return result;
 }
 export function getRiesgosEntornoAlcoholResultadoBajo(): string{
@@ -1928,7 +1928,7 @@ export function getReferenciasResultadoAlto(): string{
     return result;
 }
 export function getReferenciasResultadoMedioAlto(): string{
-    let result = "Los  resultados obtenidos por la persona evaluada, señalan que la información ha sido proporcionada de forma distorsionada en lo relativo a la autocalificación de las competencias (insertarlas), lo cual indica que pudo haber una ligera exageración o minización del verdadero desempeño y apego a las competencias.";
+    let result = "Los  resultados obtenidos por la persona evaluada, señalan que la información ha sido proporcionada de forma distorsionada en lo relativo a la autocalificación de las competencias , lo cual indica que pudo haber una ligera exageración o minización del verdadero desempeño y apego a las competencias.";
     return result;
 }
 export function getReferenciasResultadoMedioBajo(): string{
@@ -1936,6 +1936,6 @@ export function getReferenciasResultadoMedioBajo(): string{
     return result;
 }
 export function getReferenciasResultadoBajo(): string{
-    let result = "En general la persona ha respondido de forma poco veráz en lo referente a su autocalificación en las competencias (insertarlas) y en apego a las competencias (insertarlas) lo cual indica que la información proporcionada no puede ser considerada fidedigna.";
+    let result = "En general la persona ha respondido de forma poco veráz en lo referente a su autocalificación en las competencias  y en apego a las competencias  lo cual indica que la información proporcionada no puede ser considerada fidedigna.";
     return result;
 }
