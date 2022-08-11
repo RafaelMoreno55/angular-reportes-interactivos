@@ -20,7 +20,7 @@ import * as domtoimage from 'dom-to-image-more';
 })
 export class SectorReportComponent implements OnInit, OnDestroy {
 
-  @ViewChild('container') container: any;
+  @ViewChild('container') container: ElementRef;
 
   // línea de código utilizado para declarar un tipo de gráfico en AnyChart
   gauge: anychart.charts.LinearGauge = null;
@@ -1223,7 +1223,10 @@ export class SectorReportComponent implements OnInit, OnDestroy {
       this.isExport = false;
     } else {
       this.isExport = true;
-      setTimeout(() => { this.DownloadPDF(); }, 3000);
+      setTimeout(() => { 
+        this.DownloadPDF(); 
+        this.isExport = false;
+      }, 3000);
     }
   }
 
@@ -1402,26 +1405,22 @@ export class SectorReportComponent implements OnInit, OnDestroy {
       style: style
     };
 
-    console.log('node ::', this.container.nativeElement);
-    const self = this;
     domtoimage.toJpeg(node, param).then((dataUrl) => {
       let img = new Image();
-      img.crossOrigin = 'Anonymous';
-      img.id = 'getshot';
       img.src = dataUrl;
 
-      let pdfWidth = 210;
+      let pdfWidth = 190;
       let pdfHeight = (param.height * pdfWidth) / param.width;
       let pageHeight = 265;
       let heightLeft = pdfHeight;
       let position = 10; 
       
-      doc.addImage(img, 'JPEG', 15, position, pdfWidth, pdfHeight, undefined, 'FAST');
+      doc.addImage(img, 'JPEG', 12, position, pdfWidth, pdfHeight, undefined, 'FAST');
       heightLeft -= pageHeight;
       while (heightLeft >= 20) {
         position = heightLeft - pdfHeight; // limits each page with 297mm
-        doc.addPage();
-        doc.addImage(img, 'JPEG', 15, position, pdfWidth, pdfHeight, undefined, 'FAST');
+        doc.addPage('letter', 'p');
+        doc.addImage(img, 'JPEG', 12, position, pdfWidth, pdfHeight, undefined, 'FAST');
         heightLeft -= pageHeight; 
       }
       doc.save('InteractiveGraphicsReport_' + this.getIsoDate(new Date()) + '.pdf');
