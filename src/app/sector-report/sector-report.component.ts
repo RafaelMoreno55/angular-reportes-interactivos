@@ -6,12 +6,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MoreInformationComponent } from 'app/more-information/more-information.component';
 import * as module from 'Utilities/UtilityObject';
-// import 'jspdf-autotable';
 import * as jsPDF from 'jspdf';
-import * as html2canvas from 'html2canvas';
 import * as domtoimage from 'dom-to-image-more';
-
-// declare var jsPDF: any; // Important
 
 @Component({
   selector: 'app-sector-report',
@@ -124,9 +120,6 @@ export class SectorReportComponent implements OnInit, OnDestroy {
   risksReportSection: any = [];
   referencesReportSection: any = [];
   colorConfigReferences: number;
-  // newArrayComp: any = [];
-  // newArrayVerac: any = [];
-  // colorConfigRisks: number;
 
   constructor(private optionsSvc: DataReportService, private activeRoute: ActivatedRoute, private el: ElementRef, private modalService: NgbModal) {
   }
@@ -411,51 +404,6 @@ export class SectorReportComponent implements OnInit, OnDestroy {
       [this.totalVariables1Fraud, this.totalVariables2Fraud, this.totalVariables3Fraud, this.totalVariables4Fraud, this.colorConfigFraud] = this.GetInformationForComponent(this.fraudReportSection, this.rangesFraud, this.range1RedFraud, this.range2OrangeFraud, this.range3YellowFraud, this.range4GreenFraud);
       this.titleFraud = this.optionsSvc.GetNameSectorReport(this.fraudReportSection[0]['seccionReport']);
     }
-    /* let range1 = this.fraudReportSection[0]['rango1'];
-    let range2 = this.fraudReportSection[0]['rango2'];
-    let range3 = this.fraudReportSection[0]['rango3'];
-    this.ranges.push(range1);
-    this.ranges.push(range2);
-    this.ranges.push(range3);
-    this.colorConfig = this.fraudReportSection[0]['configColor'];
-    this.title = this.optionsSvc.GetNameSectorReport(this.fraudReportSection[0]['seccionReport']);
-    this.fraudReportSection.forEach(element => {
-      if (this.colorConfig == 1 ) { // verde a rojo
-        if (parseFloat(element['value']) <= range1) {
-          this.range4Green.push(element['name']);
-        } else {
-          if (parseFloat(element['value']) > range1 && parseFloat(element['value']) <= range2) {
-            this.range3Yellow.push(element['name']);
-          } else {
-            if (parseFloat(element['value']) > range2 && parseFloat(element['value']) <= range3) {
-              this.range2Orange.push(element['name']);
-            } else {
-              if (parseFloat(element['value']) > range3) {
-                this.range1Red.push(element['name']);
-              }
-            }
-          }
-        }
-      } else {// rojo a verde
-        if (this.colorConfig == 2) {
-          if (parseFloat(element['value']) <= range1) {
-            this.range1Red.push(element['name']);
-          } else {
-            if (parseFloat(element['value']) > range1 && parseFloat(element['value']) <= range2) {
-              this.range2Orange.push(element['name']);
-            } else {
-              if (parseFloat(element['value']) > range2 && parseFloat(element['value']) <= range3) {
-                this.range3Yellow.push(element['name']);
-              } else {
-                if (parseFloat(element['value']) > range3) {
-                  this.range4Green.push(element['name']);
-                }
-              }
-            }
-          }
-        }
-      }
-    }); */
     /**
      * Se utiliza un bucle para calcular los valores requeridos para el componente subsector-reference-report
      * el cual muestra información de la sección de reporte Referencias. El número de iteraciones depende de la 
@@ -529,7 +477,6 @@ export class SectorReportComponent implements OnInit, OnDestroy {
         });
       });
     }
-    // this.competenceVariables = this.competenceVariables.slice();
     /**
      * Se itera el arreglo risksReportSection para calcular los valores requeridos para el componente subsector-doughnut
      * el cual muestra información de la sección de reporte Riesgos
@@ -538,47 +485,6 @@ export class SectorReportComponent implements OnInit, OnDestroy {
       [this.totalVariables1Risk, this.totalVariables2Risk, this.totalVariables3Risk, this.totalVariables4Risk, this.colorConfigRisk] = this.GetInformationForComponent(this.risksReportSection, this.rangesRisk, this.range1RedRisk, this.range2OrangeRisk, this.range3YellowRisk, this.range4GreenRisk);
       this.titleRisk = this.optionsSvc.GetNameSectorReport(this.risksReportSection[0]['seccionReport']);
     }
-    /* range1 = this.risksReportSection[0]['rango1'];
-    range2 = this.risksReportSection[0]['rango2'];
-    range3 = this.risksReportSection[0]['rango3'];
-    this.colorConfigRisks = this.risksReportSection[0]['configColor'];
-    this.risksReportSection.forEach(element => {
-      if (this.colorConfigRisks == 1 ) { // verde a rojo
-        if (parseFloat(element['value']) <= range1) {
-          this.totalVariables4 += 1;
-        } else {
-          if (parseFloat(element['value']) > range1 && parseFloat(element['value']) <= range2) {
-            this.totalVariables3 += 1;
-          } else {
-            if (parseFloat(element['value']) > range2 && parseFloat(element['value']) <= range3) {
-              this.totalVariables2 += 1;
-            } else {
-              if (parseFloat(element['value']) > range3) {
-                this.totalVariables1 += 1;
-              }
-            }
-          }
-        }
-      } else {// rojo a verde
-        if (this.colorConfigRisks == 2) {
-          if (parseFloat(element['value']) <= range1) {
-            this.totalVariables1 += 1;
-          } else {
-            if (parseFloat(element['value']) > range1 && parseFloat(element['value']) <= range2) {
-              this.totalVariables2 += 1;
-            } else {
-              if (parseFloat(element['value']) > range2 && parseFloat(element['value']) <= range3) {
-                this.totalVariables3 += 1;
-              } else {
-                if (parseFloat(element['value']) > range3) {
-                  this.totalVariables4 += 1;
-                }
-              }
-            }
-          }
-        }
-      }
-    }); */    
     /**
      * Se realizan los cálculos para obtener los puntajes de las secciones de reporte: 
      * Fraude, Referencias, Competencias(Apego, Veracidad y Autocalificación) y Riesgos(Personales y Entorno)
@@ -741,165 +647,6 @@ export class SectorReportComponent implements OnInit, OnDestroy {
       }
       self.selection['selectedIndex'] = sectionReport;
       self.SetOption(self.selection);
-      /* self.competenceVariables.length = 0;
-      self.itemDoughnut = -1;
-      self.totalVariables1 = 0;
-      self.totalVariables2 = 0;
-      self.totalVariables3 = 0;
-      self.totalVariables4 = 0;
-      self.ranges.length = 0;
-      self.range1Red.length = 0;
-      self.range2Orange.length = 0;
-      self.range3Yellow.length = 0;
-      self.range4Green.length = 0;
-      self.rowsSubSector.length = 0;
-      self.arrayReferences.length = 0;
-      self.averageValue = e['currentTarget']['Rf'][0];
-      let sectionReport = 0;
-      self.sectors.forEach(element => {
-        if (self.averageValue === element['average']) {
-          sectionReport = element['sectionReport'];
-        }
-      });
-      self.rows.forEach(element => {
-        if (sectionReport === element['seccionReport'] && !isNaN(element['value'])) {
-          self.rowsSubSector.push(element);
-        }
-      });
-      // sección de reporte Riesgos
-      if (sectionReport == 18) {
-        self.selection['selectedComponent'] = 4;
-        self.descriptionTextSubsector = self.risksText.slice();
-      } else {
-        // sección de reporte Competencias
-        if (sectionReport == 16) {
-          self.selection['selectedComponent'] = 5;
-          let newArrayComp = [];
-          let newArrayVerac = [];
-          let splitNameArray = [];
-          let indexComp = -1;
-          let indexVerac = -1;
-          let varName = "";
-
-          self.rowsSubSector.forEach(element=> {
-            splitNameArray = element['name'].split(' ');
-            indexComp = splitNameArray.indexOf("competencia");
-            indexVerac = splitNameArray.indexOf("veracidad");
-            varName = "";
-            if (indexComp != -1) {
-              for (let i = indexComp+1; i < splitNameArray.length; i++) {
-                varName = varName + " " + splitNameArray[i];
-              }
-              newArrayComp.push({name: varName.trim(), value: element['value'], full_name: element['name']});
-            } else {
-              if (indexVerac != -1) {
-                for (let i = indexVerac+1; i < splitNameArray.length; i++) {
-                  varName = varName + " " + splitNameArray[i];
-                }
-                newArrayVerac.push({name: varName.trim(), value: element['value'], full_name: element['name']});
-              }
-            }
-          });
-          newArrayComp.forEach(elementComp => {
-            let words = elementComp['name'].split(' ');
-            let stringSequenceObject = self.MakeMap(words[0]);
-            let stringSequenceObjectLast = self.MakeMap(words[words.length-1]);
-            newArrayVerac.forEach(elementVerac => {
-              let dictionary = elementVerac['name'].split(' ');
-              if (self.IsSubsequence(dictionary[0], stringSequenceObject) && self.IsSubsequence(dictionary[dictionary.length-1], stringSequenceObjectLast)) {
-                self.competenceVariables.push({name: elementComp['name'], comp: elementComp['full_name'], value1: elementComp['value'], verac: elementVerac['full_name'], value2: elementVerac['value']});
-              }
-            });
-          });
-          self.competenceVariables = self.competenceVariables.slice();
-        } else {
-          // sección de reporte Referencias
-          if (sectionReport == 29) {
-            self.selection['selectedComponent'] = 2;
-            if (self.rowsSubSector[0]['configColor'] == 1) {
-              self.range = self.rowsSubSector[0]['rango3'];
-            } else {
-              self.range = self.rowsSubSector[0]['rango2'];
-            }
-            for (let i = 0; i < self.rowsSubSector.length; i++) {
-              let referenceData = new Object();
-              referenceData['nameDescrip'] = self.arrayReferenceDescription[i]['nameDescrip'];
-              referenceData['description'] = self.arrayReferenceDescription[i]['description'];
-              referenceData['name'] = self.rowsSubSector[i]['name'];
-              referenceData['value'] = self.rowsSubSector[i]['value'];
-              referenceData['configColor'] = self.rowsSubSector[i]['configColor'];
-              referenceData['rango1'] = self.rowsSubSector[i]['rango1'];
-              referenceData['rango2'] = self.rowsSubSector[i]['rango2'];
-              referenceData['rango3'] = self.rowsSubSector[i]['rango3'];
-              self.arrayReferences.push(referenceData);
-            }
-          } else {
-            // sección de reporte Fraude
-            if (sectionReport == 12) {
-              self.selection['selectedComponent'] = 1;
-              self.descriptionTextSubsector = self.fraudText.slice();
-            } else {
-              self.selection['selectedComponent'] = 1;
-            }
-          }
-        }
-      } 
-      self.selection['selectedIndex'] = sectionReport;
-      self.SetOption(self.selection);
-
-      let range1 = self.rowsSubSector[0]['rango1'];
-      let range2 = self.rowsSubSector[0]['rango2'];
-      let range3 = self.rowsSubSector[0]['rango3'];
-      self.colorConfig = self.rowsSubSector[0]['configColor'];
-      self.ranges.push(range1);
-      self.ranges.push(range2);
-      self.ranges.push(range3);
-      self.title = self.optionsSvc.GetNameSectorReport(self.rowsSubSector[0]['seccionReport']);
-      self.rowsSubSector.forEach(element => {
-        if (self.colorConfig == 1 ) { // verde a rojo
-          if (parseFloat(element['value']) <= range1) {
-            self.range4Green.push(element['name']);
-            self.totalVariables4 += 1;
-          } else {
-            if (parseFloat(element['value']) > range1 && parseFloat(element['value']) <= range2) {
-              self.range3Yellow.push(element['name']);
-              self.totalVariables3 += 1;
-            } else {
-              if (parseFloat(element['value']) > range2 && parseFloat(element['value']) <= range3) {
-                self.range2Orange.push(element['name']);
-                self.totalVariables2 += 1;
-              } else {
-                if (parseFloat(element['value']) > range3) {
-                  self.range1Red.push(element['name']);
-                  self.totalVariables1 += 1;
-                }
-              }
-            }
-          }
-        } else {// rojo a verde
-          if (self.colorConfig == 2) {
-            if (parseFloat(element['value']) <= range1) {
-              self.range1Red.push(element['name']);
-              self.totalVariables1 += 1;
-            } else {
-              if (parseFloat(element['value']) > range1 && parseFloat(element['value']) <= range2) {
-                self.range2Orange.push(element['name']);
-                self.totalVariables2 += 1;
-              } else {
-                if (parseFloat(element['value']) > range2 && parseFloat(element['value']) <= range3) {
-                  self.range3Yellow.push(element['name']);
-                  self.totalVariables3 += 1;
-                } else {
-                  if (parseFloat(element['value']) > range3) {
-                    self.range4Green.push(element['name']);
-                    self.totalVariables4 += 1;
-                  }
-                }
-              }
-            }
-          }
-        }
-      }); */
     });
     // set the container id
     this.gauge.container(stage);
@@ -1106,6 +853,7 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     let splitNameArray = variable['name'].split(' ');
     let indexComp = splitNameArray.indexOf("competencia");
     let indexVerac = splitNameArray.indexOf("veracidad");
+    let indexAuto = splitNameArray.indexOf("autocalificación");
     let score = this.GetVariableScore(variable['value'], variable['rango1'], variable['rango2'], variable['rango3']);
     let variableNamesCompetencies = this.optionsSvc.variableNamesCompetencies.slice();
     let varName = "";
@@ -1118,6 +866,11 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     }
     if (indexVerac != -1) {
       for (let i = indexVerac+1; i < splitNameArray.length; i++) {
+        varName = varName + " " + splitNameArray[i];
+      }
+    }
+    if (indexAuto != -1) {
+      for (let i = indexAuto+1; i < splitNameArray.length; i++) {
         varName = varName + " " + splitNameArray[i];
       }
     }
@@ -1356,34 +1109,6 @@ export class SectorReportComponent implements OnInit, OnDestroy {
     return [totalVariables1, totalVariables2, totalVariables3, totalVariables4, colorConfig];
   }
 
-  /* downloadPDF() {
-    const DATA = document.getElementById('htmlData');
-    const doc = new jsPDF('p', 'mm', 'letter');
-    const options = {
-      background: 'white',
-      scale: 2
-    };
-    html2canvas(DATA,options).then((canvas) => {
-
-      const img = canvas.toDataURL('image/PNG');
-      var imgWidth = 210; 
-      var pageHeight = 265;  
-      var imgHeight = canvas.height * imgWidth / canvas.width;
-      var heightLeft = imgHeight;
-      var position = 10; 
-
-     doc.addImage(img, 'JPEG', 15, position, imgWidth, imgHeight, undefined, 'FAST');
-      heightLeft -= pageHeight;
-      while (heightLeft >= 20) {
-        position = heightLeft - imgHeight; // limits each page with 297mm
-        doc.addPage();
-        doc.addImage(img, 'JPEG', 15, position, imgWidth, imgHeight, undefined, 'FAST');
-        heightLeft -= pageHeight; 
-      }
-      doc.save('InteractiveGraphicsReport_' + this.getIsoDate(new Date()) + '.pdf');
-    });
-  } */
-
   DownloadPDF(): void {
     
     const node = this.container.nativeElement;
@@ -1411,17 +1136,26 @@ export class SectorReportComponent implements OnInit, OnDestroy {
 
       let pdfWidth = 190;
       let pdfHeight = (param.height * pdfWidth) / param.width;
-      let pageHeight = 265;
+      let pageHeight = 270;
       let heightLeft = pdfHeight;
       let position = 10; 
       
       doc.addImage(img, 'JPEG', 12, position, pdfWidth, pdfHeight, undefined, 'FAST');
-      heightLeft -= pageHeight;
+      doc.setDrawColor(255, 255, 255);
+      doc.setFillColor(255, 255, 255);
+      doc.rect(12, 270, 190, 10, "FD");
+      heightLeft -= pageHeight - 17;
       while (heightLeft >= 20) {
-        position = heightLeft - pdfHeight; // limits each page with 297mm
+        position = heightLeft - pdfHeight; // limits each page with 270mm
         doc.addPage('letter', 'p');
         doc.addImage(img, 'JPEG', 12, position, pdfWidth, pdfHeight, undefined, 'FAST');
-        heightLeft -= pageHeight; 
+        doc.setDrawColor(255, 255, 255);
+        doc.setFillColor(255, 255, 255);
+        doc.rect(12, 0, 190, 10, "FD");
+        doc.setDrawColor(255, 255, 255);
+        doc.setFillColor(255, 255, 255);
+        doc.rect(12, 270, 190, 10, "FD");
+        heightLeft -= pageHeight - 17; 
       }
       doc.save('InteractiveGraphicsReport_' + this.getIsoDate(new Date()) + '.pdf');
     })
@@ -1429,6 +1163,83 @@ export class SectorReportComponent implements OnInit, OnDestroy {
       console.error('oops, something went wrong!', error);
     });
   }
+/*
+  DownloadPDF(): void {
+    // se obtiene el elemento html que contiene la información para guardar en pdf
+    const node = this.container.nativeElement;
+    // se hace instancia del objeto para crear el documento pdf
+    let doc = new jsPDF('p', 'mm', 'letter');
+    let scale = 2;
+    // estilo personalizado para antes del renderizado de la imagen que se agrega al documento pdf
+    const style = {
+      transform: 'scale(' + scale + ')',
+      transformOrigin: 'top left',
+      width: node.offsetWidth + 'px',
+      height: node.offsetHeight + 'px',
+      background: 'white',
+    };
+    // se establece la calidad del documento pdf, que va de 0 - 1 donde 1 significa el 100% 
+    const param = {
+      height: node.offsetHeight * scale,
+      width: node.offsetWidth * scale,
+      quality: 1,
+      style: style
+    };
+    // la función toJpeg() devuelve una promesa con la URL en base64 de la imagen JPEG de la información contenida en el nodo DOM
+    domtoimage.toJpeg(node, param).then((dataUrl) => {
+      let img = new Image();
+      img.src = dataUrl;
+    // dimensiones del documento pdf
+      let pdfWidth = 190;
+      let pdfHeight = (param.height * pdfWidth) / param.width;
+    // altura de las página del pdf
+      let pageHeight = 270;
+    // variables auxiliares para indicar la parte de la imagen agregada a la página del pdf y
+    // el cursor en donde se debe posicionar dentro la imagen JPEG
+      let heightLeft = pdfHeight;
+      let position = 10; 
+      
+    // la función addImage() agrega parte de la imagen JPEG creada anteriormente a la primera página del documento pdf,
+    // se establece la posición x=12, y=10, ancho y altura dentro de la imagen JPEG para agregar a la página 
+      doc.addImage(img, 'JPEG', 12, position, pdfWidth, pdfHeight, undefined, 'FAST');
+    // se agrega un rectángulo con borde y relleno blanco en la parte inferior de la primera página con finalidad de establecer un margen,
+    // las dimensiones del rectángulo en la página son: x=12, y=270, ancho=190, alto=10 mm
+      doc.setDrawColor(255, 255, 255);
+      doc.setFillColor(255, 255, 255);
+      doc.rect(12, 270, 190, 10, "FD");
+    // indica que se ha agregado 270 mm de la parte superior de la imagen en la primera página del pdf y 
+    // además se recupera 17 mm de la imagen agregada para mostrar en la siguiente página del pdf
+      heightLeft -= pageHeight - 17;
+      while (heightLeft >= 20) {
+    // se actualiza el cursor que se desplaza dentro de la imagen JPEG para indicar la posición en donde debe comenzar a agregar en la siguiente página del pdf
+        position = heightLeft - pdfHeight; // limits each page with 270mm
+    // se crea y agrega una nueva página en el documento pdf
+        doc.addPage('letter', 'p');
+    // se agrega una nueva sección de la imagen JPEG a la página creada con la posición del cursor actualizado
+        doc.addImage(img, 'JPEG', 12, position, pdfWidth, pdfHeight, undefined, 'FAST');
+    // se coloca el rectángulo con ancho=190 mm, altura=10 mm, borde y relleno blanco en la parte superior de la nueva página traslapando la imagen agrega,
+    // la función de este rectángulo es el de actuar como margen superior 
+        doc.setDrawColor(255, 255, 255);
+        doc.setFillColor(255, 255, 255);
+        doc.rect(12, 0, 190, 10, "FD");
+    // se coloca el mismo rectángulo descrito anteriormente a la nueva página traslapando la imagen agrega,
+    // la función de este rectángulo es el de actuar como margen inferior
+        doc.setDrawColor(255, 255, 255);
+        doc.setFillColor(255, 255, 255);
+        doc.rect(12, 270, 190, 10, "FD");
+    // indica que se ha agregado 270 mm de la imagen en la nueva página del documento pdf y 
+    // además se recupera 17 mm de la imagen agregada para mostrar en la siguiente página del pdf
+        heightLeft -= pageHeight - 17;
+      }
+    // se guarda y descarga el documento pdf por medio del navegador.
+    // El nombre del documento es asignado por la cadena mandada como argumento
+      doc.save('InteractiveGraphicsReport_' + this.getIsoDate(new Date()) + '.pdf');
+    })
+    .catch(function(error: any) {
+      // se atrapa el error cuando falla en la creación de la URL para la imagen JPEG
+      // console.error('oops, something went wrong!', error);
+    });
+  }*/
 
   getIsoDate(dateTmp: Date): string {
     return dateTmp ? dateTmp.getFullYear() + '-' + (dateTmp.getMonth() + 1).toString() + '-' + dateTmp.getDate().toString() : '';

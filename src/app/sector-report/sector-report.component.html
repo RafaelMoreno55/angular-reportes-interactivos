@@ -99,7 +99,7 @@
   </div>
   <div [hidden]="GetSelectedComponent() != 4">
     <app-back-button></app-back-button>
-    <app-subsector-doughnut [totalVariables1]="totalVariables1" [totalVariables2]="totalVariables2" [totalVariables3]="totalVariables3" [totalVariables4]="totalVariables4" [propertyColorConfig]="colorConfigRisks" (itemDoughnutEvent)="GetItemDoughnut($event)" [descriptionText]="risksText"></app-subsector-doughnut>
+    <app-subsector-doughnut [totalVariables1]="totalVariables1" [totalVariables2]="totalVariables2" [totalVariables3]="totalVariables3" [totalVariables4]="totalVariables4" [propertyColorConfig]="colorConfigRisk" (itemDoughnutEvent)="GetItemDoughnut($event)" [descriptionText]="risksText"></app-subsector-doughnut>
   </div>
   <div [hidden]="GetSelectedComponent() != 5">
     <app-back-button></app-back-button>
@@ -120,7 +120,7 @@
     </div>
     
     <div *ngIf="risksReportSection.length > 0">
-      <app-subsector-doughnut [totalVariables1]="totalVariables1Risk" [totalVariables2]="totalVariables2Risk" [totalVariables3]="totalVariables3Risk" [totalVariables4]="totalVariables4Risk" [propertyColorConfig]="colorConfigRisks" (itemDoughnutEvent)="GetItemDoughnut($event)" [descriptionText]="risksText"></app-subsector-doughnut>
+      <app-subsector-doughnut [totalVariables1]="totalVariables1Risk" [totalVariables2]="totalVariables2Risk" [totalVariables3]="totalVariables3Risk" [totalVariables4]="totalVariables4Risk" [propertyColorConfig]="colorConfigRisk" (itemDoughnutEvent)="GetItemDoughnut($event)" [descriptionText]="risksText"></app-subsector-doughnut>
       
       <div style="display: none">{{selection['selectedIndex'] = 18}} {{SetOption(selection)}}</div>
       <app-subsector-report [range1Red]="range1RedRisk" [range2Orange]="range2OrangeRisk" [range3Yellow]="range3YellowRisk" [range4Green]="range4GreenRisk" [ranges]="rangesRisk" [title]="titleRisk" [colorConfig]="colorConfigRisk" [itemDoughnut]="'-1'" (propertyNameEvent)="GetpropertyName($event)" [descriptionText]="risksText"></app-subsector-report>
